@@ -1,0 +1,21 @@
+Package: topOnto
+Type: Package
+Title: ontology enrichment analysis 
+Version: 0.99.0
+Date: 2015-02-11
+Author: Xin He
+Maintainer: xin he <xin.he@ed.ac.uk>
+Description: TopOnto package provides tools for testing ontlogy terms while 
+        accounting for the topology of the ontology graph. Different test 
+        statistics and different methods for eliminating local similarities 
+        and dependencies between ontology terms can be implemented and applied.
+        TopOnto package does similar job as the topGO package.The difference 
+        is that topOnto accept customize ontologies while topGO only support 
+        Gene Ontology.
+Depends: R (>= 2.10.0),graph (>= 1.14.0), Biobase (>= 2.0.0),
+        AnnotationDbi (>= 1.26.0), SparseM (>= 0.73), methods
+Suggests: globaltest, hgu133a.db, ALL, topOnto.HDO.db, knitr, rmarkdown, multtest
+Imports: lattice, Rgraphviz
+biocViews: Microarray, Software, Visualization
+VignetteBuilder: knitr
+License: LGPL

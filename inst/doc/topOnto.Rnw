@@ -1,0 +1,83 @@
+%
+% NOTE -- ONLY EDIT DO.db.Rnw!!!
+% DO.db.tex file will get overwritten.
+%
+%\VignetteIndexEntry{topOnto Overview}
+%\VignetteKeywords{topOnto}
+%\VignettePackage{topOnto}
+
+
+\documentclass[12pt]{article}
+
+\usepackage{Sweave}
+
+\author{Xin He \\
+\\
+University of Edinburgh}
+
+
+\textwidth=6.2in
+\textheight=8.5in
+%\parskip=.3cm
+\oddsidemargin=.1in
+\evensidemargin=.1in
+\headheight=-.3in
+
+
+\newcommand\Rpackage[1]{{\textsf{#1}\index{#1 (package)}}}
+\newcommand\RpackageNoindex[1]{{\textsf{#1}}}
+\newcommand\Rclass[1]{{\textit{#1}\index{#1 (class)}}}
+\newcommand\Rfunction[1]{{{\small\texttt{#1}}\index{#1 (function)}}}
+\newcommand\Rmethod[1]{{\small\texttt{#1}}}
+\newcommand\Rcommand[1]{{{\small\texttt{#1}}\index{#1 (function)}}}
+\newcommand\Rfunarg[1]{{\small\texttt{#1}}}
+\newcommand\Robject[1]{{\small\texttt{#1}}}
+
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\title{How To Use topOnto}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Overview}
+This vignette demonstrates how to easily use the \Rpackage{topOnto} package. 
+
+To start with \Rpackage{topOnto} package, type following code below:
+<<results=hide>>=
+library(topOnto)
+help(topOnto)
+@ 
+
+
+\section{Load ontology}
+
+<<results=hide>>=
+topOnto::initWHAT()
+
+topOnto::initONT('HDO')
+@
+
+\section{Load Annotation and gene list}
+<<>>=
+a<-system.file("extdata/annotation","human_g2d_omim.txt", package ="topOnto")
+g<-system.file("extdata/genelist","testList", package ="topOnto")
+geneID2GO <- readMappings(file = a)
+geneNames=names(geneID2GO)
+myInterestingGenes=(read.csv(header = FALSE, file = g))$V1
+geneList <- factor(as.integer(geneNames %in% myInterestingGenes))
+names(geneList) <- geneNames
+@
+
+
+\section{GSEA}
+<<results=hide>>=
+GOdata <- new("topGOdata", ontology = "HDO", allGenes = geneList,annot = annFUN.gene2GO, gene2GO = geneID2GO)
+resultFis <- runTest(GOdata, algorithm = "classic", statistic = "fisher")
+resultElimFis<- runTest(GOdata, algorithm = "elim", statistic = "fisher")
+allRes <- GenTable(GOdata,  elim = resultElimFis,elim = resultElimFis,topNodes = 30,useLevels=TRUE)
+@
+
+\end{document}

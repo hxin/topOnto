@@ -1,0 +1,24 @@
+The package is build on top of topGO package. 
+topGO is a bioconductor package written by by Alexa. It's designed specifically for Gene ontology enrichment analysis.
+topOnto is a generalized version of topGO where any GO-like ontology can be used.
+
+topOnto loads ontology from topOnto.xxx.db packages.
+You can create your own topOnto.xxx.db packages with your ontology obo file by following the instruction in inst/scripts/create.db
+
+For illustration purpose, the topOnto.HDO.db is pre-created in inst/scripts/create.db/topOnto.HDO.db.
+If you want to run the example for topOnto, the topOnto.HDO.db package will be installed druing the installation process.
+
+Here's what you need to do to install topOnto
+cd to the package root folder
+	$cd xx/topOnto/
+run the install.sh to build the packages from source:
+	$sh install.sh
+
+
+***************
+***inst/scripts/exampleRun.R. is a small example to get you start.
+***You need to load an Annotation file for the ontology you choose and a geneList of interests.
+***You can then change the file path in the script to your own annotation file and gene list.
+***In the exmaple, we used human_g2d_omim.txt as the gene annotation file.
+***For more analysis method with topOnto, please ref to here: http://www.bioconductor.org/packages/release/bioc/vignettes/topGO/inst/doc/topGO.pdf
+*************** 
