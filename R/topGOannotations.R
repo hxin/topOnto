@@ -311,3 +311,8 @@ feasibleGenes.db <- function(affyLib) {
 #   return(unique(unlist(mget(goodGO, envir = mapping, ifnotfound = NA))))
 }
 
+getGeneOntologyAnnotation<-function(){
+  
+  GO_ANNO=as.data.frame(read.csv('/home/xin/Desktop/colin/GO_annotation.txt',header=FALSE,sep='\t'))
+  split(as.vector(GO_ANNO$V2),as.vector(GO_ANNO$V1))
+}
