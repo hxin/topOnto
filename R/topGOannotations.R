@@ -311,8 +311,30 @@ feasibleGenes.db <- function(affyLib) {
 #   return(unique(unlist(mget(goodGO, envir = mapping, ifnotfound = NA))))
 }
 
-getGeneOntologyAnnotation<-function(){
-  
-  GO_ANNO=as.data.frame(read.csv('/home/xin/Desktop/colin/GO_annotation.txt',header=FALSE,sep='\t'))
+##http://geneontology.org/page/download-annotations
+getGeneOntologyAnnotation<-function(file='/home/xin/Desktop/colin/GO_annotation.txt'){
+  GO_ANNO=as.data.frame(read.csv(file,header=FALSE,sep='\t'))
   split(as.vector(GO_ANNO$V2),as.vector(GO_ANNO$V1))
+}
+
+
+##We have human annotation data, we want to map thm to fly through human_fly_one2one_ortholog
+mapAnnotationToSpecies.fly<-function(human_file=system.file("extdata/annotation","human_gene2HDO", package ="topOnto"),output){
+  require('idbox')
+  ls('package:idbox')
+  h2f_one2one<-find_one2one_orthologs_Human2Fly()
+  geneID2TERM <- readMappings(human_file)
+  n<-names(geneID2TERM)
+  #keep only those have fly orthology
+  geneID2TERM<-geneID2TERM[n %in% h2f_one2one$human_entrezgene]
+  index<-match(names(geneID2TERM),h2f_one2one$human_entrezgene)
+  fly<-h2f_one2one[index,"fly_entrezgene"]
+  geneID2TERM.fly <- geneID2TERM
+  names(geneID2TERM.fly)<-fly
+  sink(output)
+  for(i in names(geneID2TERM.fly)){
+    cat(paste(i,paste(geneID2TERM.fly[[i]],collapse=','),sep="\t"))
+    cat("\n")
+  }
+  sink()
 }
