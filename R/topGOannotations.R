@@ -317,6 +317,31 @@ getGeneOntologyAnnotation<-function(file='/home/xin/Desktop/colin/GO_annotation.
   split(as.vector(GO_ANNO$V2),as.vector(GO_ANNO$V1))
 }
 
+parseGeneOntologyAnnotation<-function(file='/home/xin/Desktop/colin/GO_annotation.txt'){
+  GO_ANNO=as.data.frame(read.csv(file,header=FALSE,sep='\t'))
+  ensembl_id=as.vector(GO_ANNO$V2)
+  GO_id=as.vector(GO_ANNO$V5)
+  names(GO_id)<-ensembl_id
+  ensembl2go<-split(GO_id,ensembl_id)
+  
+  entrez2go<-list()
+  
+  require('idbox')
+  e2e<-entrez2ensembl(species='dmelanogaster',na.rm=TRUE)
+  ensembl<-e2e$ensembl_gene_id
+  names(ensembl)<-e2e$entrezgene
+  e2e<-split(names(ensembl),ensembl)
+  
+  for(i in names(e2e)){
+    for(j in e2e[[i]]){
+      entrez2go[j]=ensembl2go[i]
+    }
+  }
+  entrez2go<-entrez2go[which(!sapply(entrez2go, is.null))]
+  entrez2go
+  
+}
+
 
 ##We have human annotation data, we want to map thm to fly through human_fly_one2one_ortholog
 mapAnnotationToSpecies.fly<-function(human_file=system.file("extdata/annotation","human_gene2HDO", package ="topOnto"),output){
@@ -337,4 +362,10 @@ mapAnnotationToSpecies.fly<-function(human_file=system.file("extdata/annotation"
     cat("\n")
   }
   sink()
+}
+
+
+###list all available annotation file
+list.annotation<-function(){
+  list.files(path=system.file("extdata/annotation", package ="topOnto"))
 }
