@@ -421,7 +421,7 @@ setMethod("GenTable",
           function(object, ..., orderBy = 1, ranksOf = 2,
                    topNodes = 10, numChar = 40,
                    format.FUN = format.pval, decreasing = FALSE,
-                   useLevels = FALSE) {
+                   useLevels = FALSE,cutoff=0.05) {
             
             resList <- list(...)
             
@@ -650,7 +650,7 @@ getPvalues <- function(edata, classlabel, test = "t",
     cat("    Annotated genes:", x["Annotated"], "\n")
   if("Significant" %in% names(x))
     cat("    Significant genes:", x["Significant"], "\n")
-  cat("    Min. no. of genes annotated to a GO:", x["NodeSize"], "\n")
+  cat("    Min. no. of genes annotated to a term:", x["NodeSize"], "\n")
   if("SigTerms" %in% names(x))
     cat("    Nontrivial nodes:", x["SigTerms"], "\n")
 }

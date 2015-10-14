@@ -9,14 +9,7 @@ SOURCEDATE=20150219
 VERSION=1.2
 OBO="/home/xin/Workspace/DisEnt/disent/data/hp.obo"
 
-PACKAGE_NAME=topOnto.HDO.db
-DBSCHEMA="HDO_DB"
-DBSCHEMAVERSION=1.0
-SOURCENAME="HDO"
-SOURCURL="http://www.obofoundry.org/cgi-bin/detail.cgi?id=disease_ontology"
-SOURCEDATE=20150219
-VERSION=1.2
-OBO="/home/xin/Workspace/DisEnt/disent/data/doid_addall.obo"
+
 
 PACKAGE_NAME=topOnto.SBO.db
 DBSCHEMA="SBO_DB"
@@ -96,4 +89,13 @@ SOURCURL="-"
 SOURCEDATE=20150820
 VERSION=1.0
 OBO="/home/xin/Workspace/DisEnt/disent/data/GOBP.obo"
+
+PACKAGE_NAME=topOnto.HDO.db
+DBSCHEMA="HDO_DB"
+DBSCHEMAVERSION=1.0
+SOURCENAME="HDO"
+SOURCURL="http://www.obofoundry.org/cgi-bin/detail.cgi?id=disease_ontology"
+SOURCEDATE=20150219
+VERSION=1.2
+OBO="/home/xin/Workspace/DisEnt/disent/data/doid_addall.obo"
 

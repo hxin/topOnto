@@ -648,7 +648,7 @@ setMethod("show", "topGOresult", function(object) .printTopGOresult(x = object))
 .printTopGOresult <- function(x) {
   cat("\nDescription:", description(x), "\n")
   cat("'", algorithm(x), "' algorithm with the '", testName(x), "' test\n", sep = "")
-  cat(length(score(x)), "GO terms scored:", sum(score(x) <=  0.01), "terms with p < 0.01\n")
+  cat(length(score(x))," terms scored:", sum(score(x) <=  0.01), "terms with p < 0.01\n")
   .printGeneData(geneData(x))
 }
 
