@@ -21,7 +21,7 @@ names(geneList) <- geneNames
 GOdata <- new("topGOdata", ontology = "HDO", allGenes = geneList,annot = annFUN.gene2GO, gene2GO = geneID2TERM)
 resultFis <- runTest(GOdata, algorithm = "classic", statistic = "fisher")
 resultElimFis<- runTest(GOdata, algorithm = "elim", statistic = "fisher")
-allRes <- GenTable(GOdata,  elim = resultElimFis,elim = resultElimFis,topNodes = 30,useLevels=TRUE)
+allRes <- GenTable(GOdata,  elimfisher = resultElimFis,fisher = resultFis,topNodes = 30,useLevels=TRUE,cutoff=0.001)
 print(allRes)
 cat("Demo done..Seems working!\n")
 

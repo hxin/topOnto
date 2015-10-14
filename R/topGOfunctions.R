@@ -421,7 +421,7 @@ setMethod("GenTable",
           function(object, ..., orderBy = 1, ranksOf = 2,
                    topNodes = 10, numChar = 40,
                    format.FUN = format.pval, decreasing = FALSE,
-                   useLevels = FALSE,cutoff=0.05) {
+                   useLevels = FALSE,cutoff=NULL) {
             
             resList <- list(...)
             
@@ -458,8 +458,20 @@ setMethod("GenTable",
               topNodes = length(rownames(l))
                        
             whichTerms <- rownames(l)[1:topNodes]
-            
+
             l <- l[whichTerms, , drop = FALSE]
+            
+            ##apply cutoff
+            if(!is.null(cutoff)){
+              cut<-sum(l[,orderBy]<=cutoff)
+              if(cut<topNodes)
+                topNodes=cut
+              
+              whichTerms <- rownames(l)[1:topNodes]           
+              l <- l[whichTerms, , drop = FALSE]
+            }
+           
+            
             rr <- as.integer(rr[1:topNodes])
 
             shortNames <- .getTermsDefinition(whichTerms, ontology(object), numChar = numChar)
