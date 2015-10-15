@@ -421,7 +421,7 @@ setMethod("GenTable",
           function(object, ..., orderBy = 1, ranksOf = 2,
                    topNodes = 10, numChar = 40,
                    format.FUN = format.pval, decreasing = FALSE,
-                   useLevels = FALSE,cutoff=NULL) {
+                   useLevels = FALSE,cutoff=NULL,show.gene=FALSE) {
             
             resList <- list(...)
             
@@ -504,6 +504,12 @@ setMethod("GenTable",
             
             ##rownames(infoMat) <- whichTerms
             rownames(infoMat) <- 1:length(whichTerms)
+            
+            if(show.gene){
+              sig.genes<-.get.sig.gene.in.term(GOdata,myInterestingGenes)
+              hits<-sapply(sig.genes[infoMat$TERM.ID],paste,collapse=',')
+              infoMat<-data.frame(infoMat,sig.genes=hits)
+            }
             
             return(infoMat)            
           })
@@ -709,3 +715,7 @@ combineResults <- function(..., method = c("gmean", "mean", "median", "min", "ma
 }
 
 
+.get.sig.gene.in.term<-function(GOdata,my.gene.list){
+  genes<-genesInTerm(GOdata)
+  lapply(genes,intersect,my.gene.list)
+}
