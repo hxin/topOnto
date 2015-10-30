@@ -344,29 +344,33 @@ parseGeneOntologyAnnotation<-function(file='/home/xin/Desktop/colin/GO_annotatio
 
 
 ##We have human annotation data, we want to map thm to fly through human_fly_one2one_ortholog
-mapAnnotationToSpecies.fly<-function(human_file=system.file("extdata/annotation","human_gene2HDO", package ="topOnto"),orthology.type=2,output){
+mapAnnotationToSpecies.fly<-function(human_file=system.file("extdata/annotation","human_gene2HDO", package ="topOnto"),orthology.type=c(1,2),output){
   #orthology.type=1,2,3
   #one2one one2many many2many
   require('idbox')
   ls('package:idbox')
   h2f<-human2fly()
-  types=c('ortholog_one2one','ortholog_one2many','ortholog_many2many')[1:orthology.type]
+  types=c('ortholog_one2one','ortholog_one2many','ortholog_many2many')[orthology.type]
   h2f<-h2f[h2f$dmelanogaster_homolog_orthology_type %in% types,]
   geneID2TERM <- readMappings(human_file)
   n<-names(geneID2TERM)
   #keep only those have fly orthology
-  geneID2TERM<-geneID2TERM[n %in% h2f$human_entrezgene]
-  index<-match(names(geneID2TERM),h2f$human_entrezgene)
-  fly<-h2f[index,"fly_entrezgene"]
-  geneID2TERM.fly <- geneID2TERM
-  names(geneID2TERM.fly)<-fly
-  mapply(c,test,test)
-  l<-list()
-  for(fly.gene in fly){
-    ds<-unique(unlist(geneID2TERM.fly[which(fly==fly.gene)],use.names=T))
-    l[[as.character(fly.gene)]]<-ds
-  }
-  geneID2TERM.fly<-l
+  geneID2TERM<-geneID2TERM[n %in% h2f$human_entrez_id]
+  
+  h2f.entrez<-h2f$fly_entrez_id
+  names(h2f.entrez)<-h2f$human_entrez_id
+  human2fly.list<-lapply(split(h2f.entrez,names(h2f.entrez)),unname)
+  TERM2geneID<-revmap(geneID2TERM)
+  TERM2geneID.fly<-lapply(TERM2geneID,function(x){
+    new<-c()
+    for(i in x){
+      new<-c(human2fly.list[[i]],new)
+    }
+    unique(new)
+  })
+  geneID2TERM.fly<-revmap(TERM2geneID.fly)
+  
+  #mapply(c,test,test)
   sink(output)
   for(i in names(geneID2TERM.fly)){
     cat(paste(i,paste(geneID2TERM.fly[[i]],collapse=','),sep="\t"))
