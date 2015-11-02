@@ -294,12 +294,17 @@ if(!isGeneric("GenTable"))
 #'   @param rm.one the p-values which are 1 are removed. 
 #'   @param whichTerms character vector listing the GO terms for which the summary should be printed.
 #'   @param file character string specifying the file in which the results should be printed.
+#'   
 #'   @param \dots other
 #'        \code{topNodes}  the number of top GO terms to be included in the table / the gene description is trimmed such that it has \code{numChar} characters.
 #'     %%GenTable(object, ..., orderBy = 1, ranksOf = 2, topNodes = 10, numChar = 40)
 #'     Extra arguments for \code{GenTable} can be:
 #'       \code{orderBy} if more than one \code{topGOresult} object is given then \code{orderBy} gives the index of which scores will be used to order the resulting table. Can be an integer index  or a character vector given the name of the \code{topGOresult} object.
 #'       \code{ranksOf} same as \code{orderBy} argument except that this parameter shows the relative ranks of the specified result.   
+#'       \code{cutoff} p-value cutoff. default 1
+#'       \code{show.gene} default \code{FALSE}. Whether add a column in the result showing the significant genes.
+#'       \code{use.symbol} default \code{FALSE}. Whether to use symbol or entrez_id for the significant genes if the \code{show.gene} is T.
+#'       \code{entrez2symbol} default \code{NULL}. If \code{use.symbol} is \code{TRUE}, \code{use.symbol} must be provided as a list of entrez_id to gene symbol.
 #'       \code{numChar} the GO term definition will be truncated such that only the first \code{numChar} characters are shown.
 #'     %% printGenes(object, whichTerms, chip, numChar = 100, simplify = TRUE, geneCufOff = 50, pvalCutOff)
 #'     %% printGenes(object, whichTerms, file, oneFile = FALSE, ...)
@@ -421,7 +426,7 @@ setMethod("GenTable",
           function(object, ..., orderBy = 1, ranksOf = 2,
                    topNodes = 10, numChar = 40,
                    format.FUN = format.pval, decreasing = FALSE,
-                   useLevels = FALSE,cutoff=NULL,show.gene=FALSE) {
+                   useLevels = FALSE,cutoff=NULL,show.gene=FALSE,use.symbol=FALSE,entrez2symbol=NULL) {
             
             resList <- list(...)
             
@@ -506,10 +511,23 @@ setMethod("GenTable",
             rownames(infoMat) <- 1:length(whichTerms)
             
             if(show.gene){
-              sig.genes<-.get.sig.gene.in.term(GOdata,myInterestingGenes)
+              sig.genes<-.get.sig.gene.in.term(GOdata)
+              if(use.symbol){
+                #require('org.Dm.eg.db')
+                #entrez2symbol<-revmap(as.list(org.Dm.egSYMBOL2EG))
+                if(is.null(entrez2symbol)){
+                  message("entrez2symbol is missing. Ignore show.symbol!")
+                }else{
+                  sig.gene2term<-revmap(sig.genes)
+                  symbols<-entrez2symbol[as.character(names(sig.gene2term))]
+                  names(sig.gene2term)<-unname(unlist(symbols))
+                  sig.genes<-revmap(sig.gene2term)
+                }
+              }
               hits<-sapply(sig.genes[infoMat$TERM.ID],paste,collapse=',')
               infoMat<-data.frame(infoMat,sig.genes=hits)
             }
+            
             
             return(infoMat)            
           })
@@ -715,7 +733,7 @@ combineResults <- function(..., method = c("gmean", "mean", "median", "min", "ma
 }
 
 
-.get.sig.gene.in.term<-function(GOdata,my.gene.list){
+.get.sig.gene.in.term<-function(GOdata){
   genes<-genesInTerm(GOdata)
-  lapply(genes,intersect,my.gene.list)
+  lapply(genes,intersect,sigGenes(GOdata))
 }
