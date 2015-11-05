@@ -158,83 +158,83 @@ readMappings <- function(file, sep = "\t", IDsep = ",") {
 
 ##not implemented
 ## function annFUN.org() to work with the "org.XX.eg" annotations
-annFUN.org <- function( feasibleGenes = NULL, mapping, ID = "entrez") {
-# 
-#   tableName <- c("genes", "accessions", "alias", "ensembl",
-#                  "gene_info", "gene_info", "unigene")
-#   keyName <- c("gene_id", "accessions", "alias_symbol", "ensembl_id",
-#                "symbol", "gene_name", "unigene_id")
-#   names(tableName) <- names(keyName) <- c("entrez", "genbank", "alias", "ensembl",
-#                                           "symbol", "genename", "unigene")
-#   
-#   
-#   ## we add the .db ending if needed 
-#   mapping <- paste(sub(".db$", "", mapping), ".db", sep = "")
-#   require(mapping, character.only = TRUE) || stop(paste("package", mapping, "is required", sep = " "))
-#   mapping <- sub(".db$", "", mapping)
-#   
-#   geneID <- keyName[tolower(ID)]
-#   .sql <- paste("SELECT DISTINCT ", geneID, ", go_id FROM ", tableName[tolower(ID)],
-#                 " INNER JOIN ", paste("go", tolower(whichOnto), sep = "_"),
-#                 " USING(_id)", sep = "")
-#   retVal <- dbGetQuery(get(paste(mapping, "dbconn", sep = "_"))(), .sql)
-#   
-#   ## restric to the set of feasibleGenes
-#   if(!is.null(feasibleGenes))
-#     retVal <- retVal[retVal[[geneID]] %in% feasibleGenes, ]
-#   
-#   ## split the table into a named list of GOs
-#   return(split(retVal[[geneID]], retVal[["go_id"]]))
+annFUN.org <- function( feasibleGenes = NULL, mapping, ID = "entrez",whichOnto = 'BP') {
+  
+  tableName <- c("genes", "accessions", "alias", "ensembl",
+                 "gene_info", "gene_info", "unigene")
+  keyName <- c("gene_id", "accessions", "alias_symbol", "ensembl_id",
+               "symbol", "gene_name", "unigene_id")
+  names(tableName) <- names(keyName) <- c("entrez", "genbank", "alias", "ensembl",
+                                          "symbol", "genename", "unigene")
+  
+  
+  ## we add the .db ending if needed 
+  mapping <- paste(sub(".db$", "", mapping), ".db", sep = "")
+  require(mapping, character.only = TRUE) || stop(paste("package", mapping, "is required", sep = " "))
+  mapping <- sub(".db$", "", mapping)
+  
+  geneID <- keyName[tolower(ID)]
+  .sql <- paste("SELECT DISTINCT ", geneID, ", go_id FROM ", tableName[tolower(ID)],
+                " INNER JOIN ", paste("go", tolower(whichOnto), sep = "_"),
+                " USING(_id)", sep = "")
+  retVal <- dbGetQuery(get(paste(mapping, "dbconn", sep = "_"))(), .sql)
+  
+  ## restric to the set of feasibleGenes
+  if(!is.null(feasibleGenes))
+    retVal <- retVal[retVal[[geneID]] %in% feasibleGenes, ]
+  
+  ## split the table into a named list of GOs
+  return(split(retVal[[geneID]], retVal[["go_id"]]))
 }
 
 
 ##not implemented
 annFUN.db <- function( feasibleGenes = NULL, affyLib) {
-# 
-#   ## we add the .db ending if needed 
-#   affyLib <- paste(sub(".db$", "", affyLib), ".db", sep = "")
-#   require(affyLib, character.only = TRUE) || stop(paste("package", affyLib, "is required", sep = " "))
-#   affyLib <- sub(".db$", "", affyLib)
-# 
-#   orgFile <- get(paste(get(paste(affyLib, "ORGPKG", sep = "")), "_dbfile", sep = ""))
-#   
-#   try(dbGetQuery(get(paste(affyLib, "dbconn", sep = "_"))(),
-#                  paste("ATTACH '", orgFile(), "' as org;", sep ="")),
-#       silent = TRUE)
-#   
-#   .sql <- paste("SELECT DISTINCT probe_id, go_id FROM probes INNER JOIN ",
-#                 "(SELECT * FROM org.genes INNER JOIN org.go_",
-#                 tolower(whichOnto)," USING('_id')) USING('gene_id');", sep = "")
-# 
-#   retVal <- dbGetQuery(get(paste(affyLib, "dbconn", sep = "_"))(), .sql)
-# 
-#   ## restric to the set of feasibleGenes
-#   if(!is.null(feasibleGenes))
-#     retVal <- retVal[retVal[["probe_id"]] %in% feasibleGenes, ]
-#   
-#   ## split the table into a named list of GOs
-#   return(split(retVal[["probe_id"]], retVal[["go_id"]]))
+
+  ## we add the .db ending if needed 
+  affyLib <- paste(sub(".db$", "", affyLib), ".db", sep = "")
+  require(affyLib, character.only = TRUE) || stop(paste("package", affyLib, "is required", sep = " "))
+  affyLib <- sub(".db$", "", affyLib)
+
+  orgFile <- get(paste(get(paste(affyLib, "ORGPKG", sep = "")), "_dbfile", sep = ""))
+  
+  try(dbGetQuery(get(paste(affyLib, "dbconn", sep = "_"))(),
+                 paste("ATTACH '", orgFile(), "' as org;", sep ="")),
+      silent = TRUE)
+  
+  .sql <- paste("SELECT DISTINCT probe_id, go_id FROM probes INNER JOIN ",
+                "(SELECT * FROM org.genes INNER JOIN org.go_",
+                tolower(whichOnto)," USING('_id')) USING('gene_id');", sep = "")
+
+  retVal <- dbGetQuery(get(paste(affyLib, "dbconn", sep = "_"))(), .sql)
+
+  ## restric to the set of feasibleGenes
+  if(!is.null(feasibleGenes))
+    retVal <- retVal[retVal[["probe_id"]] %in% feasibleGenes, ]
+  
+  ## split the table into a named list of GOs
+  return(split(retVal[["probe_id"]], retVal[["go_id"]]))
 }
 
 
 ##not implemented
 annFUN <- function( feasibleGenes = NULL, affyLib) {
     
-#   require(affyLib, character.only = TRUE) || stop(paste('package', affyLib, 'is required', sep = " "))
-#   mapping <- get(paste(affyLib, 'GO2PROBE', sep = ''))
-# 
-#   if(is.null(feasibleGenes))
-#     feasibleGenes <- ls(get(paste(affyLib, 'ACCNUM', sep = '')))
-#       
-#   ontoGO <- get("Term",envir=.GlobalEnv)
-#   goodGO <- intersect(ls(ontoGO), ls(mapping))
-# 
-#   GOtoAffy <- lapply(mget(goodGO, envir = mapping, ifnotfound = NA),
-#                      intersect, feasibleGenes)
-#   
-#   emptyTerms <- sapply(GOtoAffy, length) == 0
-# 
-#   return(GOtoAffy[!emptyTerms])
+  require(affyLib, character.only = TRUE) || stop(paste('package', affyLib, 'is required', sep = " "))
+  mapping <- get(paste(affyLib, 'GO2PROBE', sep = ''))
+
+  if(is.null(feasibleGenes))
+    feasibleGenes <- ls(get(paste(affyLib, 'ACCNUM', sep = '')))
+      
+  ontoGO <- get("Term",envir=.GlobalEnv)
+  goodGO <- intersect(ls(ontoGO), ls(mapping))
+
+  GOtoAffy <- lapply(mget(goodGO, envir = mapping, ifnotfound = NA),
+                     intersect, feasibleGenes)
+  
+  emptyTerms <- sapply(GOtoAffy, length) == 0
+
+  return(GOtoAffy[!emptyTerms])
 }
 
 
