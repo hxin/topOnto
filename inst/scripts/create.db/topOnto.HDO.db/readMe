@@ -1,0 +1,23 @@
+What you need to do to create your own .db package for topOnto.
+
+1) change the folder name to topOnto.<your package>.db
+2) edit DESCRIPTION file and change package name to your package name
+3) edit inst/script/config with your own ontology detail
+4) put your ontology obo file into inst/scripts/ and rename it to my.obo
+	**Your ontology file should have a root term named 'all' and add this term as the parent term of the origin top level terms
+	**[Term]
+	**id: all
+	**name: all
+5) cd into inst/script/ and run 
+	$chmod +x ./batch_run.sh | sh ./batch_run.sh
+6) the last script will create a file 'DB.sqlite' in inst/script/. You need to move this file to inst/extdata/
+7) cd out the package folder and run 
+	$R CMD INSTALL --no-multiarch --with-keep.source topOnto.<your package>.db
+8) Your package is installed. You can now load the package in R by typing in 
+	>library('topOnto.<your package>.db').
+9) To use the package with topOnto, 
+	>library('topOnto')
+	>initONT('topOnto.<your package>.db')
+
+Note:You should have perl installed and perl packages "DBI" and "DBD::SQLite" are required, and 
+you also need to have R installed and R package "RSQLite" is required.

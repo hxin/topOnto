@@ -38,6 +38,8 @@ export(annFUN.db, annFUN, annFUN.gene2GO, annFUN.GO2genes, annFUN.org, annFUN.fi
        GOplot, showSigOfNodes, getPvalues, showGroupDensity,
        nodesInInducedGraph, inducedGraph, 
        permSumStats, permSumStats.all,
-       .genesInNode, .countsInNode, initONT,initWHAT,mapAnnotationToSpecies.fly,list.annotation
+       .genesInNode, .countsInNode, initONT,initWHAT,mapAnnotationToSpecies.fly,
+       mapAnnotationToSpecies.score.fly,list.annotation,readMappingswithScore,
+       revmapWithScore
        #reverseArch, buildLevels,  getGraphRoot,  getNoOfLevels,
        )

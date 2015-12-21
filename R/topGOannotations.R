@@ -156,6 +156,61 @@ readMappings <- function(file, sep = "\t", IDsep = ",") {
   return(lapply(map, function(x) gsub(" ", "", strsplit(x, split = IDsep)[[1]])))
 }
 
+readMappingswithScore <- function(file){
+  g2d<-read.table(file,header=T,sep='\t',as.is=F)
+  ####
+  #       m n m,n
+  # o     1 1   2
+  # g     1 1   2
+  # v     1 1   2
+  # o,g   2 2   4
+  # o,v   2 2   4
+  # g,v   2 2   4
+  # o,g,v 3 3   6
+  ####
+  weight <- rbind(c(1,1,2),
+                  c(1,1,2),
+                  c(1,1,2),
+                  c(2,2,4),
+                  c(2,2,4),
+                  c(2,2,4),
+                  c(4,4,6)
+  )
+  rownames(weight) <- c("o", "g", "v", "o,g", "o,v", "g,v","o,g,v")
+  colnames(weight) <- c("m", "n", "m,n")
+  cat('scoring matrix:')
+  print(weight)
+  
+  
+  
+  #g2d=g2d[1:100,]
+  weighted.g2d<-list()
+  for(entrez in unique(g2d$entrez_id)){
+    t<-g2d[g2d$entrez_id==entrez,]
+    for(term in as.vector(unique(t$term_id))){
+      score<-term
+      names(score)<-sum(apply(t[t$term_id==term,],1,function(x){
+        weight[as.vector(x[['source']]),as.vector(x[['mappting_tool']])] * as.numeric(x[['evidence']])
+      }))
+      weighted.g2d[[as.character(entrez)]]<-c(weighted.g2d[[as.character(entrez)]],score)
+    }
+  }
+  weighted.g2d
+}
+
+revmapWithScore<-function(a){
+  y<-split(f=unlist(a),x=names(unlist(a)))
+  y<-lapply(y,function(x){
+    gene.weight<-strsplit(x,split=c('.'),fixed=T)
+    genes<-sapply(gene.weight,function(x){x[1]})
+    weights<-sapply(gene.weight,function(x){x[2]})
+    names(genes)<-weights
+    genes
+  })
+  y
+}
+
+
 ##not implemented
 ## function annFUN.org() to work with the "org.XX.eg" annotations
 annFUN.org <- function( feasibleGenes = NULL, mapping, ID = "entrez",whichOnto = 'BP') {
@@ -348,7 +403,7 @@ mapAnnotationToSpecies.fly<-function(human_file=system.file("extdata/annotation"
   #orthology.type=1,2,3
   #one2one one2many many2many
   require('idbox')
-  ls('package:idbox')
+  #ls('package:idbox')
   h2f<-human2fly()
   types=c('ortholog_one2one','ortholog_one2many','ortholog_many2many')[orthology.type]
   h2f<-h2f[h2f$dmelanogaster_homolog_orthology_type %in% types,]
@@ -375,6 +430,38 @@ mapAnnotationToSpecies.fly<-function(human_file=system.file("extdata/annotation"
   for(i in names(geneID2TERM.fly)){
     cat(paste(i,paste(geneID2TERM.fly[[i]],collapse=','),sep="\t"))
     cat("\n")
+  }
+  sink()
+}
+
+mapAnnotationToSpecies.score.fly<-function(human_file=system.file("extdata/annotation","human_gene2HDO_score", package ="topOnto"),orthology.type=c(1,2),output){
+  require('idbox')
+  h2f<-human2fly()
+  types=c('ortholog_one2one','ortholog_one2many','ortholog_many2many')[orthology.type]
+  h2f<-h2f[h2f$dmelanogaster_homolog_orthology_type %in% types,]
+  geneID2TERM <- read.table(human_file,header=T,sep='\t',colClasses = "character")
+  n<-geneID2TERM$entrez_id
+  #keep only those have fly orthology
+  geneID2TERM<-geneID2TERM[n %in% h2f$human_entrez_id,]
+  
+  h2f.entrez<-h2f$fly_entrez_id
+  names(h2f.entrez)<-h2f$human_entrez_id
+  human2fly.list<-lapply(split(h2f.entrez,names(h2f.entrez)),unname)
+  
+  sink(output)
+  cat(paste(colnames(geneID2TERM),collapse='\t'))
+  for(i in 1:nrow(geneID2TERM)){
+    #print(row$entrez_id)
+    row = geneID2TERM[i, ]
+    flys<-human2fly.list[[row$entrez_id]]
+    rownames(row)=NULL
+    if(length(flys>0)){
+      for(f in flys){
+        row$entrez_id=f
+        cat("\n")
+        cat(paste(row,collapse='\t'))
+      }
+    }
   }
   sink()
 }
