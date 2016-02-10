@@ -63,7 +63,7 @@
 #' @author Adrian Alexa
 #' 
 #' @seealso
-#'   \code{\link{topGOdata-class}},
+#'   \code{\link{topONTdata-class}},
 #'   \code{\link{inducedGraph}}
 #' 
 #' 
@@ -239,7 +239,7 @@ buildGOgraph.topology <- function(knownNodes, whichOnto = "BP") {
 #' 
 #' @author Adrian Alexa#' 
 #' @seealso
-#'   \code{\link{topGOdata-class}},
+#'   \code{\link{topONTdata-class}},
 #'   \code{\link{reverseArch}},
 #' 
 #' @examples

@@ -81,7 +81,7 @@
 #'   A named(GO identifiers) list of character vectors. 
 #' @author Adrian Alexa
 #' @seealso
-#'   \code{\link{topGOdata-class}}
+#'   \code{\link{topONTdata-class}}
 #' 
 #' @examples
 #' 
@@ -125,7 +125,7 @@
 #' geneList <- factor(as.integer(allGenes %in% myInterestedGenes))
 #' names(geneList) <- allGenes
 #' 
-#' GOdata <- new("topGOdata",
+#' GOdata <- new("topONTdata",
 #'               ontology = "BP",
 #'               allGenes = geneList,
 #'               nodeSize = 5,

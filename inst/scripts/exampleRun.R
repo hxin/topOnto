@@ -18,10 +18,10 @@ myInterestingGenes=(read.csv(header = FALSE, file = g))$V1
 geneList <- factor(as.integer(geneNames %in% myInterestingGenes))
 names(geneList) <- geneNames
 
-GOdata <- new("topGOdata", ontology = "HDO", allGenes = geneList,annot = annFUN.gene2GO, gene2GO = geneID2TERM)
-resultFis <- runTest(GOdata, algorithm = "classic", statistic = "fisher")
-resultElimFis<- runTest(GOdata, algorithm = "elim", statistic = "fisher")
-allRes <- GenTable(GOdata,  elimfisher = resultElimFis,fisher = resultFis,topNodes = 15,useLevels=TRUE,cutoff=0.05)
+ONTdata <- new("topONTdata", ontology = "HDO", allGenes = geneList,annot = annFUN.gene2GO, gene2GO = geneID2TERM)
+resultFis <- runTest(ONTdata, algorithm = "classic", statistic = "fisher")
+resultElimFis<- runTest(ONTdata, algorithm = "elim", statistic = "fisher")
+allRes <- GenTable(ONTdata,  elimfisher = resultElimFis,fisher = resultFis,topNodes = 15,useLevels=TRUE,cutoff=0.05)
 print(allRes)
 cat("Demo done..Seems working!\n")
 

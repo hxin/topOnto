@@ -39,7 +39,7 @@ if(!isGeneric("printGraph"))
 
 
 setMethod("printGraph",
-          signature(object = "topGOdata", result = "topGOresult",
+          signature(object = "topONTdata", result = "topONTresult",
                     firstSigNodes = "numeric", refResult = "missing"),
           function(object, result, firstSigNodes = 10, fn.prefix = "",
                    useInfo = "def", pdfSW = FALSE) {
@@ -68,7 +68,7 @@ setMethod("printGraph",
 #' @name printGraph-methods
 #' @title Visualisation functions
 #' @description Functions to plot the subgraphs induced by the most significant GO terms  
-#' @aliases GOplot showSigOfNodes printGraph-methods printGraph printGraph,topGOdata,topGOresult,numeric,missing-method printGraph,topGOdata,topGOresult,numeric,topGOresult-method
+#' @aliases GOplot showSigOfNodes printGraph-methods printGraph printGraph,topONTdata,topONTresult,numeric,missing-method printGraph,topONTdata,topONTresult,numeric,topONTresult-method
 #' @usage
 #' showSigOfNodes(GOdata, termsP.value, firstSigNodes = 10, reverse = TRUE,
 #'                sigForAll = TRUE, wantedNodes = NULL, putWN = TRUE,
@@ -78,11 +78,11 @@ setMethod("printGraph",
 #' 
 #' printGraph(object, result, firstSigNodes, refResult, ...) 
 #' 
-#'  @param object an object of class \code{topGOdata}.
-#'  @param GOdata an object of class \code{topGOdata}.
-#'  @param result an object of class \code{topGOresult}.
+#'  @param object an object of class \code{topONTdata}.
+#'  @param GOdata an object of class \code{topONTdata}.
+#'  @param result an object of class \code{topONTresult}.
 #'  @param firstSigNodes the number of top scoring GO terms which .... 
-#'  @param refResult an object of class \code{topGOresult}.
+#'  @param refResult an object of class \code{topONTresult}.
 #'  @param termsP.value named vector of p-values.
 #'  @param reverse the direction of the edges.
 #'  @param sigForAll if \code{TRUE} the score/p-value of all nodes in the DAG is shown, otherwise only the score for the \code{sigNodes}
@@ -131,8 +131,8 @@ setMethod("printGraph",
 #' }
 #' @keywords methods
 setMethod("printGraph",
-          signature(object = "topGOdata", result = "topGOresult",
-                    firstSigNodes = "numeric", refResult = "topGOresult"),
+          signature(object = "topONTdata", result = "topONTresult",
+                    firstSigNodes = "numeric", refResult = "topONTresult"),
           function(object, result, firstSigNodes = 10, refResult,
                    fn.prefix = "", useInfo = "def", pdfSW = FALSE) {
 

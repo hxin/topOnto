@@ -1,4 +1,4 @@
-#################### topGOdata class ####################
+#################### topONTdata class ####################
 ## 
 ## The node atributes are environments containing the genes/probes
 ## annotated to the respective node
@@ -12,13 +12,13 @@
 ##  -- ALL variables sarting with . are just for internal class usage (private)
 
 
-#' @name topGOdata-class
+#' @name topONTdata-class
 #' 
 #' @docType class
 #' 
-#' @aliases topGOdata-class allGenes attrInTerm countGenesInTerm description<- description feasible<- feasible geneSelectionFun<- geneSelectionFun genes genesInTerm graph<- graph numGenes ontology<- ontology sigGenes numSigGenes termStat updateGenes updateTerm<- usedGO expressionMatrix phenotype expressionMatrix,topGOdata-method phenotype,topGOdata-method geneScore geneScore,topGOdata,missing-method geneScore,topGOdata,character-method scoresInTerm scoresInTerm,topGOdata,missing-method scoresInTerm,topGOdata,character-method show,topGOdata-method allGenes,topGOdata-method attrInTerm,topGOdata,character,character-method attrInTerm,topGOdata,character,missing-method countGenesInTerm,topGOdata,character-method countGenesInTerm,topGOdata,missing-method description<-,topGOdata,ANY-method description,topGOdata-method feasible<-,topGOdata-method feasible,topGOdata-method geneScore,topGOdata-method geneSelectionFun<-,topGOdata-method geneSelectionFun,topGOdata-method genes,topGOdata-method genesInTerm,topGOdata,character-method genesInTerm,topGOdata,missing-method graph<-,topGOdata-method graph,topGOdata-method initialize,topGOdata-method numGenes,topGOdata-method ontology<-,topGOdata-method ontology,topGOdata-method print,topGOdata-method sigGenes,topGOdata-method numSigGenes,topGOdata-method termStat,topGOdata,character-method termStat,topGOdata,missing-method updateGenes,topGOdata,numeric,function-method updateGenes,topGOdata,factor,missing-method updateTerm<-,topGOdata,character-method usedGO,topGOdata-method
+#' @aliases topONTdata-class allGenes attrInTerm countGenesInTerm description<- description feasible<- feasible geneSelectionFun<- geneSelectionFun genes genesInTerm graph<- graph numGenes ontology<- ontology sigGenes numSigGenes termStat updateGenes updateTerm<- usedGO expressionMatrix phenotype expressionMatrix,topONTdata-method phenotype,topONTdata-method geneScore geneScore,topONTdata,missing-method geneScore,topONTdata,character-method scoresInTerm scoresInTerm,topONTdata,missing-method scoresInTerm,topONTdata,character-method show,topONTdata-method allGenes,topONTdata-method attrInTerm,topONTdata,character,character-method attrInTerm,topONTdata,character,missing-method countGenesInTerm,topONTdata,character-method countGenesInTerm,topONTdata,missing-method description<-,topONTdata,ANY-method description,topONTdata-method feasible<-,topONTdata-method feasible,topONTdata-method geneScore,topONTdata-method geneSelectionFun<-,topONTdata-method geneSelectionFun,topONTdata-method genes,topONTdata-method genesInTerm,topONTdata,character-method genesInTerm,topONTdata,missing-method graph<-,topONTdata-method graph,topONTdata-method initialize,topONTdata-method numGenes,topONTdata-method ontology<-,topONTdata-method ontology,topONTdata-method print,topONTdata-method sigGenes,topONTdata-method numSigGenes,topONTdata-method termStat,topONTdata,character-method termStat,topONTdata,missing-method updateGenes,topONTdata,numeric,function-method updateGenes,topONTdata,factor,missing-method updateTerm<-,topONTdata,character-method usedGO,topONTdata-method
 #' 
-#' @title Class "topGOdata"
+#' @title Class "topONTdata"
 #' @description 
 #'   TODO: The node attributes are environments containing the genes/probes
 #'   annotated to the respective node
@@ -34,7 +34,7 @@
 #' 
 #' 
 #' @section Objects from the Class:
-#'   Objects can be created by calls of the form \code{new("topGOdata", ontology, allGenes, geneSelectionFun, description, annotationFun, ...)}.
+#'   Objects can be created by calls of the form \code{new("topONTdata", ontology, allGenes, geneSelectionFun, description, annotationFun, ...)}.
 #'   ~~ describe objects here ~~ 
 #'
 #' 
@@ -55,46 +55,46 @@
 #' 
 #' @section Methods:
 #'   \describe{
-#'     \item{allGenes}{\code{signature(object = "topGOdata")}: ... }
-#'     \item{attrInTerm}{\code{signature(object = "topGOdata", attr = "character", whichGO = "character")}: ... }
-#'     \item{attrInTerm}{\code{signature(object = "topGOdata", attr = "character", whichGO = "missing")}: ... }
-#'     \item{countGenesInTerm}{\code{signature(object = "topGOdata", whichGO = "character")}: ... }
-#'     \item{countGenesInTerm}{\code{signature(object = "topGOdata", whichGO = "missing")}: ... }
-#'     \item{description<-}{\code{signature(object = "topGOdata")}: ... }
-#'     \item{description}{\code{signature(object = "topGOdata")}: ... }
-#'     \item{feasible<-}{\code{signature(object = "topGOdata")}: ... }
-#'     \item{feasible}{\code{signature(object = "topGOdata")}: ... }
-#'     \item{geneScore}{\code{signature(object = "topGOdata")}: ... }
-#'     \item{geneSelectionFun<-}{\code{signature(object = "topGOdata")}: ... }
-#'     \item{geneSelectionFun}{\code{signature(object = "topGOdata")}: ... }
+#'     \item{allGenes}{\code{signature(object = "topONTdata")}: ... }
+#'     \item{attrInTerm}{\code{signature(object = "topONTdata", attr = "character", whichGO = "character")}: ... }
+#'     \item{attrInTerm}{\code{signature(object = "topONTdata", attr = "character", whichGO = "missing")}: ... }
+#'     \item{countGenesInTerm}{\code{signature(object = "topONTdata", whichGO = "character")}: ... }
+#'     \item{countGenesInTerm}{\code{signature(object = "topONTdata", whichGO = "missing")}: ... }
+#'     \item{description<-}{\code{signature(object = "topONTdata")}: ... }
+#'     \item{description}{\code{signature(object = "topONTdata")}: ... }
+#'     \item{feasible<-}{\code{signature(object = "topONTdata")}: ... }
+#'     \item{feasible}{\code{signature(object = "topONTdata")}: ... }
+#'     \item{geneScore}{\code{signature(object = "topONTdata")}: ... }
+#'     \item{geneSelectionFun<-}{\code{signature(object = "topONTdata")}: ... }
+#'     \item{geneSelectionFun}{\code{signature(object = "topONTdata")}: ... }
 #' 
-#'     \item{genes}{\code{signature(object = "topGOdata")}: A method for
+#'     \item{genes}{\code{signature(object = "topONTdata")}: A method for
 #'       obtaining the list of genes, as a characther vector, which will be
 #'       used in the further analysis.}
-#'     \item{numGenes}{\code{signature(object = "topGOdata")}: A method for
+#'     \item{numGenes}{\code{signature(object = "topONTdata")}: A method for
 #'       obtaining the number of genes, which will be used in the further
 #'       analysis. It has the same effect as: \code{lenght(genes(object))}.}
 #' 
-#'     \item{sigGenes}{\code{signature(object = "topGOdata")}:  A method for
+#'     \item{sigGenes}{\code{signature(object = "topONTdata")}:  A method for
 #'       obtaining the list of significant genes, as a charachter vector.}
 #'         
-#'     \item{genesInTerm}{\code{signature(object = "topGOdata", whichGO = "character")}: ... }
-#'     \item{genesInTerm}{\code{signature(object = "topGOdata", whichGO = "missing")}: ... }
-#'     \item{getSigGroups}{\code{signature(object = "topGOdata", test.stat = "classicCount")}: ... }
-#'     \item{getSigGroups}{\code{signature(object = "topGOdata", test.stat = "classicScore")}: ... }
-#'     \item{graph<-}{\code{signature(object = "topGOdata")}: ... }
-#'     \item{graph}{\code{signature(object = "topGOdata")}: ... }
-#'     \item{initialize}{\code{signature(.Object = "topGOdata")}: ... }
+#'     \item{genesInTerm}{\code{signature(object = "topONTdata", whichGO = "character")}: ... }
+#'     \item{genesInTerm}{\code{signature(object = "topONTdata", whichGO = "missing")}: ... }
+#'     \item{getSigGroups}{\code{signature(object = "topONTdata", test.stat = "classicCount")}: ... }
+#'     \item{getSigGroups}{\code{signature(object = "topONTdata", test.stat = "classicScore")}: ... }
+#'     \item{graph<-}{\code{signature(object = "topONTdata")}: ... }
+#'     \item{graph}{\code{signature(object = "topONTdata")}: ... }
+#'     \item{initialize}{\code{signature(.Object = "topONTdata")}: ... }
 #' 
-#'     \item{ontology<-}{\code{signature(object = "topGOdata")}: ... }
-#'     \item{ontology}{\code{signature(object = "topGOdata")}: ... }
+#'     \item{ontology<-}{\code{signature(object = "topONTdata")}: ... }
+#'     \item{ontology}{\code{signature(object = "topONTdata")}: ... }
 #' 
-#'     \item{termStat}{\code{signature(object = "topGOdata", whichGO = "character")}: ... }
-#'     \item{termStat}{\code{signature(object = "topGOdata", whichGO = "missing")}: ... }
-#'     \item{updateGenes}{\code{signature(object = "topGOdata", geneList = "numeric", geneSelFun = "function")}: ... }
-#'     \item{updateGenes}{\code{signature(object = "topGOdata", geneList = "factor", geneSelFun = "missing")}: ... }
-#'     \item{updateTerm<-}{\code{signature(object = "topGOdata", attr = "character")}: ... }
-#'     \item{usedGO}{\code{signature(object = "topGOdata")}: ... }
+#'     \item{termStat}{\code{signature(object = "topONTdata", whichGO = "character")}: ... }
+#'     \item{termStat}{\code{signature(object = "topONTdata", whichGO = "missing")}: ... }
+#'     \item{updateGenes}{\code{signature(object = "topONTdata", geneList = "numeric", geneSelFun = "function")}: ... }
+#'     \item{updateGenes}{\code{signature(object = "topONTdata", geneList = "factor", geneSelFun = "missing")}: ... }
+#'     \item{updateTerm<-}{\code{signature(object = "topONTdata", attr = "character")}: ... }
+#'     \item{usedGO}{\code{signature(object = "topONTdata")}: ... }
 #'   }
 #' 
 #' @author Adrian Alexa
@@ -114,10 +114,10 @@
 #' ## how many differentially expressed genes are:
 #' #sum(topDiffGenes(geneList))
 #' 
-#' ## build the topGOdata class 
+#' ## build the topONTdata class 
 #' \dontrun{
 #' require(topOnto.HDO.db)
-#' GOdata <- new("topGOdata", ontology = "HDO", description="HDO example",allGenes = geneList,annot = annFUN.gene2GO, gene2GO = geneID2TERM)
+#' GOdata <- new("topONTdata", ontology = "HDO", description="HDO example",allGenes = geneList,annot = annFUN.gene2GO, gene2GO = geneID2TERM)
 #' ## display the GOdata object
 #' GOdata
 #' }
@@ -175,7 +175,7 @@
 #' termStat(GOdata, sel.terms)
 #' 
 #' @keywords graphs,classes
-setClass("topGOdata",
+setClass("topONTdata",
         representation = representation(
         ## some description of the data/experiment
         description = "character",
@@ -200,17 +200,17 @@ setClass("topGOdata",
 
 
 
-######################## topGOresult class ######################
+######################## topONTresult class ######################
 ## probably will add more infos with time here
-#' @name topGOresult-class
+#' @name topONTresult-class
 #' @docType class
-#' @aliases topGOresult-class initialize,topGOresult-method description,topGOresult-method description<-,topGOresult,ANY-method score score,topGOresult-method score<-,topGOresult-method testName testName<- testName,topGOresult-method testName<-,topGOresult-method algorithm algorithm<- algorithm<-,topGOresult-method algorithm,topGOresult-method show,topGOresult-method print,topGOresult-method geneData<- geneData geneData<-,topGOresult-method geneData,topGOresult-method combineResults
-#' @title Class "topGOresult"
+#' @aliases topONTresult-class initialize,topONTresult-method description,topONTresult-method description<-,topONTresult,ANY-method score score,topONTresult-method score<-,topONTresult-method testName testName<- testName,topONTresult-method testName<-,topONTresult-method algorithm algorithm<- algorithm<-,topONTresult-method algorithm,topONTresult-method show,topONTresult-method print,topONTresult-method geneData<- geneData geneData<-,topONTresult-method geneData,topONTresult-method combineResults
+#' @title Class "topONTresult"
 #' 
 #' @description Class instance created by \code{\link{getSigGroups-methods}} or by \code{runTest}
 #' 
 #' @section Objects from the Class:
-#'   Objects can be created by calls of the form \code{new("topGOresult",
+#'   Objects can be created by calls of the form \code{new("topONTresult",
 #'     description, score, testName, algorithm, geneData)}.
 #' 
 #' 
@@ -242,7 +242,7 @@ setClass("topGOdata",
 #'     \item{\code{show}:}{method to print the object.}
 #' 
 #'     \item{\code{combineResults}:}{method to aggregate two or more
-#'       topGOresult objects. \code{method = c("gmean", "mean", "median",
+#'       topONTresult objects. \code{method = c("gmean", "mean", "median",
 #'       "min", "max")} provides the way the object scores (which most of
 #'       the time are p-values) are combined.}.
 #' }
@@ -283,7 +283,7 @@ setClass("topGOdata",
 #' 
 #' 
 #' @keywords classes
-setClass("topGOresult",
+setClass("topONTresult",
          representation = representation(
         ## some description of the data/experiment
         description = "character",
@@ -522,7 +522,7 @@ setClass("classicScore", contains = "groupStats",
 #'   \describe{
 #'     \item{allMembers<-}{\code{signature(object = "classicExpr")}: ... }
 #'     \item{emptyExpr}{\code{signature(object = "classicExpr")}: ... }
-#'     \item{getSigGroups}{\code{signature(object = "topGOdata", test.stat = "classicExpr")}: ... }
+#'     \item{getSigGroups}{\code{signature(object = "topONTdata", test.stat = "classicExpr")}: ... }
 #'     \item{GOglobalTest}{\code{signature(object = "classicExpr")}: ... }
 #'     \item{initialize}{\code{signature(.Object = "classicExpr")}: ... }
 #'     \item{membersExpr}{\code{signature(object = "classicExpr")}: ... }
@@ -707,7 +707,7 @@ setClass("elimScore", contains = "weight01Score",
 #'   \describe{
 #'     \item{cutOff<-}{\code{signature(object = "elimExpr")}: ... }
 #'     \item{cutOff}{\code{signature(object = "elimExpr")}: ... }
-#'     \item{getSigGroups}{\code{signature(object = "topGOdata", test.stat = "elimExpr")}: ... }
+#'     \item{getSigGroups}{\code{signature(object = "topONTdata", test.stat = "elimExpr")}: ... }
 #'     \item{initialize}{\code{signature(.Object = "elimExpr")}: ... }
 #'  }
 #' 
@@ -828,7 +828,7 @@ setClass("weightCount", contains = "classicCount",
 #'     \item{allMembers<-}{\code{signature(object = "parentChild")}: ... }
 #'     \item{allMembers}{\code{signature(object = "parentChild")}: ... }
 #'     \item{allParents}{\code{signature(object = "parentChild")}: ... }
-#'     \item{getSigGroups}{\code{signature(object = "topGOdata", test.stat = "parentChild")}: ... }
+#'     \item{getSigGroups}{\code{signature(object = "topONTdata", test.stat = "parentChild")}: ... }
 #'     \item{initialize}{\code{signature(.Object = "parentChild")}: ... }
 #'     \item{joinFun}{\code{signature(object = "parentChild")}: ... }
 #'     \item{numAllMembers}{\code{signature(object = "parentChild")}: ... }

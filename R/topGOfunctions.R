@@ -107,7 +107,7 @@ inverseList <- function(l) {
   myInterestingGenes=(read.csv(header = FALSE, file = g))$V1
   geneList <- factor(as.integer(geneNames %in% myInterestingGenes))
   names(geneList) <- geneNames
-  GOdata <- new("topGOdata", ontology = "HDO", allGenes = geneList,annot = annFUN.gene2GO, gene2GO = geneID2GO)
+  GOdata <- new("topONTdata", ontology = "HDO", allGenes = geneList,annot = annFUN.gene2GO, gene2GO = geneID2GO)
   resultFis <- runTest(GOdata, algorithm = "classic", statistic = "fisher")
   resultElimFis<- runTest(GOdata, algorithm = "elim", statistic = "fisher")
   allRes <- GenTable(GOdata,  elim = resultElimFis,elim = resultElimFis,topNodes = 30,useLevels=TRUE)
@@ -137,7 +137,7 @@ if(!isGeneric("printGenes"))
 ## if the file argument is missing the function will just return
 ## a list of data.frames, each data.frame containg the gene information for specified GO term
 setMethod("printGenes",
-          signature(object = "topGOdata", whichTerms = "character", file = "missing"),
+          signature(object = "topONTdata", whichTerms = "character", file = "missing"),
           function(object, whichTerms, chip, numChar = 100, simplify = TRUE,
                    geneCutOff = 50, pvalCutOff) { 
             
@@ -198,7 +198,7 @@ setMethod("printGenes",
 
 
 setMethod("printGenes",
-          signature(object = "topGOdata", whichTerms = "character", file = "character"),
+          signature(object = "topONTdata", whichTerms = "character", file = "character"),
           ## numChar = "integer"),
           function(object, whichTerms, file, oneFile = FALSE, ...) { 
 
@@ -266,8 +266,8 @@ setMethod("printGenes",
 if(!isGeneric("GenTable"))
   setGeneric("GenTable", function(object, ...) standardGeneric("GenTable"))
 
-#' @title Diagnostic functions for topGOdata and topGOresult objects.
-#' @aliases printGenes-methods printGenes printGenes,topGOdata,character,character-method printGenes,topGOdata,character,missing-method GenTable GenTable,topGOdata-method showGroupDensity
+#' @title Diagnostic functions for topONTdata and topONTresult objects.
+#' @aliases printGenes-methods printGenes printGenes,topONTdata,character,character-method printGenes,topONTdata,character,missing-method GenTable GenTable,topONTdata-method showGroupDensity
 #' @rdname diagnosticMethods
 #' @name diagnosticMethods
 #' @description The \code{GenTable} function generates a summary of the
@@ -288,7 +288,7 @@ if(!isGeneric("GenTable"))
 #' 
 #' printGenes(object, whichTerms, file, ...)
 #' 
-#'   @param object an object of class \code{topGOdata}.
+#'   @param object an object of class \code{topONTdata}.
 #'   @param whichGO the GO terms for which the plot should be generated.
 #'   @param ranks if ranks should be used instead of scores.
 #'   @param rm.one the p-values which are 1 are removed. 
@@ -299,7 +299,7 @@ if(!isGeneric("GenTable"))
 #'        \code{topNodes}  the number of top GO terms to be included in the table / the gene description is trimmed such that it has \code{numChar} characters.
 #'     %%GenTable(object, ..., orderBy = 1, ranksOf = 2, topNodes = 10, numChar = 40)
 #'     Extra arguments for \code{GenTable} can be:
-#'       \code{orderBy} if more than one \code{topGOresult} object is given then \code{orderBy} gives the index of which scores will be used to order the resulting table. Can be an integer index  or a character vector given the name of the \code{topGOresult} object.
+#'       \code{orderBy} if more than one \code{topONTresult} object is given then \code{orderBy} gives the index of which scores will be used to order the resulting table. Can be an integer index  or a character vector given the name of the \code{topONTresult} object.
 #'       \code{ranksOf} same as \code{orderBy} argument except that this parameter shows the relative ranks of the specified result.   
 #'       \code{cutoff} p-value cutoff. default 1
 #'       \code{show.gene} default \code{FALSE}. Whether add a column in the result showing the significant genes.
@@ -320,14 +320,14 @@ if(!isGeneric("GenTable"))
 #' 
 #'   \code{GenTable} is an easy to use function for summarising the most
 #'   significant GO terms and the corresponding p-values. The function
-#'   dispatches for \code{topGOdata} and \code{topGOresult} objects, and
+#'   dispatches for \code{topONTdata} and \code{topONTresult} objects, and
 #'   it can take an arbitrary number of the later, making comparison
 #'   between various results easier.
 #'   
 #'   Note: One needs to type the complete attribute names (the exact name)
 #'   of this function, like: \code{topNodes = 5}, \code{rankOf = "resultFis"}, etc. 
 #'   This being the price paid for flexibility of specifying different
-#'   number of \code{topGOdata} objects.
+#'   number of \code{topONTdata} objects.
 #'   
 #' 
 #'   
@@ -371,7 +371,7 @@ if(!isGeneric("GenTable"))
 #' ## GenTable
 #' ########################################
 #' 
-#' ## load two topGOresult sample objects: resultFis and resultElimFis
+#' ## load two topONTresult sample objects: resultFis and resultElimFis
 #' data(ONTdata)
 #' \dontrun{
 #' ##These code needs the topOnto.xx.db package to run
@@ -416,8 +416,8 @@ if(!isGeneric("GenTable"))
 #' @keywords methods
 
 setMethod("GenTable",
-          signature(object = "topGOdata"),
-          ## ... = list of topGOresult object
+          signature(object = "topONTdata"),
+          ## ... = list of topONTresult object
           ## orderBy = "ANY", ## integer or character (index/name)
           ## ranksOf = "ANY", ## which ranks to be computed (integer/character)
           ## topNodes = "integer",
@@ -431,8 +431,8 @@ setMethod("GenTable",
             resList <- list(...)
             
             ## first for the class of the elements in the list
-            if(!all(sapply(resList, is, "topGOresult")))
-              stop("Use: topGOdata, topGOresult_1, topGOresult_2, ..., \"parameters\".")
+            if(!all(sapply(resList, is, "topONTresult")))
+              stop("Use: topONTdata, topONTresult_1, topONTresult_2, ..., \"parameters\".")
             
             ## if no names were provided we name them
             if(is.null(names(resList)))
@@ -537,7 +537,7 @@ setMethod("GenTable",
 ##   setGeneric("genLatexTable", function(object, resList, ...) standardGeneric("genLatexTable"))
 
 ## setMethod("genLatexTable",
-##           signature(object = "topGOdata",
+##           signature(object = "topONTdata",
 ##                     resList = "list",
 ##                     orderBy = "ANY", ## integer or character (index/name)
 ##                     ranksOf = "ANY", ## which ranks to be computed (integer/character)
@@ -671,7 +671,7 @@ getPvalues <- function(edata, classlabel, test = "t",
 ################################################################################
 ################################################################################
 
-## functions to get gene stats from the topGOdata object
+## functions to get gene stats from the topONTdata object
 .getGeneData <- function(object) {
   return(c(Annotated = numGenes(object),
            Significant = numSigGenes(object),
@@ -679,7 +679,7 @@ getPvalues <- function(edata, classlabel, test = "t",
 }
 
 
-## functions to get gene stats from the topGOdata object
+## functions to get gene stats from the topONTdata object
 .printGeneData <- function(x) {
   cat("Annotation data:\n")
   if("Annotated" %in% names(x))
@@ -694,13 +694,13 @@ getPvalues <- function(edata, classlabel, test = "t",
 ################################################################################
 ################################################################################
 
-## function to aggregate 2 or more topGOdata objects
+## function to aggregate 2 or more topONTdata objects
 combineResults <- function(..., method = c("gmean", "mean", "median", "min", "max")) {
 
   resList <- list(...)
   ## first for the class of the elements in the list
-  if((length(resList) < 2) || !all(sapply(resList, is, "topGOresult")))
-    stop("Use: topGOresult_1, topGOresult_2, ..., method = \"mean\"")
+  if((length(resList) < 2) || !all(sapply(resList, is, "topONTresult")))
+    stop("Use: topONTresult_1, topONTresult_2, ..., method = \"mean\"")
   
   combMethod <- match.arg(method)
 

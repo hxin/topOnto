@@ -74,7 +74,7 @@ names(geneList) <- geneNames
 
 \section{GSEA}
 <<results=hide>>=
-GOdata <- new("topGOdata", ontology = "HDO", allGenes = geneList,annot = annFUN.gene2GO, gene2GO = geneID2GO)
+GOdata <- new("topONTdata", ontology = "HDO", allGenes = geneList,annot = annFUN.gene2GO, gene2GO = geneID2GO)
 resultFis <- runTest(GOdata, algorithm = "classic", statistic = "fisher")
 resultElimFis<- runTest(GOdata, algorithm = "elim", statistic = "fisher")
 allRes <- GenTable(GOdata,  elim = resultElimFis,elim = resultElimFis,topNodes = 30,useLevels=TRUE)

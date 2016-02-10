@@ -6,7 +6,7 @@ importFrom(lattice, densityplot, xyplot)
 
 
 
-exportClasses(topGOdata, topGOresult, groupStats,
+exportClasses(topONTdata, topONTresult, groupStats,
               classicCount, classicScore, classicExpr,
               weight01Count, weight01Score, weight01Expr,
               elimCount, elimScore, elimExpr,

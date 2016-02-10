@@ -1,13 +1,13 @@
-#################### topGOdata methods ####################
+#################### topONTdata methods ####################
 
-##signature(.Object = "topGOdata",
+##signature(.Object = "topONTdata",
 ##          ontology = "character",
 ##          allGenes = "ANY",
 ##          geneSelectionFun = "function",
 ##          description = "character"),
 ##          annotationFun = "function",
 
-setMethod("initialize", "topGOdata",
+setMethod("initialize", "topONTdata",
           function(.Object,
                    ## which Ontology to be used
                    ontology,
@@ -113,12 +113,12 @@ setMethod("initialize", "topGOdata",
 if(!isGeneric("expressionMatrix"))
   setGeneric("expressionMatrix", function(object) standardGeneric("expressionMatrix"))
                                
-setMethod("expressionMatrix", "topGOdata", function(object) object@expressionMatrix)
+setMethod("expressionMatrix", "topONTdata", function(object) object@expressionMatrix)
 
 if(!isGeneric("phenotype"))
   setGeneric("phenotype", function(object) standardGeneric("phenotype"))
                                
-setMethod("phenotype", "topGOdata", function(object) object@phenotype)
+setMethod("phenotype", "topONTdata", function(object) object@phenotype)
 ######################################################################
 
 
@@ -129,35 +129,35 @@ setMethod("phenotype", "topGOdata", function(object) object@phenotype)
 if(!isGeneric("description"))
   setGeneric("description", function(object) standardGeneric("description"))
                                
-setMethod("description", "topGOdata", function(object) object@description)
+setMethod("description", "topONTdata", function(object) object@description)
 
 if(!isGeneric("ontology"))
   setGeneric("ontology", function(object) standardGeneric("ontology"))
                                
-setMethod("ontology", "topGOdata", function(object) object@ontology)
+setMethod("ontology", "topONTdata", function(object) object@ontology)
 
 if(!isGeneric("allGenes"))
   setGeneric("allGenes", function(object) standardGeneric("allGenes"))
                                
-setMethod("allGenes", "topGOdata", function(object) object@allGenes)
+setMethod("allGenes", "topONTdata", function(object) object@allGenes)
 
 ##if(!isGeneric("allScores"))
 ##  setGeneric("allScores", function(object) standardGeneric("allScores"))
                                
-##setMethod("allScores", "topGOdata", function(object) object@allScores)
+##setMethod("allScores", "topONTdata", function(object) object@allScores)
 
 if(!isGeneric("feasible"))
   setGeneric("feasible", function(object) standardGeneric("feasible"))
                                
-setMethod("feasible", "topGOdata", function(object) object@feasible)
+setMethod("feasible", "topONTdata", function(object) object@feasible)
 
 if(!isGeneric("graph"))
   setGeneric("graph", function(object) standardGeneric("graph"))
 
-setMethod("graph", "topGOdata", function(object) object@graph)
+setMethod("graph", "topONTdata", function(object) object@graph)
 
 ## we take care of the nodes with fewer than "nodeSize" genes
-##setMethod("graph", "topGOdata",
+##setMethod("graph", "topONTdata",
 ##           function(object) {
 ##             if(object@nodeSize > 0) {
 ##               cc <- .countsInNode(object@graph, nodes(object@graph))
@@ -169,7 +169,7 @@ setMethod("graph", "topGOdata", function(object) object@graph)
 if(!isGeneric("geneSelectionFun"))
   setGeneric("geneSelectionFun", function(object) standardGeneric("geneSelectionFun"))
                                
-setMethod("geneSelectionFun", "topGOdata", function(object) object@geneSelectionFun)
+setMethod("geneSelectionFun", "topONTdata", function(object) object@geneSelectionFun)
 
 
 #################### the replacement functions ####################
@@ -177,37 +177,37 @@ setMethod("geneSelectionFun", "topGOdata", function(object) object@geneSelection
 if(!isGeneric("description<-"))
   setGeneric("description<-", function(object, value) standardGeneric("description<-"))
                                
-setMethod("description<-", "topGOdata", function(object, value) {object@description <- value; object})
+setMethod("description<-", "topONTdata", function(object, value) {object@description <- value; object})
 
 if(!isGeneric("ontology<-"))
   setGeneric("ontology<-", function(object, value) standardGeneric("ontology<-"))
                                
-setMethod("ontology<-", "topGOdata", function(object, value) {object@ontology <- value; object})
+setMethod("ontology<-", "topONTdata", function(object, value) {object@ontology <- value; object})
 
 ## not a good idea to modify the list of allGenes, see updateGenes()
 #if(!isGeneric("allGenes<-"))
 #  setGeneric("allGenes<-", function(object, value) standardGeneric("allGenes<-"))
 #                               
-#setMethod("allGenes<-", "topGOdata", function(object, value) {object@allGenes <- value; object})
+#setMethod("allGenes<-", "topONTdata", function(object, value) {object@allGenes <- value; object})
 
 
 if(!isGeneric("feasible<-"))
   setGeneric("feasible<-", function(object, value) standardGeneric("feasible<-"))
                                
-setMethod("feasible<-", "topGOdata", function(object, value) {object@feasible <- value; object})
+setMethod("feasible<-", "topONTdata", function(object, value) {object@feasible <- value; object})
 
 
 if(!isGeneric("geneSelectionFun<-"))
   setGeneric("geneSelectionFun<-", function(object, value) standardGeneric("geneSelectionFun<-"))
                                
-setMethod("geneSelectionFun<-", "topGOdata",
+setMethod("geneSelectionFun<-", "topONTdata",
           function(object, value) {object@geneSelectionFun <- value; object})
 
 
 if(!isGeneric("graph<-"))
   setGeneric("graph<-", function(object, value) standardGeneric("graph<-"))
                                
-setMethod("graph<-", "topGOdata", function(object, value) {object@graph <- value; object})
+setMethod("graph<-", "topONTdata", function(object, value) {object@graph <- value; object})
 
 
 
@@ -221,7 +221,7 @@ if(!isGeneric("updateGenes"))
 
 ## for the case in which each gene has a score
 setMethod("updateGenes",
-          signature(object = "topGOdata", geneList = "numeric", geneSelFun = "function"),
+          signature(object = "topONTdata", geneList = "numeric", geneSelFun = "function"),
           function(object, geneList, geneSelFun) {
             
             fGenes <- genes(object)
@@ -249,7 +249,7 @@ setMethod("updateGenes",
 
 
 setMethod("updateGenes",
-          signature(object = "topGOdata", geneList = "factor", geneSelFun = "missing"),
+          signature(object = "topONTdata", geneList = "factor", geneSelFun = "missing"),
           function(object, geneList) {
 
             fGenes <- genes(object)
@@ -288,13 +288,13 @@ setMethod("updateGenes",
 if(!isGeneric("genes"))
   setGeneric("genes", function(object) standardGeneric("genes"))
 
-setMethod("genes", "topGOdata", function(object) object@allGenes[object@feasible])
+setMethod("genes", "topONTdata", function(object) object@allGenes[object@feasible])
 
 
 if(!isGeneric("numGenes"))
   setGeneric("numGenes", function(object) standardGeneric("numGenes"))
 
-setMethod("numGenes", "topGOdata", function(object) sum(object@feasible))
+setMethod("numGenes", "topONTdata", function(object) sum(object@feasible))
 
 
 ## 
@@ -302,7 +302,7 @@ if(!isGeneric("geneScore"))
   setGeneric("geneScore", function(object, whichGenes, ...) standardGeneric("geneScore"))
 
 setMethod("geneScore",
-          signature(object = "topGOdata", whichGenes = "missing"),
+          signature(object = "topONTdata", whichGenes = "missing"),
           function(object, use.names = FALSE) {
             if(is.factor(object@allGenes))
               retList <- (as.numeric(levels(object@allScores))[object@allScores])[object@feasible]
@@ -316,7 +316,7 @@ setMethod("geneScore",
           })
 
 setMethod("geneScore",
-          signature(object = "topGOdata", whichGenes = "character"),
+          signature(object = "topONTdata", whichGenes = "character"),
           function(object, whichGenes, use.names = TRUE) {
             index <- object@feasible & (object@allGenes %in% whichGenes)
             if(is.factor(object@allGenes))
@@ -337,7 +337,7 @@ setMethod("geneScore",
 if(!isGeneric("sigGenes"))
   setGeneric("sigGenes", function(object) standardGeneric("sigGenes"))
 
-setMethod("sigGenes", "topGOdata",
+setMethod("sigGenes", "topONTdata",
           function(object) {
             
             ##if(is.null(object@geneSelectionFun))
@@ -351,7 +351,7 @@ setMethod("sigGenes", "topGOdata",
 if(!isGeneric("numSigGenes"))
   setGeneric("numSigGenes", function(object) standardGeneric("numSigGenes"))
 
-setMethod("numSigGenes", "topGOdata",
+setMethod("numSigGenes", "topONTdata",
           function(object) {
             return(sum(object@geneSelectionFun(object@allScores) & object@feasible))
           })
@@ -363,19 +363,19 @@ setMethod("numSigGenes", "topGOdata",
 if(!isGeneric("usedGO"))
   setGeneric("usedGO", function(object) standardGeneric("usedGO"))
 
-setMethod("usedGO", "topGOdata", function(object) nodes(graph(object)))
+setMethod("usedGO", "topONTdata", function(object) nodes(graph(object)))
 
 if(!isGeneric("attrInTerm"))
   setGeneric("attrInTerm", function(object, attr, whichGO) standardGeneric("attrInTerm"))
 
 setMethod("attrInTerm", 
-          signature(object = "topGOdata", attr = "character", whichGO = "character"),
+          signature(object = "topONTdata", attr = "character", whichGO = "character"),
           function(object, attr, whichGO) {
             return(.getFromNode(graph(object), attr, whichGO))
           })
 
 setMethod("attrInTerm", 
-          signature(object = "topGOdata", attr = "character", whichGO = "missing"),
+          signature(object = "topONTdata", attr = "character", whichGO = "missing"),
           function(object, attr, whichGO) {
             return(.getFromNode(graph(object), attr, nodes(graph(object))))
           })
@@ -387,14 +387,14 @@ if(!isGeneric("genesInTerm"))
   setGeneric("genesInTerm", function(object, whichGO) standardGeneric("genesInTerm"))
 
 setMethod("genesInTerm", 
-          signature(object = "topGOdata", whichGO = "character"),
+          signature(object = "topONTdata", whichGO = "character"),
           function(object, whichGO) {
             return(.genesInNode(graph(object), whichGO))
           })
 
 
 setMethod("genesInTerm", 
-          signature(object = "topGOdata", whichGO = "missing"),
+          signature(object = "topONTdata", whichGO = "missing"),
           function(object) {
             return(.genesInNode(graph(object), nodes(graph(object))))
           })
@@ -404,7 +404,7 @@ if(!isGeneric("scoresInTerm"))
   setGeneric("scoresInTerm", function(object, whichGO, ...) standardGeneric("scoresInTerm"))
 
 setMethod("scoresInTerm", 
-          signature(object = "topGOdata", whichGO = "character"),
+          signature(object = "topONTdata", whichGO = "character"),
           function(object, whichGO, use.names = FALSE) {
             l <- lapply(.genesInNode(graph(object), whichGO),
                         function(x) geneScore(object, x, use.names = use.names))
@@ -413,7 +413,7 @@ setMethod("scoresInTerm",
 
 
 setMethod("scoresInTerm", 
-          signature(object = "topGOdata", whichGO = "missing"),
+          signature(object = "topONTdata", whichGO = "missing"),
           function(object, use.names = FALSE) {
             return(scoreInNode(object, nodes(graph(object)), use.names = use.names))
           })
@@ -424,13 +424,13 @@ if(!isGeneric("countGenesInTerm"))
   setGeneric("countGenesInTerm", function(object, whichGO) standardGeneric("countGenesInTerm"))
 
 setMethod("countGenesInTerm", 
-          signature(object = "topGOdata", whichGO = "character"),
+          signature(object = "topONTdata", whichGO = "character"),
           function(object, whichGO) {
             return(.countsInNode(graph(object), whichGO))
           })
 
 setMethod("countGenesInTerm", 
-          signature(object = "topGOdata", whichGO = "missing"),
+          signature(object = "topONTdata", whichGO = "missing"),
           function(object) {
             return(.countsInNode(graph(object), nodes(graph(object))))
           })
@@ -444,7 +444,7 @@ if(!isGeneric("termStat"))
   setGeneric("termStat", function(object, whichGO) standardGeneric("termStat"))
 
 setMethod("termStat", 
-          signature(object = "topGOdata", whichGO = "character"),
+          signature(object = "topONTdata", whichGO = "character"),
           function(object, whichGO) {
             
             x <- .genesInNode(graph(object), whichGO)
@@ -464,7 +464,7 @@ setMethod("termStat",
           })
 
 setMethod("termStat", 
-          signature(object = "topGOdata", whichGO = "missing"),
+          signature(object = "topONTdata", whichGO = "missing"),
           function(object) termStat(object, nodes(graph(object))))
 
 
@@ -474,7 +474,7 @@ if(!isGeneric("updateTerm<-"))
   setGeneric("updateTerm<-", function(object, attr, value)  standardGeneric("updateTerm<-"))
 
 setMethod("updateTerm<-", 
-          signature(object = "topGOdata", attr = "character", value = "ANY"),
+          signature(object = "topONTdata", attr = "character", value = "ANY"),
           function(object, attr, value) {
             ## we need to update the full graph ....
             ## object@graph <- .writeToNodes(graph(object), attr, value)
@@ -487,11 +487,11 @@ setMethod("updateTerm<-",
 ## make use of both "print" and "show" generics
 
 
-setMethod("print", "topGOdata", function(x, ...) .printTopGOdata(x))
-setMethod("show", "topGOdata", function(object) .printTopGOdata(x = object))
+setMethod("print", "topONTdata", function(x, ...) .printtopONTdata(x))
+setMethod("show", "topONTdata", function(object) .printtopONTdata(x = object))
           
-.printTopGOdata <- function(x) {
-  cat("\n------------------------- topGOdata object -------------------------\n")
+.printtopONTdata <- function(x) {
+  cat("\n------------------------- topONTdata object -------------------------\n")
   cat("\n Description:\n")
   cat("   - ", x@description, "\n")
   
@@ -528,7 +528,7 @@ setMethod("show", "topGOdata", function(object) .printTopGOdata(x = object))
   
   ##cat("\n Signif. genes sellection:\n\n")
   ##print(x@geneSelectionFun)
-  cat("\n------------------------- topGOdata object -------------------------\n\n")
+  cat("\n------------------------- topONTdata object -------------------------\n\n")
 }
 
 
@@ -542,9 +542,9 @@ setMethod("show", "topGOdata", function(object) .printTopGOdata(x = object))
 ######################################################################
 
 
-######################## topGOresult methods ########################
+######################## topONTresult methods ########################
 
-setMethod("initialize", "topGOresult",
+setMethod("initialize", "topONTresult",
           function(.Object, description = character(),
                    score, testName, algorithm, geneData = integer()) {
             .Object@description <- description
@@ -559,12 +559,12 @@ setMethod("initialize", "topGOresult",
 
 #################### the accessor functions ####################
 
-setMethod("description", "topGOresult", function(object) object@description)
+setMethod("description", "topONTresult", function(object) object@description)
 
 ##if(!isGeneric("score"))
 setGeneric("score", function(x, ...) standardGeneric("score"))
                                
-setMethod("score", "topGOresult",
+setMethod("score", "topONTresult",
           function(x, whichGO, ...) {
 
             if(missing(whichGO))
@@ -592,29 +592,29 @@ setMethod("score", "topGOresult",
 if(!isGeneric("testName"))
   setGeneric("testName", function(object) standardGeneric("testName"))
                                
-setMethod("testName", "topGOresult", function(object) object@testName)
+setMethod("testName", "topONTresult", function(object) object@testName)
 
 
 if(!isGeneric("algorithm"))
   setGeneric("algorithm", function(object) standardGeneric("algorithm"))
                                
-setMethod("algorithm", "topGOresult", function(object) object@algorithm)
+setMethod("algorithm", "topONTresult", function(object) object@algorithm)
 
 
 if(!isGeneric("geneData"))
   setGeneric("geneData", function(object) standardGeneric("geneData"))
                                
-setMethod("geneData", "topGOresult", function(object) object@geneData)
+setMethod("geneData", "topONTresult", function(object) object@geneData)
 
 #################### the replacement functions ####################
 
-setMethod("description<-", "topGOresult",
+setMethod("description<-", "topONTresult",
           function(object, value) {object@description <- value; object})
 
 ##if(!isGeneric("score<-"))
 setGeneric("score<-", function(x, ..., value) standardGeneric("score<-"))
 
-setMethod("score<-", "topGOresult",
+setMethod("score<-", "topONTresult",
           function(x, ..., value) {
             x@score <- value
             x
@@ -624,28 +624,28 @@ setMethod("score<-", "topGOresult",
 if(!isGeneric("testName<-"))
   setGeneric("testName<-", function(object, value) standardGeneric("testName<-"))
                                
-setMethod("testName<-", "topGOresult", function(object, value) {object@testName <- value; object})
+setMethod("testName<-", "topONTresult", function(object, value) {object@testName <- value; object})
 
 
 if(!isGeneric("algorithm<-"))
   setGeneric("algorithm<-", function(object, value) standardGeneric("algorithm<-"))
                                
-setMethod("algorithm<-", "topGOresult", function(object, value) {object@algorithm <- value; object})
+setMethod("algorithm<-", "topONTresult", function(object, value) {object@algorithm <- value; object})
 
 
 if(!isGeneric("geneData<-"))
   setGeneric("geneData<-", function(object, value) standardGeneric("geneData<-"))
                                
-setMethod("geneData<-", "topGOresult", function(object, value) {object@geneData <- value; object})
+setMethod("geneData<-", "topONTresult", function(object, value) {object@geneData <- value; object})
 
 
 ##############################  printing   ##############################
 ## make use of both "print" and "show" generics
 
-setMethod("print", "topGOresult", function(x, ...) .printTopGOresult(x))
-setMethod("show", "topGOresult", function(object) .printTopGOresult(x = object))
+setMethod("print", "topONTresult", function(x, ...) .printTopONTresult(x))
+setMethod("show", "topONTresult", function(object) .printTopONTresult(x = object))
           
-.printTopGOresult <- function(x) {
+.printTopONTresult <- function(x) {
   cat("\nDescription:", description(x), "\n")
   cat("'", algorithm(x), "' algorithm with the '", testName(x), "' test\n", sep = "")
   cat(length(score(x))," terms scored:", sum(score(x) <=  0.01), "terms with p < 0.01\n")

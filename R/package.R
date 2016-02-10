@@ -25,7 +25,7 @@
 #' 
 #' 
 #' @seealso
-#'   \code{\link{topGOdata-class}},  \code{\link{groupStats-class}},
+#'   \code{\link{topONTdata-class}},  \code{\link{groupStats-class}},
 #'   \code{\link{getSigGroups-methods}}
 #' 
 #' @keywords package
