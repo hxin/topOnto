@@ -109,3 +109,11 @@ OBO="/home/xin/Workspace/DisEnt/disent/data/hdo20151204.obo"
 
 
 
+PACKAGE_NAME=topOnto.GOBP.db
+DBSCHEMA="GOBP_DB"
+DBSCHEMAVERSION=1.0
+SOURCENAME="GOBP"
+SOURCURL="-"
+SOURCEDATE=20160205
+VERSION=1.0
+OBO="/home/xin/Workspace/DisEnt/disent/data/GOBP20160205.obo"
