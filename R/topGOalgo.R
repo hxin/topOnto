@@ -115,7 +115,7 @@ if(!isGeneric("runTest"))
 setMethod("runTest",
           signature(object = "topONTdata", algorithm = "character", statistic = "character"),
           function(object, algorithm, statistic, ...) { ## ... parameters for the test statistic
-
+            
             statistic <- tolower(statistic)
             algorithm <- tolower(algorithm)
             ## we check if the algorithm support the given test statistic
@@ -206,7 +206,7 @@ setMethod("getSigGroups",
 setMethod("getSigGroups",
           signature(object = "topONTdata", test.stat = "classicScore"),
           function(object, test.stat) {
-
+            
             ## update the test.stat object if there is the case
             if(length(allScore(test.stat)) == 0) {
               allMembers(test.stat) <- genes(object)

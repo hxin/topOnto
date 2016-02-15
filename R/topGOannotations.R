@@ -471,3 +471,7 @@ mapAnnotationToSpecies.score.fly<-function(human_file=system.file("extdata/annot
 list.annotation<-function(){
   list.files(path=system.file("extdata/annotation", package ="topOnto"))
 }
+
+filter.ontology.annotation<-function(terms,term2genes){
+  term2genes[which(names(term2genes) %in% terms)]
+}

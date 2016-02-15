@@ -18,6 +18,11 @@ myInterestingGenes=(read.csv(header = FALSE, file = g))$V1
 geneList <- factor(as.integer(geneNames %in% myInterestingGenes))
 names(geneList) <- geneNames
 
+##clip?
+# terms<-c('DOID:10652')
+# term2geneID<-filter.ontology.annotation(terms,term2genes=revmap(geneID2TERM))
+# geneID2TERM<-revmap(term2geneID)
+
 ONTdata <- new("topONTdata", ontology = "HDO", allGenes = geneList,annot = annFUN.gene2GO, gene2GO = geneID2TERM)
 resultFis <- runTest(ONTdata, algorithm = "classic", statistic = "fisher")
 resultElimFis<- runTest(ONTdata, algorithm = "elim", statistic = "fisher")
