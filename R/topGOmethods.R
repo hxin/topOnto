@@ -23,6 +23,8 @@ setMethod("initialize", "topONTdata",
                    phenotype = NULL,            #!
                    ## minimum node size
                    nodeSize = 1,
+                   ## ontology id2term mapping
+                   termName = NULL,
                    ## annotation function
                    annotationFun,
                    ## additional parameters for the annotationFun
@@ -103,6 +105,9 @@ setMethod("initialize", "topONTdata",
             } else {
               .Object@graph <-  g
             }
+            
+            ##save the term name and id inf
+            .Object@termName<-Term(ONTTERM)
                           
             .Object
           })

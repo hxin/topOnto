@@ -5,17 +5,17 @@
 ## High-level function for runing the GO algorithms
 
 
-.algoComp <- rbind(c(1, 0, 1, 1, 1, 0, 1, 1),
-                   c(1, 0, 1, 1, 1, 0, 1, 1),
-                   c(1, 0, 0, 0, 0, 0, 0, 0),
-                   c(1, 0, 1, 1, 1, 0, 1, 1),
-                   c(1, 0, 1, 1, 1, 0, 1, 1),
-                   c(1, 0, 0, 0, 0, 0, 0, 0))
+.algoComp <- rbind(c(1, 0, 1, 1, 1, 0, 1, 1, 1),
+                   c(1, 0, 1, 1, 1, 0, 1, 1, 1),
+                   c(1, 0, 0, 0, 0, 0, 0, 0, 0),
+                   c(1, 0, 1, 1, 1, 0, 1, 1, 0),
+                   c(1, 0, 1, 1, 1, 0, 1, 1, 0),
+                   c(1, 0, 0, 0, 0, 0, 0, 0, 0))
 rownames(.algoComp) <- c("classic", "elim", "weight", "weight01", "lea", "parentchild")
-colnames(.algoComp) <- c("fisher", "z", "ks", "t", "globaltest", "category", "sum", "ks.ties")
+colnames(.algoComp) <- c("fisher", "z", "ks", "t", "globaltest", "category", "sum", "ks.ties","ks.csw")
 
-.testNames <- c("GOFisherTest" , "GOKSTest", "GOtTest", "GOglobalTest", "GOSumTest", "GOKSTiesTest")
-names(.testNames) <- c("fisher", "ks", "t", "globaltest", "sum", "ks.ties")
+.testNames <- c("GOFisherTest" , "GOKSTest", "GOtTest", "GOglobalTest", "GOSumTest", "GOKSTiesTest","GOKSCSWTest")
+names(.testNames) <- c("fisher", "ks", "t", "globaltest", "sum", "ks.ties","ks.csw")
 
 .algoClass <- c("classic", "elim", "weight", "weight01", "lea", "parentchild")
 names(.algoClass) <- c("classic", "elim", "weight", "weight01", "lea", "parentchild")
@@ -256,6 +256,8 @@ setMethod("getSigGroups",
                        algorithm = .whichAlgorithm,
                        geneData = c(.getGeneData(object), SigTerms = length(GOlist))))
           })
+
+
 
 
 

@@ -409,7 +409,7 @@ GOplot.counts <- function(dag, wantedNodes, dag.name = 'GO terms',
 ## type      -- used for ploting pie charts
 ## swPlot    -- if true the graph is ploted, if not no ploting is done.
 ## useInfo   -- aditional info to be ploted for a node
-showSigOfNodes <- function(GOdata, termsP.value, firstSigNodes = 10, reverse = TRUE,
+showSigOfNodes <- function(GOdata, termsP.value, firstSigNodes = 5, reverse = TRUE,
                             sigForAll = TRUE, wantedNodes = NULL, putWN = TRUE,
                            putCL = 0, type = NULL, showEdges = TRUE, swPlot = TRUE,
                            useFullNames = TRUE, oldSigNodes = NULL,
@@ -465,7 +465,7 @@ showSigOfNodes <- function(GOdata, termsP.value, firstSigNodes = 10, reverse = T
   }
 
   .pval = pval.info(nodes(dag))
-  .def = .getTermsDefinition(whichTerms = nodes(dag), ontology(GOdata), numChar = .NO.CHAR)
+  .def = .getTermsDefinition(ONTdata=GOdata,whichTerms = nodes(dag), numChar = .NO.CHAR)
   .counts = apply(termCounts[, c("Significant", "Annotated")], 1, paste, collapse = " / ")
   ## more infos will be added
   nodeInfo <- switch(useInfo,

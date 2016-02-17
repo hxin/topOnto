@@ -85,7 +85,6 @@ initONT <- function(ontology='HDO'){
 }
 
 
-
 ## given a list of vectors this function is returning the reverse list
 ## given a mapping form genes to GO terms as a list, compute which are
 ## the genes mapped to each GO.
@@ -232,9 +231,9 @@ setMethod("printGenes",
  ######################################################################
 
 
-.getTermsDefinition <- function(whichTerms, ontology, numChar = 20, multipLines = FALSE) {
+.getTermsDefinition <- function(ONTdata, whichTerms, numChar = 20, multipLines = FALSE) {
   
-  termsNames=Term(ONTTERM)[whichTerms]
+  termsNames=ONTdata@termName[whichTerms]
   
   if(!multipLines) 
     shortNames <- paste(substr(termsNames, 1, numChar),
@@ -265,6 +264,8 @@ setMethod("printGenes",
 ######################################################################
 if(!isGeneric("GenTable"))
   setGeneric("GenTable", function(object, ...) standardGeneric("GenTable"))
+if(!isGeneric("GenTable2"))
+  setGeneric("GenTable2", function(object, ...) standardGeneric("GenTable2"))
 
 #' @title Diagnostic functions for topONTdata and topONTresult objects.
 #' @aliases printGenes-methods printGenes printGenes,topONTdata,character,character-method printGenes,topONTdata,character,missing-method GenTable GenTable,topONTdata-method showGroupDensity
@@ -479,7 +480,7 @@ setMethod("GenTable",
             
             rr <- as.integer(rr[1:topNodes])
 
-            shortNames <- .getTermsDefinition(whichTerms, ontology(object), numChar = numChar)
+            shortNames <- .getTermsDefinition(ONTdata=object, whichTerms, numChar = numChar)
             
             infoMat <- data.frame('TERM ID' = whichTerms, 'Term' = shortNames, stringsAsFactors = FALSE)
             
@@ -531,6 +532,124 @@ setMethod("GenTable",
             
             return(infoMat)            
           })
+
+setMethod("GenTable2",
+          signature(object = "topONTdata"),
+          ## ... = list of topONTresult object
+          ## orderBy = "ANY", ## integer or character (index/name)
+          ## ranksOf = "ANY", ## which ranks to be computed (integer/character)
+          ## topNodes = "integer",
+          ## numChar = "integer",
+          ## useLevels = "logical"),
+          function(object, ..., orderBy = 1, ranksOf = 2,
+                   topNodes = 10, numChar = 40,
+                   format.FUN = format.pval, decreasing = FALSE,
+                   useLevels = FALSE,cutoff=NULL,show.gene=FALSE,use.symbol=FALSE,entrez2symbol=NULL) {
+            
+            resList <- (...)
+            
+            ## first for the class of the elements in the list
+            if(!all(sapply(resList, is, "topONTresult")))
+              stop("Use: topONTdata, topONTresult_1, topONTresult_2, ..., \"parameters\".")
+            
+            ## if no names were provided we name them
+            if(is.null(names(resList)))
+              names(resList) <- paste("result", 1:length(resList), sep = "")
+            
+            ## obtain the score from the objects
+            resList <- lapply(resList, score)
+            
+            ## order the scores and take care of the case in which only one result is provided
+            ## in such case the orderBy and ranksOf parameters are ignored.
+            if(length(resList) == 1) {
+              orderBy <- ranksOf <- 1
+              l <- data.frame(resList)
+              names(l) <- ifelse(is.null(names(resList)), "", names(resList)) 
+            } else {
+              l <- .sigAllMethods(resList)
+            }
+            
+            index <- order(l[, orderBy], decreasing = decreasing)
+            l <- l[index, , drop = FALSE]
+            
+            if(decreasing)
+              rr <- rank(-l[, ranksOf], ties = "first")
+            else
+              rr <- rank(l[, ranksOf], ties = "first")
+            
+            if(length(rownames(l)) < topNodes)
+              topNodes = length(rownames(l))
+            
+            whichTerms <- rownames(l)[1:topNodes]
+            
+            l <- l[whichTerms, , drop = FALSE]
+            
+            ##apply cutoff
+            if(!is.null(cutoff)){
+              cut<-sum(l[,orderBy]<=cutoff)
+              if(cut<topNodes)
+                topNodes=cut
+              
+              whichTerms <- rownames(l)[1:topNodes]           
+              l <- l[whichTerms, , drop = FALSE]
+            }
+            
+            
+            rr <- as.integer(rr[1:topNodes])
+            
+            shortNames <- .getTermsDefinition(ONTdata=object, whichTerms, numChar = numChar)
+            
+            infoMat <- data.frame('TERM ID' = whichTerms, 'Term' = shortNames, stringsAsFactors = FALSE)
+            
+            ## put the levels of the GO
+            if(useLevels) {
+              nodeLevel <- buildLevels(graph(object), leafs2root = TRUE)
+              nodeLevel <- unlist(mget(whichTerms, envir = nodeLevel$nodes2level))
+              infoMat <- data.frame(infoMat, Level = as.integer(nodeLevel))
+            }
+            
+            annoStat <- termStat(object, whichTerms)
+            
+            ## if orderBy == ranksOf then there is no need to put the ranks
+            if(ranksOf != orderBy) {
+              dim(rr) <- c(length(rr), 1)
+              colnames(rr) <- paste("Rank in ", ifelse(is.character(ranksOf), ranksOf, colnames(l)[ranksOf]), sep = "")
+              
+              infoMat <- data.frame(infoMat, annoStat, rr,
+                                    apply(l, 2, format.FUN, dig = 2, eps = 1e-30),
+                                    check.names = FALSE, stringsAsFactors = FALSE)
+              
+            } else {
+              infoMat <- data.frame(infoMat, annoStat,
+                                    apply(l, 2, format.FUN, dig = 2, eps = 1e-30),
+                                    check.names = FALSE, stringsAsFactors = FALSE)
+            }
+            
+            ##rownames(infoMat) <- whichTerms
+            rownames(infoMat) <- 1:length(whichTerms)
+            
+            if(show.gene){
+              sig.genes<-.get.sig.gene.in.term(GOdata)
+              if(use.symbol){
+                #require('org.Dm.eg.db')
+                #entrez2symbol<-revmap(as.list(org.Dm.egSYMBOL2EG))
+                if(is.null(entrez2symbol)){
+                  message("entrez2symbol is missing. Ignore show.symbol!")
+                }else{
+                  sig.gene2term<-revmap(sig.genes)
+                  symbols<-entrez2symbol[as.character(names(sig.gene2term))]
+                  names(sig.gene2term)<-unname(unlist(symbols))
+                  sig.genes<-revmap(sig.gene2term)
+                }
+              }
+              hits<-sapply(sig.genes[infoMat$TERM.ID],paste,collapse=',')
+              infoMat<-data.frame(infoMat,sig.genes=hits)
+            }
+            
+            
+            return(infoMat)            
+          })
+
 
 
 ## if(!isGeneric("genLatexTable"))
@@ -737,3 +856,41 @@ combineResults <- function(..., method = c("gmean", "mean", "median", "min", "ma
   genes<-genesInTerm(GOdata)
   lapply(genes,intersect,sigGenes(GOdata))
 }
+
+
+run.batch<-function(ontologys=c('HDO','HPO'),gene.file=system.file("extdata/genelist","age", package ="topOnto"),
+                    annotation.file=c(system.file("extdata/annotation","human_gene2HDO_o", package ="topOnto"),system.file("extdata/annotation","human_gene2HPO_o", package ="topOnto")),
+                    clip=c(c('DOID:10652'),c('HP:0002511')),
+                    algorithm=c('classic','elim'),
+                    statistic=c('fisher','fisher'),
+                    topNodes = 15,useLevels=TRUE,cutoff=1,
+                    ...
+                    )
+{
+ 
+  allRes <- list()
+  for(i in 1:length(ontologys)){
+    initONT(ontologys[i])
+    geneID2TERM <- readMappings(annotation.file[i])
+    geneNames=names(geneID2TERM)
+    myInterestingGenes=(read.csv(header = FALSE, file = gene.file))$V1
+    geneList <- factor(as.integer(geneNames %in% myInterestingGenes))
+    names(geneList) <- geneNames
+    
+    if(!is.null(clip)){
+      term2geneID<-filter.ontology.annotation(clip[i],term2genes=revmap(geneID2TERM))
+      geneID2TERM<-revmap(term2geneID)
+    }
+    
+    
+    ONTdata <- new("topONTdata", ontology = ontologys[i], allGenes = geneList,annot = annFUN.gene2GO, gene2GO = geneID2TERM)
+    result<-list()
+    for(j in 1:length(algorithm)){
+      result[[paste(algorithm[j],statistic[j],sep = '')]]<-runTest(ONTdata, algorithm = algorithm[j], statistic = statistic[j])
+    }
+    allRes[[ontologys[i]]]<-list('ONTdata'=ONTdata,'result'=result,'tableView'=GenTable2(ONTdata,result, topNodes = topNodes,useLevels=useLevels,cutoff=cutoff))
+  }
+  
+  allRes
+}
+

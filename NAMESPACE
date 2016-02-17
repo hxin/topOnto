@@ -41,4 +41,4 @@ export(annFUN.db, annFUN, annFUN.gene2GO, annFUN.GO2genes, annFUN.org, annFUN.fi
        .genesInNode, .countsInNode, initONT,initWHAT,mapAnnotationToSpecies.fly,
        mapAnnotationToSpecies.score.fly,list.annotation,readMappingswithScore,
        revmapWithScore,filter.ontology.annotation,
-       reverseArch, buildLevels,  getGraphRoot,  getNoOfLevels       )
+       reverseArch, buildLevels,  getGraphRoot,  getNoOfLevels  ,run.batch     )

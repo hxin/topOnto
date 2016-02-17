@@ -91,6 +91,27 @@ setMethod("GOKSTest", "classicScore",
           })
 
 
+if(!isGeneric("GOKSCSWTest"))
+  setGeneric("GOKSCSWTest", function(object) standardGeneric("GOKSCSWTest"))
+
+setMethod("GOKSCSWTest", "classicScore",
+          function(object) {
+            
+            N <- numAllMembers(object)
+            na <- numMembers(object)
+            
+            ## if the group is empty ... (should not happen, but you never know!)
+            if(na == 0 || na == N)
+              return(1)
+            
+            x.a <- rankMembers(object)
+            ## x.b <- setdiff(1:N, x.a)
+            
+            return(ks.test(x.a, seq_len(N)[-x.a], alternative = "greater")$p.value)
+          })
+
+
+
 
 if(!isGeneric("GOtTest"))
   setGeneric("GOtTest", function(object) standardGeneric("GOtTest"))

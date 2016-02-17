@@ -196,7 +196,10 @@ setClass("topONTdata",
         ## expression matrix          #!
         expressionMatrix = "ANY",        #!
         ## phenotype information (groups that shall be compared) #!
-        phenotype = "ANY"))        #!
+        phenotype = "ANY",
+        ## ontology id2term mapping
+        termName="ANY"
+        ))        #!
 
 
 
