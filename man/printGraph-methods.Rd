@@ -4,8 +4,8 @@
 \name{printGraph-methods}
 \alias{GOplot}
 \alias{printGraph}
-\alias{printGraph,topGOdata,topGOresult,numeric,missing-method}
-\alias{printGraph,topGOdata,topGOresult,numeric,topGOresult-method}
+\alias{printGraph,topONTdata,topGOresult,numeric,missing-method}
+\alias{printGraph,topONTdata,topGOresult,numeric,topGOresult-method}
 \alias{printGraph-methods}
 \alias{showSigOfNodes}
 \title{Visualisation functions}
@@ -19,7 +19,7 @@ showSigOfNodes(GOdata, termsP.value, firstSigNodes = 10, reverse = TRUE,
 printGraph(object, result, firstSigNodes, refResult, ...)
 }
 \arguments{
-\item{object}{an object of class \code{topGOdata}.}
+\item{object}{an object of class \code{topONTdata}.}
 
 \item{result}{an object of class \code{topGOresult}.}
 
@@ -29,7 +29,7 @@ printGraph(object, result, firstSigNodes, refResult, ...)
 
 \item{useInfo}{aditional info to be ploted to each node.}
 
-\item{GOdata}{an object of class \code{topGOdata}.}
+\item{GOdata}{an object of class \code{topONTdata}.}
 
 \item{termsP.value}{named vector of p-values.}
 

@@ -21,6 +21,7 @@ library(knitr)
 ```
 ```{r 1,echo=FALSE,results='asis',fig.width=1, fig.height=10}
 x <- topOnto:::.algoComp[, -8]
+x <- x[c(1,2,4,6),c(1,3,4)]
 x <- x[, colSums(x) > 0]
 yesPic <- "<img src=\"green_ckmark.png\" height=\"10px\" width=\"20px\" />"
 noPic <- "<img src=\"red_ckmark.png\" height=\"10px\" width=\"20px\" />"
@@ -68,7 +69,7 @@ A typical session can be divided into three steps:
   summary functions and visualisation tools.
 
 ## Data preparation
-In the first step a convenient *R* object of class *topGOdata* is created containing all the
+In the first step a convenient *R* object of class *topONTdata* is created containing all the
 information required for the remaining two steps. The user needs to provide the gene universe, ontology annotations
 and either a criteria for selecting interesting genes (e.g. differentially expressed genes) from the gene
 universe or a score associated with each gene.
@@ -91,18 +92,18 @@ topOnto::initWHAT()
 topOnto::initONT('HDO')
 ```
 
-We now have all data necessary to build an object of type *topGOdata*. This object will
+We now have all data necessary to build an object of type *topONTdata*. This object will
 contain all gene identifiers and the HDO annotations, the HDO hierarchical structure
 and all other information needed to perform the desired enrichment analysis. 
 
 ```{r 4}
-GOdata <- new("topGOdata", ontology = "HDO", allGenes = geneList,annot = annFUN.gene2GO, gene2GO = geneID2TERM)
+GOdata <- new("topONTdata", ontology = "HDO", allGenes = geneList,annot = annFUN.gene2GO, gene2GO = geneID2TERM)
 ```
 
-The names of the arguments used for building the *topGOdata* object should be self-explanatory. 
+The names of the arguments used for building the *topONTdata* object should be self-explanatory. 
 We quickly mention that *nodeSize = 10* is used to prune the GO hierarchy from the terms
 which have less than $10$ annotated genes and that *annFUN.db* function is used to extract the 
-gene-to-ontology mappings from the *geneID2TERM* object. See detail of the parameters used to build the *topGOdata* later.
+gene-to-ontology mappings from the *geneID2TERM* object. See detail of the parameters used to build the *topONTdata* later.
 
 A summary of the *GOdata* object can be seen by typing the object name at the R prompt.
 Having all the data stored into this object facilitates the access to identifiers, annotations and 
@@ -114,11 +115,11 @@ GOdata
 
 
 ## Performing the enrichment tests
-Once we have an object of class *topGOdata* we can start with the enrichment analysis. 
+Once we have an object of class *topONTdata* we can start with the enrichment analysis. 
 We will use one test statistics: Fisher's exact test which is based on gene counts. 
 
 The function *runTest* is used to apply the specified test statistic and method to the data.
-It has three main arguments. The first argument needs to be an object of class *topGOdata*.
+It has three main arguments. The first argument needs to be an object of class *topONTdata*.
 The second and third argument are of type character; they specify the method for dealing with
 the ontology graph structure and the test statistic, respectively.
 
@@ -131,7 +132,7 @@ resultFis <- runTest(GOdata, algorithm = "classic", statistic = "fisher")
 resultElimFis<- runTest(GOdata, algorithm = "elim", statistic = "fisher")
 ```
 
-*runTest* returns an object of class *topGOresult*. A short summary of this object is shown below.
+*runTest* returns an object of class *topONTresult*. A short summary of this object is shown below.
 ```{r 7}
 resultFis 
 resultElimFis
@@ -151,7 +152,7 @@ allRes <- GenTable(GOdata, classicFisher = resultFis,
 ```
 The *GenTable* function returns a data frame containing the top *topNodes* HDO terms identified
 by the *elim* algorithm, see *orderBy* argument. The data frame includes some statistics on the
-HDO terms and the *p-values* corresponding to each of the *topGOresult* object specified as arguments.
+HDO terms and the *p-values* corresponding to each of the *topONTresult* object specified as arguments.
 <center>
 ```{r 9,echo=FALSE,results='asis',fig.width=1, fig.height=10}
 kable(allRes, format = "markdown")

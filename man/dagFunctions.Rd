@@ -73,7 +73,7 @@ NULL
 Adrian Alexa
 }
 \seealso{
-\code{\link{topGOdata-class}},
+\code{\link{topONTdata-class}},
   \code{\link{inducedGraph}}
 }
 \keyword{graphs}

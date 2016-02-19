@@ -3,14 +3,14 @@
 \docType{methods}
 \name{diagnosticMethods}
 \alias{GenTable}
-\alias{GenTable,topGOdata-method}
+\alias{GenTable,topONTdata-method}
 \alias{diagnosticMethods}
 \alias{printGenes}
-\alias{printGenes,topGOdata,character,character-method}
-\alias{printGenes,topGOdata,character,missing-method}
+\alias{printGenes,topONTdata,character,character-method}
+\alias{printGenes,topONTdata,character,missing-method}
 \alias{printGenes-methods}
 \alias{showGroupDensity}
-\title{Diagnostic functions for topGOdata and topGOresult objects.}
+\title{Diagnostic functions for topONTdata and topGOresult objects.}
 \usage{
 GenTable(object, ...)
 
@@ -19,7 +19,7 @@ showGroupDensity(object, whichGO, ranks = FALSE, rm.one = TRUE)
 printGenes(object, whichTerms, file, ...)
 }
 \arguments{
-\item{object}{an object of class \code{topGOdata}.}
+\item{object}{an object of class \code{topONTdata}.}
 
 \item{whichGO}{the GO terms for which the plot should be generated.}
 
@@ -64,14 +64,14 @@ The \code{GenTable} function generates a summary of the
 \details{
 \code{GenTable} is an easy to use function for summarising the most
   significant GO terms and the corresponding p-values. The function
-  dispatches for \code{topGOdata} and \code{topGOresult} objects, and
+  dispatches for \code{topONTdata} and \code{topGOresult} objects, and
   it can take an arbitrary number of the later, making comparison
   between various results easier.
 
   Note: One needs to type the complete attribute names (the exact name)
   of this function, like: \code{topNodes = 5}, \code{rankOf = "resultFis"}, etc.
   This being the price paid for flexibility of specifying different
-  number of \code{topGOdata} objects.
+  number of \code{topONTdata} objects.
 
 
 

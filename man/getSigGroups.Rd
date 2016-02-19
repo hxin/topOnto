@@ -2,25 +2,25 @@
 % Please edit documentation in R/topGOalgo.R
 \name{getSigGroups}
 \alias{getSigGroups}
-\alias{getSigGroups,topGOdata,classicCount-method}
-\alias{getSigGroups,topGOdata,classicExpr-method}
-\alias{getSigGroups,topGOdata,classicScore-method}
-\alias{getSigGroups,topGOdata,elimCount-method}
-\alias{getSigGroups,topGOdata,elimExpr-method}
-\alias{getSigGroups,topGOdata,elimScore-method}
-\alias{getSigGroups,topGOdata,leaCount-method}
-\alias{getSigGroups,topGOdata,leaExpr-method}
-\alias{getSigGroups,topGOdata,leaScore-method}
-\alias{getSigGroups,topGOdata,pC-method}
-\alias{getSigGroups,topGOdata,parentChild-method}
-\alias{getSigGroups,topGOdata,weight01Count-method}
-\alias{getSigGroups,topGOdata,weight01Expr-method}
-\alias{getSigGroups,topGOdata,weight01Score-method}
-\alias{getSigGroups,topGOdata,weightCount-method}
+\alias{getSigGroups,topONTdata,classicCount-method}
+\alias{getSigGroups,topONTdata,classicExpr-method}
+\alias{getSigGroups,topONTdata,classicScore-method}
+\alias{getSigGroups,topONTdata,elimCount-method}
+\alias{getSigGroups,topONTdata,elimExpr-method}
+\alias{getSigGroups,topONTdata,elimScore-method}
+\alias{getSigGroups,topONTdata,leaCount-method}
+\alias{getSigGroups,topONTdata,leaExpr-method}
+\alias{getSigGroups,topONTdata,leaScore-method}
+\alias{getSigGroups,topONTdata,pC-method}
+\alias{getSigGroups,topONTdata,parentChild-method}
+\alias{getSigGroups,topONTdata,weight01Count-method}
+\alias{getSigGroups,topONTdata,weight01Expr-method}
+\alias{getSigGroups,topONTdata,weight01Score-method}
+\alias{getSigGroups,topONTdata,weightCount-method}
 \alias{getSigGroups-methods}
 \alias{runTest}
-\alias{runTest,topGOdata,character,character-method}
-\alias{runTest,topGOdata,missing,character-method}
+\alias{runTest,topONTdata,character,character-method}
+\alias{runTest,topONTdata,missing,character-method}
 \alias{whichAlgorithms}
 \alias{whichTests}
 \title{Interfaces for running the enrichment tests}
@@ -31,7 +31,7 @@ whichAlgorithms()
 whichTests()
 }
 \arguments{
-\item{object}{An object of class \code{topGOdata} This object contains all data necessary for runnig the test.}
+\item{object}{An object of class \code{topONTdata} This object contains all data necessary for runnig the test.}
 
 \item{test.stat}{An object of class \code{groupStats}. This object defines the test statistic.}
 
@@ -45,7 +45,7 @@ whichTests()
 An object of class \code{topGOresult}
 }
 \description{
-These function are used for dispatching the specific algorithm for a given \code{topGOdata} object and a test statistic.
+These function are used for dispatching the specific algorithm for a given \code{topONTdata} object and a test statistic.
 }
 \details{
 The \code{runTest} function can be used only with a predefined set of
@@ -59,7 +59,7 @@ The \code{runTest} function can be used only with a predefined set of
   ...
 }
 \examples{
-## load a sample topGOdata object
+## load a sample topONTdata object
 data(ONTdata)
 GOdata
 
@@ -95,7 +95,7 @@ weight01.fisher
 Adrian Alexa
 }
 \seealso{
-\code{\link{topGOdata-class}},
+\code{\link{topONTdata-class}},
   \code{\link{groupStats-class}},
   \code{\link{topGOresult-class}}
 }

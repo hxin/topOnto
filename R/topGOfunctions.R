@@ -888,7 +888,7 @@ run.batch<-function(ontologys=c('HDO','HPO'),gene.file=system.file("extdata/gene
     for(j in 1:length(algorithm)){
       result[[paste(algorithm[j],statistic[j],sep = '')]]<-runTest(ONTdata, algorithm = algorithm[j], statistic = statistic[j])
     }
-    allRes[[ontologys[i]]]<-list('ONTdata'=ONTdata,'result'=result,'tableView'=GenTable2(ONTdata,result, topNodes = topNodes,useLevels=useLevels,cutoff=cutoff))
+    allRes[[ontologys[i]]]<-list('ONTdata'=ONTdata,'result'=result,'tableView'=GenTable2(ONTdata,result, topNodes = topNodes,useLevels=useLevels,cutoff=cutoff,...))
   }
   
   allRes

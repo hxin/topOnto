@@ -1025,6 +1025,7 @@ setMethod("initialize", "weight01Count",
                    sigMembers = character(),
                    elim = integer(),
                    ...) {
+            
             .Object <- callNextMethod(.Object, testStatistic, name,
                                       allMembers, groupMembers,
                                       sigMembers)

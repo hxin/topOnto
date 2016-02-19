@@ -45,7 +45,7 @@ Class \code{"\linkS4class{groupStats}"}, directly.
   \describe{
     \item{allMembers<-}{\code{signature(object = "classicExpr")}: ... }
     \item{emptyExpr}{\code{signature(object = "classicExpr")}: ... }
-    \item{getSigGroups}{\code{signature(object = "topGOdata", test.stat = "classicExpr")}: ... }
+    \item{getSigGroups}{\code{signature(object = "topONTdata", test.stat = "classicExpr")}: ... }
     \item{GOglobalTest}{\code{signature(object = "classicExpr")}: ... }
     \item{initialize}{\code{signature(.Object = "classicExpr")}: ... }
     \item{membersExpr}{\code{signature(object = "classicExpr")}: ... }

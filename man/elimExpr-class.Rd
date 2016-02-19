@@ -55,7 +55,7 @@ Class \code{"\linkS4class{groupStats}"}, by class "weight01Expr", distance 3.
   \describe{
     \item{cutOff<-}{\code{signature(object = "elimExpr")}: ... }
     \item{cutOff}{\code{signature(object = "elimExpr")}: ... }
-    \item{getSigGroups}{\code{signature(object = "topGOdata", test.stat = "elimExpr")}: ... }
+    \item{getSigGroups}{\code{signature(object = "topONTdata", test.stat = "elimExpr")}: ... }
     \item{initialize}{\code{signature(.Object = "elimExpr")}: ... }
  }
 }

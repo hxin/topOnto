@@ -25,7 +25,7 @@ topGO package provides tools for testing GO terms while accounting
 Xin He
 }
 \seealso{
-\code{\link{topGOdata-class}},  \code{\link{groupStats-class}},
+\code{\link{topONTdata-class}},  \code{\link{groupStats-class}},
   \code{\link{getSigGroups-methods}}
 }
 \keyword{package}

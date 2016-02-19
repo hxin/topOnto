@@ -56,7 +56,7 @@ Class \code{"\linkS4class{groupStats}"}, by class "classicCount", distance 2.
     \item{allMembers<-}{\code{signature(object = "parentChild")}: ... }
     \item{allMembers}{\code{signature(object = "parentChild")}: ... }
     \item{allParents}{\code{signature(object = "parentChild")}: ... }
-    \item{getSigGroups}{\code{signature(object = "topGOdata", test.stat = "parentChild")}: ... }
+    \item{getSigGroups}{\code{signature(object = "topONTdata", test.stat = "parentChild")}: ... }
     \item{initialize}{\code{signature(.Object = "parentChild")}: ... }
     \item{joinFun}{\code{signature(object = "parentChild")}: ... }
     \item{numAllMembers}{\code{signature(object = "parentChild")}: ... }

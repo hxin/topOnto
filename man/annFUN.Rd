@@ -128,7 +128,7 @@ myInterestedGenes <- sample(allGenes, 500)
 geneList <- factor(as.integer(allGenes \%in\% myInterestedGenes))
 names(geneList) <- allGenes
 
-GOdata <- new("topGOdata",
+GOdata <- new("topONTdata",
               ontology = "BP",
               allGenes = geneList,
               nodeSize = 5,
@@ -141,7 +141,7 @@ GOdata <- new("topGOdata",
 Adrian Alexa
 }
 \seealso{
-\code{\link{topGOdata-class}}
+\code{\link{topONTdata-class}}
 }
 \keyword{misc}
 
