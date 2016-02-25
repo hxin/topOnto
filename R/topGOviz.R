@@ -633,3 +633,282 @@ printDOT <- function(dag, sigNodes = NULL, genNodes = NULL, wantedNodes = NULL,
 }
 
 
+
+
+showSigOfNodes.batch <- function(ONTdata, ..., main.index=1,firstSigNodes = 5, reverse = TRUE,
+                                 sigForAll = TRUE, wantedNodes = NULL, putWN = TRUE,
+                                 putCL = 0, type = NULL, showEdges = TRUE, swPlot = TRUE,
+                                 useFullNames = TRUE, oldSigNodes = NULL,
+                                 useInfo = c('none', 'pval', 'counts', 'def', 'np', 'all')[1],
+                                 plotFunction = GOplot.batch, .NO.CHAR = 20) {
+  
+  #require('Rgraphviz') || stop('package Rgraphviz is required')
+  resList <- list(...)
+  resList<-lapply(resList,score)
+  #resList=list(classic=score(res$HDO$result$classicfisher),elim=score(res$HDO$result$elimfisher),pc=score(res$HDO$result$parentchildfisher))
+  
+  ## if no names were provided we name them
+  if(is.null(names(resList)))
+    names(resList) <- paste("result", 1:length(resList), sep = "")
+  
+  
+  if(!is.null(firstSigNodes)){ 
+    sigTerms <- lapply(resList,function(x){sort(x)[1:firstSigNodes]})
+  }else{
+    sigTerms <- numeric(0)
+  }
+  
+  
+  
+  if(putWN && !is.null(wantedNodes)){
+    baseNodes <- unique(c(as.vector(sapply(sigTerms,names)), wantedNodes))
+  }else{
+    baseNodes <- unique(as.vector(sapply(sigTerms,names)))
+  }
+  
+  if(length(baseNodes) == 0)
+    stop('No nodes were selected')
+  
+  ## we want to get aditional nodes
+  if(putCL) {
+    goDAG.r2l <- reverseArch(graph(ONTdata))
+    
+    for(i in 1:putCL) {
+      newNodes <- unique(unlist(adj(goDAG.r2l, baseNodes)))
+      baseNodes <- union(newNodes, baseNodes)
+    }
+  }
+  
+  dag <- inducedGraph(graph(ONTdata), baseNodes)
+  
+  if(reverse)
+    dag <- reverseArch(dag)
+  
+  termCounts <- termStat(ONTdata, nodes(dag))
+  
+  ## we plot for each node of GO graph the pie plot showing the
+  ## difference bettween all genes mapped to it and sig genes mapped to it
+  if(!is.null(type)) {
+    if(swPlot)
+      GOplot.counts(dag, wantedNodes = wantedNodes, nodeCounts = termCounts,
+                    showEdges = showEdges)
+    return(dag)
+  }
+  
+  
+  pval.info <- function(whichNodes) {
+    ret.val<-lapply(resList,function(x){
+      p<-format.pval(x[whichNodes],digits = 3, eps = 1e-30)
+      names(p)<-whichNodes
+      p
+    })
+    return(ret.val)
+  }
+  
+  .pval = pval.info(nodes(dag))
+  .def = .getTermsDefinition(ONTdata=ONTdata,whichTerms = nodes(dag), numChar = .NO.CHAR)
+  .counts = apply(termCounts[, c("Annotated", "Significant","Expected")], 1, paste, collapse = " / ")
+  
+  parse.pval<-function(.pval){
+    .pval.df<-as.data.frame(.pval)
+    sapply(1:nrow(.pval.df),function(i){
+      tmp<-as.vector(unlist(.pval.df[i,]))
+      paste(paste(colnames(.pval.df),tmp,sep = ':'),collapse = '\\\n')
+    })
+  }
+  
+  
+  
+  ## more infos will be added
+  nodeInfo <- switch(useInfo,
+                     none = NULL,
+                     pval = parse.pval(.pval),
+                     def = .def,
+                     counts = .counts,
+                     np = paste(.def, parse.pval(.pval), sep = '\\\n'),
+                     all = paste(.def, parse.pval(.pval), .counts, sep = '\\\n')
+  )
+  
+  ## we can plot the significance level of all nodes in the dag or for the sigNodes
+  if(sigForAll)
+    sigNodes <- resList[[main.index]][nodes(dag)]
+  else
+    sigNodes <- sigTerms[[main.index]]
+  
+  if(is.null(wantedNodes))
+    wantedNodes <- lapply(sigTerms[-main.index],names)
+  if(is.null(oldSigNodes))
+    oldSigNodes=resList[-main.index]
+  
+  complete.dag <- plotFunction(dag, sigNodes = sigNodes, genNodes = names(sigTerms[[main.index]]),
+                               wantedNodes = wantedNodes, showEdges = showEdges,
+                               useFullNames = useFullNames, oldSigNodes = oldSigNodes,
+                               nodeInfo = nodeInfo)
+  
+  if(swPlot && !is.null(complete.dag)){
+    plot(complete.dag)
+    legend("topright",legend = names(resList),
+           lty=rep(1,length(names(resList))), lwd=rep(2.5,length(names(resList))),col=c('blue','green','purple','hotpink')[c(1:length(resList))])
+  }
+  
+  
+  ## we return the obtained dag
+  return(list(dag = dag, complete.dag = complete.dag))
+}
+
+
+
+
+GOplot.batch <- function(dag, sigNodes, dag.name = 'ONT terms', edgeTypes = TRUE,
+                         nodeShape.type = c('box', 'circle', 'ellipse', 'plaintext','polygon','triangle','diamond')[3],
+                         genNodes = NULL, wantedNodes = NULL, showEdges = TRUE, useFullNames = FALSE,
+                         oldSigNodes = NULL, nodeInfo = NULL, node.edge.color = c('blue','green','purple','hotpink')) {
+  
+  if(!missing(sigNodes))
+    sigNodeInd = TRUE
+  else
+    sigNodeInd = FALSE
+  
+  ## we set the global Graphviz attributes
+  graphAttrs <- getDefaultAttrs(layoutType = 'dot')
+  graphAttrs$cluster <- NULL
+  
+  #graphAttrs$graph$splines <- FALSE
+  
+  ## set the node shape
+  graphAttrs$node$shape <- nodeShape.type
+  
+  ## set the fontsize for the nodes labels
+  graphAttrs$node$fontsize <- '14'
+  #graphAttrs$node$height <- '1.0'
+  #graphAttrs$node$width <- '1.5'
+  
+  ## set the local attributes lists
+  nodeAttrs <- list()
+  edgeAttrs <- list()
+  
+  ## try to use adaptive node size
+  #nodeAttrs$fixedsize[nodes(dag)] <- rep(FALSE, numNodes(dag))
+  
+  if(is.null(nodeInfo)) {
+    nodeInfo <- character(numNodes(dag))
+    names(nodeInfo) <- nodes(dag)
+  }else{
+    nodeInfo <- paste('\\\n', nodeInfo, sep = '')
+  }
+  ## a good idea is to use xxxxxxx instead of GO:xxxxxxx as node labes
+  node.names <- nodes(dag)
+  if(!useFullNames){
+    nodeAttrs$label <- sapply(node.names,
+                              function(x) {
+                                return(paste(substr(x, 4, nchar(node.names[1])),
+                                             nodeInfo[x], sep = ''))
+                              })
+    
+  }else{
+    nodeAttrs$label <- paste(node.names, nodeInfo, sep = '')
+    names(nodeAttrs$label) <- node.names
+  }
+  
+  ## we will change the shape and the color of the nodes that generated the dag
+  if(!is.null(wantedNodes)) {
+    diffNodes<-lapply(wantedNodes,setdiff,genNodes)
+    if(length(unlist(diffNodes)) > 0) {
+      for(i in length(diffNodes):1){
+        nodeAttrs$color[diffNodes[[i]]] <- rep(node.edge.color[i+1], .ln <- length(diffNodes))
+        nodeAttrs$shape[diffNodes[[i]]] <- rep('circle', .ln)
+        #nodeAttrs$shape[diffNodes[[i]]] <- rep(nodeShape.type[i+4], .ln)
+        nodeAttrs$height[diffNodes[[i]]] <- rep('0.45', .ln)
+        #nodeAttrs$image[diffNodes[[i]]] <- rep('/home/xin/Desktop/e.png', .ln)
+        #nodeAttrs$penwidth[diffNodes[[i]]] <- rep(5, .ln)
+        ##nodeAttrs$width[diffNodes[[i]]] <- rep('4', .ln)
+        ##nodeAttrs$fixedsize[wantedNodes] <- rep(TRUE, .ln)
+        
+      }
+    }
+  }
+
+  
+  ## we will change the shape and the color of the nodes we want back
+  if(!is.null(genNodes)) {
+    nodeAttrs$color[genNodes] <- rep(node.edge.color[1], .ln <- length(genNodes))
+    nodeAttrs$shape[genNodes] <- rep('box', .ln)
+    #nodeAttrs$fixedsize[genNodes] <- rep(FALSE, .ln)    
+  }
+  
+  ## we will use different fillcolors for the nodes
+  if(sigNodeInd) {
+    if(!is.null(oldSigNodes)) {
+      old.logSigNodes<-lapply(oldSigNodes,function(x){
+        log10(sort(x[nodes(dag)]))
+      })
+      old.range <- range(unlist(old.logSigNodes))
+      logSigNodes <- log10(sort(sigNodes))
+      logSigNodes[logSigNodes < old.range[1]] <- old.range[1]
+      logSigNodes[logSigNodes > old.range[2]] <- old.range[2]
+      ## debug:  old.range == range(logSigNodes)
+      #if(!identical(all.equal(old.range, range(logSigNodes)), TRUE)){
+      #  print(old.range)
+      #  print(range(logSigNodes))
+      #  stop('some stupid error here :)')
+      #}
+    }
+    else
+      old.logSigNodes <- logSigNodes <- log10(sort(sigNodes))
+    
+    
+    sigColor <- round(logSigNodes - range(logSigNodes)[1] + 1)
+    
+    old.sigColor <- lapply(old.logSigNodes,function(x){round(x - range(old.logSigNodes)[1] + 1) })
+    
+    mm <- max(sigColor, unlist(old.sigColor))
+    sigColor <- sigColor + (mm - max(sigColor))
+    
+    colorMap <- heat.colors(mm)
+    nodeAttrs$fillcolor <- unlist(lapply(sigColor, function(x) return(colorMap[x])))
+  }
+  
+  if(!showEdges)
+    graphAttrs$edge$color <- 'white'
+  else
+    ## if we want to differentiate between 'part-of' and 'is-a' edges
+    if(edgeTypes)
+      ##    0 for a is_a relation,  1 for a part_of relation
+      ## edgeAttrs$color <- ifelse(.getEdgeWeights(dag) == 0, 'black', 'red')
+      edgeAttrs$color <- ifelse(.getEdgeWeights(dag) == 0, 'black', 'black')
+  
+  
+  ##plot(dag, attrs = graphAttrs, nodeAttrs = nodeAttrs, edgeAttrs = edgeAttrs)
+  
+  return(agopen(graph = dag, name = dag.name, attrs = graphAttrs,
+                nodeAttrs = nodeAttrs,  edgeAttrs = edgeAttrs))
+}
+
+setMethod("printGraph",
+          signature(object = "topONTdata", result = "missing",
+                    firstSigNodes = "numeric", refResult = "missing"),
+          function(object,firstSigNodes = 10, ..., main.index=1,fn.prefix = "", useInfo = "def", pdfSW = FALSE) {
+            resList<- list(...)
+            
+            out.fileName <- paste(fn.prefix, paste(sapply(resList,function(x){algorithm(x)[1]}),collapse = '_'),
+                                  firstSigNodes, useInfo, sep = '_')              
+            ## .DOT.FILE.NAME <<- paste(out.fileName, 'dot', sep = '.')
+            
+            if(pdfSW)
+              pdf(file = paste(out.fileName, 'pdf', sep = '.'), width = 10, height = 10)
+            else
+              postscript(file = paste(out.fileName, 'ps', sep = '.'))
+            
+            ## plot the graph to the specified device
+            par(mai = rep(0, 4))
+            gT <- showSigOfNodes.batch(object, ...,main.index=main.index,firstSigNodes = firstSigNodes, swPlot = FALSE, useInfo = useInfo, plotFunction = GOplot.batch)
+            plot(gT$complete.dag)
+            legend("topright",legend = sapply(resList,function(x){algorithm(x)[1]}),
+                   lty=rep(1,length(resList)), lwd=rep(2.5,length(resList)),col=c('blue','green','purple','hotpink')[c(1:length(resList))])
+            dev.off()
+            
+            ##if(!pdfSW && .Platform$OS.type == "unix") 
+            ##  .ps2eps(out.fileName)
+            
+            cat(out.fileName, ' --- no of nodes: ', numNodes(gT$dag), '\n') 
+          })
