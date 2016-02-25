@@ -21,7 +21,12 @@ res<-run.batch(ontologys = c('HDO','HPO','RECTOMEPATHWAY','GOBP','GOCC','GOMF'),
 
 for(i in names(res)){
   print(res[[i]]$tableView)
-  printGraph(res[[i]]$ONTdata, firstSigNodes = 10, res[[i]]$result$elimfisher,res[[i]]$result$classicfisher,fn.prefix=i,useInfo = "def")
+  printGraph(res[[i]]$ONTdata, elim=res[[i]]$result$elimfisher, classic=res[[i]]$result$classicfisher,
+             weight01=res[[i]]$result$weight01fisher, parentchild=res[[i]]$result$parentchildfisher,
+             main.index=1,firstSigNodes = 5, useInfo = 'all',fn.prefix=i)
+  showSigOfNodes.batch(res[[i]]$ONTdata, elim=res[[i]]$result$elimfisher, classic=res[[i]]$result$classicfisher,
+                       weight01=res[[i]]$result$weight01fisher, parentchild=res[[i]]$result$parentchildfisher,
+                       main.index=1,firstSigNodes = 4, useInfo = 'all',fn.prefix=i)
 }
 # 
 # head(res[[3]]$tableView,50)

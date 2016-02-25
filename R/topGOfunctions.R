@@ -894,3 +894,13 @@ run.batch<-function(ontologys=c('HDO','HPO'),gene.file=system.file("extdata/gene
   allRes
 }
 
+search.result<-function(GenTable,key=c()){
+  pattern=paste(key,collapse = '|')
+  GenTable[unique(c(grep(pattern,res$HDO$tableView$Term,perl = T,ignore.case = T),grep(pattern,res$HDO$tableView$TERM.ID,perl = T,ignore.case = T))),]
+}
+
+reorder.result<-function(GenTable,key='classicfisher'){
+  GenTable[order(as.numeric(GenTable[,key]),decreasing = F),]
+}
+
+

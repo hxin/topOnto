@@ -538,7 +538,9 @@ printDOT <- function(dag, sigNodes = NULL, genNodes = NULL, wantedNodes = NULL,
 
   #graphAttrs$graph$splines <- FALSE
   graphAttrs$graph$size <- "6.99,3.99"
-  
+  #graphAttrs$graph$concentrate <- T
+  #graphAttrs$graph$overlap = FALSE
+  graphAttrs$graph$landscape= FALSE
   ## set the node shape
   graphAttrs$node$shape <- 'ellipse'
 
@@ -748,7 +750,8 @@ showSigOfNodes.batch <- function(ONTdata, ..., main.index=1,firstSigNodes = 5, r
   if(swPlot && !is.null(complete.dag)){
     plot(complete.dag)
     legend("topright",legend = names(resList),
-           lty=rep(1,length(names(resList))), lwd=rep(2.5,length(names(resList))),col=c('blue','green','purple','hotpink')[c(1:length(resList))])
+           lty=rep(1,length(names(resList))), lwd=rep(2.5,length(names(resList))),
+           col=c('blue','green','purple','hotpink')[c(1:length(resList))])
   }
   
   
@@ -775,11 +778,18 @@ GOplot.batch <- function(dag, sigNodes, dag.name = 'ONT terms', edgeTypes = TRUE
   
   #graphAttrs$graph$splines <- FALSE
   
+  #graphAttrs$graph$splines <- FALSE
+  graphAttrs$graph$size <- "6.99,6.99"
+  #graphAttrs$graph$size <- "10,10"
+  #graphAttrs$graph$concentrate <- T
+  #graphAttrs$graph$overlap = FALSE
+  
+  
   ## set the node shape
   graphAttrs$node$shape <- nodeShape.type
   
   ## set the fontsize for the nodes labels
-  graphAttrs$node$fontsize <- '14'
+  graphAttrs$node$fontsize <- '20'
   #graphAttrs$node$height <- '1.0'
   #graphAttrs$node$width <- '1.5'
   
@@ -815,7 +825,7 @@ GOplot.batch <- function(dag, sigNodes, dag.name = 'ONT terms', edgeTypes = TRUE
     diffNodes<-lapply(wantedNodes,setdiff,genNodes)
     if(length(unlist(diffNodes)) > 0) {
       for(i in length(diffNodes):1){
-        nodeAttrs$color[diffNodes[[i]]] <- rep(node.edge.color[i+1], .ln <- length(diffNodes))
+        nodeAttrs$color[diffNodes[[i]]] <- rep(node.edge.color[i+1], .ln <- length(diffNodes[[i]]))
         nodeAttrs$shape[diffNodes[[i]]] <- rep('circle', .ln)
         #nodeAttrs$shape[diffNodes[[i]]] <- rep(nodeShape.type[i+4], .ln)
         nodeAttrs$height[diffNodes[[i]]] <- rep('0.45', .ln)
@@ -895,7 +905,7 @@ setMethod("printGraph",
             ## .DOT.FILE.NAME <<- paste(out.fileName, 'dot', sep = '.')
             
             if(pdfSW)
-              pdf(file = paste(out.fileName, 'pdf', sep = '.'), width = 10, height = 10)
+              pdf(file = paste(out.fileName, 'pdf', sep = '.'),paper='a4r') #width = 10, height = 10,)
             else
               postscript(file = paste(out.fileName, 'ps', sep = '.'))
             
