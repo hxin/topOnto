@@ -91,26 +91,6 @@ setMethod("GOKSTest", "classicScore",
           })
 
 
-if(!isGeneric("GOKSCSWTest"))
-  setGeneric("GOKSCSWTest", function(object) standardGeneric("GOKSCSWTest"))
-
-setMethod("GOKSCSWTest", "classicScore",
-          function(object) {
-            
-            N <- numAllMembers(object)
-            na <- numMembers(object)
-            
-            ## if the group is empty ... (should not happen, but you never know!)
-            if(na == 0 || na == N)
-              return(1)
-            
-            x.a <- rankMembers(object)
-            ## x.b <- setdiff(1:N, x.a)
-            
-            return(ks.test(x.a, seq_len(N)[-x.a], alternative = "greater")$p.value)
-          })
-
-
 
 
 if(!isGeneric("GOtTest"))
@@ -287,5 +267,134 @@ setMethod("GOKSTiesTest", "classicScore",
             
             ## aggregate the resulting p-values and return
             return(get(FUN)(resP))
+          })
+
+
+
+if(!isGeneric("GOKSCSWTest"))
+  setGeneric("GOKSCSWTest", function(object) standardGeneric("GOKSCSWTest"))
+
+setMethod("GOKSCSWTest", "classicGsea",
+          function(object) {
+            #cat('testing ',object@testStatPar$gsname,"...\n")
+            # 
+            # N <- numAllMembers(object)
+            # na <- numMembers(object)
+            # 
+            ## if the group is empty ... (should not happen, but you never know!)
+            # if(na == 0 )# || na == N)
+            #   return(list(p=1))
+            if(length(object@members) == 0)# || na == N)
+              return(list(p=1,ES.obs=NA,ES.obs.norm=NA,ES.premut=NA,ES.premut.norm=NA,GSEA.results=NA))
+            #browser()
+            GSEA.results<-GSEA.EnrichmentScore.weighted.batch(gene.list=object@testStatPar$geneRanking$o.m,
+                                                              gene.set=match(object@members, rownames(object@testStatPar$geneRanking$s2n.m)),
+                                                              correl.vector = object@testStatPar$geneRanking$s2n.m,
+                                                              correl.vector.sorted = object@testStatPar$geneRanking$s2n.m.sort.abs,
+                                                              exp.type=object@testStatPar$exp.type,score=object@annotation.weight)
+            
+            ES.obs<-GSEA.results$ES[1]
+            ES.premut<-GSEA.results$ES[2:length(GSEA.results$ES)]
+            
+            ##p value
+            pos.ES <-neg.ES <- NULL
+            pos.ES<-ES.premut[ES.premut>=0]
+            neg.ES<-ES.premut[ES.premut<0]
+            
+            if(length(pos.ES)==0) pos.ES=0
+            if(length(neg.ES)==0) neg.ES=0
+            
+            if (ES.obs >= 0) {
+              p <- signif(sum(pos.ES >= ES.obs)/length(pos.ES), digits=10)
+            } else {
+              p <- signif(sum(neg.ES <= ES.obs)/length(neg.ES), digits=10)
+            }
+            
+            ##when no premut ES is found on the obs ES side
+            if(is.nan(p))
+              p=0
+            
+            ###Computing rescaling normalization for each gene set null
+            
+            pos.m <- mean(pos.ES)
+            neg.m <- mean(abs(neg.ES))
+            
+            pos.ES.norm <- pos.ES/pos.m
+            neg.ES.norm <- neg.ES/neg.m
+            if (ES.obs >= 0) {
+              if(length(pos.m)>0)
+                ES.obs.norm<-ES.obs/pos.m
+              else
+                ES.obs.norm<-ES.obs
+            } else {
+              if(length(neg.m)>0)
+                ES.obs.norm<-ES.obs/neg.m
+              else
+                ES.obs.norm<-ES.obs
+            }
+            
+            ES.premut.norm<-sapply(ES.premut,function(x){
+              if(x>0)
+                x/pos.m
+              else
+                x/neg.m
+            })
+            
+            
+            #browser()
+            return(list(p=p,ES.obs=ES.obs,ES.obs.norm=ES.obs.norm,ES.premut=ES.premut,ES.premut.norm=ES.premut.norm,
+                        GSEA.results=GSEA.results))
+           
+            # ES=c()
+            # GSEA.results<-GSEA.EnrichmentScore.weighted(order(object@testStatPar$geneRanking$obs.s2n.matrix[,1],decreasing = T),match(object@members, names(object@testStatPar$geneRanking$obs.s2n.matrix[,1])),
+            #                                             correl.vector = object@testStatPar$geneRanking$obs.s2n.matrix[,1], exp.type=object@testStatPar$exp.type,score=object@annotation.weight)
+            # ES.obs<-GSEA.results$ES
+            # ##update the score in the test object and run GSEA for each premut
+            # premut<-ncol(object@testStatPar$geneRanking$reshuffled.class.labels1)
+            # ES.premut<-c()
+            # browser()
+            # 
+            # 
+            # for(i in 1:premut){
+            #   p.score<-object@testStatPar$geneRanking$s2n.matrix[,i]
+            #   p.GSEA.results<-GSEA.EnrichmentScore.weighted(order(p.score,decreasing = T),match(object@members, names(p.score)),
+            #                                                 correl.vector = object@testStatPar$geneRanking$s2n.matrix[,i], exp.type=object@testStatPar$exp.type,score=object@annotation.weight)
+            #   #plot(p.GSEA.results$RES,type='b')
+            #   ES.premut[i]=p.GSEA.results$ES
+            # }
+            # 
+            # ##p value
+            # pos.ES <-neg.ES <- NULL
+            # pos.ES<-ES.premut[ES.premut>=0]
+            # neg.ES<-ES.premut[ES.premut<0]
+            # if (ES.obs >= 0) {
+            #   p <- signif(sum(pos.ES >= ES.obs)/length(pos.ES), digits=10)
+            # } else {
+            #   p <- signif(sum(neg.ES <= ES.obs)/length(neg.ES), digits=10)
+            # }
+            # 
+            # ###Computing rescaling normalization for each gene set null
+            # pos.m <- mean(pos.ES)
+            # neg.m <- mean(abs(neg.ES))
+            # pos.ES.norm <- pos.ES/pos.m
+            # neg.ES.norm <- neg.ES/neg.m
+            # if (ES.obs >= 0) {
+            #   ES.obs.norm<-ES.obs/pos.m
+            # } else {
+            #   ES.obs.norm<-ES.obs/neg.m
+            # }
+            # 
+            # ES.premut.norm<-sapply(ES.premut,function(x){
+            #   if(x>0)
+            #     x/pos.m
+            #   else
+            #     x/neg.m
+            # })
+            # 
+            # 
+            # 
+            # return(list(p=p,ES.obs=ES.obs,ES.obs.norm=ES.obs.norm,ES.premut=ES.premut,ES.premut.norm=ES.premut.norm,
+            #             GSEA.results=GSEA.results))
+            
           })
 

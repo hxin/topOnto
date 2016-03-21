@@ -199,6 +199,13 @@ readMappingswithScore <- function(file){
 }
 
 revmapWithScore<-function(a){
+  ##init score to 1 if not score is provided
+  if(is.null(names(a[[1]]))){
+    a<-lapply(a, function(x){
+      names(x)<-rep(1,length(x))
+      x
+    })
+  }
   y<-split(f=unlist(a),x=names(unlist(a)))
   y<-lapply(y,function(x){
     gene.weight<-strsplit(x,split=c('.'),fixed=T)
@@ -295,7 +302,7 @@ annFUN <- function( feasibleGenes = NULL, affyLib) {
 
 ## the annotation function
 annFUN.gene2GO <- function( feasibleGenes = NULL, gene2GO) {
-
+#browser()
   ## GO terms annotated to the specified ontology 
   #ontoGO <- get(paste("GO", whichOnto, "Term", sep = ""))
   ontoGO <- get("Term",envir=.GlobalEnv)
@@ -318,6 +325,35 @@ annFUN.gene2GO <- function( feasibleGenes = NULL, gene2GO) {
   return(split(geneID[goodGO], allGO[goodGO]))
 }
 
+## the annotation function
+annFUN.gene2GO.Score <- function( feasibleGenes = NULL, gene2GO) {
+  #browser()
+  ## GO terms annotated to the specified ontology 
+  #ontoGO <- get(paste("GO", whichOnto, "Term", sep = ""))
+  ontoGO <- get("Term",envir=.GlobalEnv)
+  
+  ## Restrict the mappings to the feasibleGenes set  
+  if(!is.null(feasibleGenes))
+    gene2GO <- gene2GO[intersect(names(gene2GO), feasibleGenes)]
+  
+  ## Throw-up the genes which have no annotation
+  if(any(is.na(gene2GO)))
+    gene2GO <- gene2GO[!is.na(gene2GO)]
+  
+  gene2GO <- gene2GO[sapply(gene2GO, length) > 0]
+  
+  ##init score to 1 if not score is provided
+  if(is.null(names(gene2GO[[1]]))){
+    gene2GO<-lapply(gene2GO, function(x){
+      names(x)<-rep(1,length(x))
+      x
+      })
+  }
+  
+  GO2gene<-revmapWithScore(gene2GO)
+  GO2gene<-GO2gene[-(names(GO2gene) %in% ls(ontoGO))]
+  return(GO2gene)
+}
 
 ## the annotation function
 annFUN.GO2genes <- function( feasibleGenes = NULL, GO2genes) {
@@ -335,6 +371,7 @@ annFUN.GO2genes <- function( feasibleGenes = NULL, GO2genes) {
 
   return(GO2genes[sapply(GO2genes, length) > 0])
 }
+
 
 
 ## annotation function to read the mappings from a file

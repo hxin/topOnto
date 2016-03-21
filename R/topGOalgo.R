@@ -5,20 +5,22 @@
 ## High-level function for runing the GO algorithms
 
 
-.algoComp <- rbind(c(1, 0, 1, 1, 1, 0, 1, 1, 1),
-                   c(1, 0, 1, 1, 1, 0, 1, 1, 1),
+.algoComp <- rbind(c(1, 0, 1, 1, 1, 0, 1, 1, 0),
+                   c(1, 0, 1, 1, 1, 0, 1, 1, 0),
                    c(1, 0, 0, 0, 0, 0, 0, 0, 0),
                    c(1, 0, 1, 1, 1, 0, 1, 1, 0),
                    c(1, 0, 1, 1, 1, 0, 1, 1, 0),
-                   c(1, 0, 0, 0, 0, 0, 0, 0, 0))
-rownames(.algoComp) <- c("classic", "elim", "weight", "weight01", "lea", "parentchild")
+                   c(1, 0, 0, 0, 0, 0, 0, 0, 0),
+                   c(0, 0, 0, 0, 0, 0, 0, 0, 1),
+                   c(0, 0, 0, 0, 0, 0, 0, 0, 1))
+rownames(.algoComp) <- c("classic", "elim", "weight", "weight01", "lea", "parentchild",'classicgsea','elimgsea')
 colnames(.algoComp) <- c("fisher", "z", "ks", "t", "globaltest", "category", "sum", "ks.ties","ks.csw")
 
 .testNames <- c("GOFisherTest" , "GOKSTest", "GOtTest", "GOglobalTest", "GOSumTest", "GOKSTiesTest","GOKSCSWTest")
 names(.testNames) <- c("fisher", "ks", "t", "globaltest", "sum", "ks.ties","ks.csw")
 
-.algoClass <- c("classic", "elim", "weight", "weight01", "lea", "parentchild")
-names(.algoClass) <- c("classic", "elim", "weight", "weight01", "lea", "parentchild")
+.algoClass <- c("classic", "elim", "weight", "weight01", "lea", "parentchild","classicgsea","elimgsea")
+names(.algoClass) <- c("classic", "elim", "weight", "weight01", "lea", "parentchild","classicgsea","elimgsea")
 
 
 ## functions to extract the information from the .algoComp
@@ -115,7 +117,7 @@ if(!isGeneric("runTest"))
 setMethod("runTest",
           signature(object = "topONTdata", algorithm = "character", statistic = "character"),
           function(object, algorithm, statistic, ...) { ## ... parameters for the test statistic
-            
+            #browser()
             statistic <- tolower(statistic)
             algorithm <- tolower(algorithm)
             ## we check if the algorithm support the given test statistic
@@ -124,9 +126,11 @@ setMethod("runTest",
 
             algorithm <- .algoClass[algorithm]
             ## strong asumtions! 
-            if(algorithm == "parentchild")
+            if(algorithm == "parentchild"){
               testType <- "pC"
-            else {
+            }else if(grepl('gsea',ignore.case = T,algorithm)){
+              testType <-paste(sub(pattern = 'gsea',replacement = '',ignore.case = T,algorithm),'Gsea',sep = '')
+            }else{
               testType <- as.character(findMethodSignatures(.testNames[statistic]))
               testType <- sub("classic", algorithm, testType) 
             }
@@ -315,7 +319,7 @@ setMethod("getSigGroups",
 setMethod("getSigGroups",
           signature(object = "topONTdata", test.stat = "elimScore"),
           function(object, test.stat, ...) { ## ... parameters for each algorithm
-
+browser()
             ## update the test.stat object if there is the case
             if(length(allScore(test.stat)) == 0) {
               allMembers(test.stat) <- genes(object)
@@ -1282,3 +1286,261 @@ setMethod("getSigGroups",
 
   return(newPval)
 }
+
+########################## GSEA algorithm ##########################
+setMethod("getSigGroups",
+          signature(object = "topONTdata", test.stat = "classicGsea"),
+          function(object, test.stat) {
+            #browser()
+            ## update the test.stat object if there is the case
+            if(length(allScore(test.stat)) == 0) {
+              allMembers(test.stat) <- genes(object)
+              score(test.stat) <- geneScore(object, use.names = TRUE)
+            }
+            
+            #GOlist <- genesInTerm(object)
+            #here
+            GOlist<-.genesInNode(graph(object),nodes(graph(object)),score = T)
+            ##filter by size
+            GOlist<-GOlist[which(test.stat@min.size<=sapply(GOlist,length) & sapply(GOlist,length)<=test.stat@max.size)]
+            if(length(GOlist)==0){
+              'no gene set found! Please change min.size and max.size.'
+            }
+            cat("\n\t\t\t -- Classic Algorithm -- \n")
+            cat(paste("\n\t\t the algorithm is scoring ", length(GOlist), " nontrivial nodes\n", sep =""))
+            cat("\t\t parameters: \n")
+            cat("\t\t\t test statistic: ", Name(test.stat), "\n")
+            cat("\t\t\t score order: ", ifelse(scoreOrder(test.stat), "decreasing", "increasing"), "\n")
+            
+            algoRes0 <- .sigGroups.classicGsea(GOlist, test.stat)
+            
+            report<-plot.result(A=as.matrix(object@exp),rl=algoRes0,O=test.stat@testStatPar$geneRanking,pty =object@pty,output.directory =test.stat@testStatPar$output.directory,
+                                topgs=test.stat@testStatPar$topgs,nom.p.val.threshold=test.stat@cutOff)
+            #saveRDS(report,'/tmp/1.rds')
+            #browser()
+            #####use plot here or outside?
+            algoRes <- unlist(sapply(algoRes0,function(x){x['p']},simplify = T))
+            names(algoRes) <- names(algoRes0)
+            
+            ## STORE THE RESULTS
+            .whichAlgorithm <- "classicGsea"
+            attr(.whichAlgorithm, "testClass") <- as.character(class(test.stat))
+            return(new("topONTresultGSEA",
+                       description = paste(description(object), "\nOntology:", ontology(object), sep = " "),
+                       score = algoRes, testName = Name(test.stat),
+                       algorithm = .whichAlgorithm,
+                       geneData = c(.getGeneData(object), SigTerms = length(GOlist)),
+                       global.report = report$report,
+                       gs.report = lapply(report$ALL,function(x){x$report}),
+                       plots = lapply(report$ALL,function(x){x$plot}),
+                       cutOff = test.stat@cutOff
+                   ))
+          })
+
+.sigGroups.classicGsea <- function(GOlist, test.stat) {
+  #browser()
+  #GOlist=GOlist[1:2]
+  #GOlist<-GOlist['DOID:1441']
+  total.gs<-length(GOlist)
+  print(paste('total gene set: ',length(GOlist),sep = ''))
+  sigList <- sapply(names(GOlist),
+                    function(x) {
+                      members(test.stat) <- as.character(GOlist[[x]])
+                      test.stat@annotation.weight <- as.numeric(names(GOlist[[x]]))
+                      names(test.stat@annotation.weight) <-members(test.stat)
+                      test.stat@testStatPar$gsname<-x
+                      print(paste(which(names(GOlist)==x),'/',total.gs,':',x,sep = ''))
+                      return(runTest(test.stat))
+                    },simplify = F)
+  #browser()
+  return(sigList)
+}
+
+
+setMethod("getSigGroups",
+          signature(object = "topONTdata", test.stat = "elimGsea"),
+          function(object, test.stat, ...) { ## ... parameters for each algorithm
+            #browser()
+            ## update the test.stat object if there is the case
+            if(length(allScore(test.stat)) == 0) {
+              allMembers(test.stat) <- genes(object)
+              score(test.stat) <- geneScore(object, use.names = TRUE)
+            }
+            
+            GOlist <- usedGO(object)
+            
+            cat("\n\t\t\t -- Elim Algorithm -- \n")
+            cat(paste("\n\t\t the algorithm is scoring ", length(GOlist), " nontrivial nodes\n", sep =""))
+            cat("\t\t parameters: \n")
+            cat("\t\t\t test statistic: ", Name(test.stat), "\n")
+            cat("\t\t\t cutOff: ", cutOff(test.stat), "\n")
+            cat("\t\t\t score order: ", ifelse(scoreOrder(test.stat), "decreasing", "increasing"), "\n")
+            
+            ## apply the algorithm
+            algoRes0 <- .sigGroups.gseaElim(graph(object), test.stat)
+            #browser()
+            ##remove those gs that has no gene in it after the elimination
+            algoRes0<-algoRes0[!sapply(algoRes0,function(x){is.na(x$ES.obs)})]
+
+            #browser()
+            report<-plot.result(A=as.matrix(object@exp),rl=algoRes0,O=test.stat@testStatPar$geneRanking,pty =object@pty,output.directory =test.stat@testStatPar$output.directory,
+                                topgs=test.stat@testStatPar$topgs,nom.p.val.threshold=test.stat@cutOff,doc.string=test.stat@testStatPar$doc.string)
+            
+            #####use plot here or outside?
+            algoRes <- unlist(sapply(algoRes0,function(x){x['p']},simplify = T))
+            names(algoRes) <- names(algoRes0)
+            #browser()
+            ## STORE THE RESULTS
+            .whichAlgorithm <- "classicGsea"
+            attr(.whichAlgorithm, "testClass") <- as.character(class(test.stat))
+            return(new("topONTresultGSEA",
+                       description = paste(description(object), "\nOntology:", ontology(object), sep = " "),
+                       score = algoRes, testName = Name(test.stat),
+                       algorithm = .whichAlgorithm,
+                       geneData = c(.getGeneData(object), SigTerms = length(GOlist)),
+                       global.report = report$report,
+                       gs.report = lapply(report$ALL,function(x){x$report}),
+                       plots = lapply(report$ALL,function(x){x$plot}),
+                       cutOff = test.stat@cutOff
+            ))
+            
+          })
+
+
+.sigGroups.gseaElim <- function(goDAG, test.stat) {
+  
+  goDAG.r2l <- reverseArch(goDAG)
+  nodeLevel <- buildLevels(goDAG.r2l, leafs2root = FALSE)
+  levelsLookUp <- nodeLevel$level2nodes
+  
+  ##adjs.cutOff <- cutOff(test.stat) / numNodes(goDAG)
+  adjs.cutOff <- cutOff(test.stat)
+  #cat(paste("\n\t\t Parameters:\t cutOff = ", adjs.cutOff, "\n", sep =""))
+  
+  ## we use a lookup table to search for nodes that have were significant
+  sigNodes.LookUP <- new.env(hash = TRUE, parent = emptyenv())
+  
+  ## hash table for the genes that we eliminate for each node
+  ## we store the genes that we want to eliminate
+  elimGenes.LookUP <- new.env(hash = TRUE, parent = emptyenv())
+  
+  ## hash table to store the result
+  sigList <- new.env(hash = TRUE, parent = emptyenv())
+  result<-list()
+  #browser()
+  for(i in nodeLevel$noOfLevels:1) {
+    currNodes.names <- get(as.character(i), envir = levelsLookUp, mode = 'character')
+    ##children.currNodes <- adj(goDAG.r2l, currNodes.names)
+    currAnno <- .genesInNode(goDAG, currNodes.names,score = T)
+    
+    .num.elimGenes <- length(unique(unlist(as.list(elimGenes.LookUP))))
+    cat(paste("\n\t Level ", i, ":\t", length(currNodes.names),
+              " nodes to be scored\t(", .num.elimGenes, " eliminated genes)\n", sep =""))
+    
+    for(termID in currNodes.names) {
+      #browser()
+      ## just in case the test.stat is modified by some methods
+      test.stat@annotation.weight<-as.numeric(names(currAnno[[termID]]))
+      names(test.stat@annotation.weight)<-currAnno[[termID]]
+      group.test <- updateGroup(test.stat, name = termID, members = unname(currAnno[[termID]]))
+      group.test@testStatPar$gsname<-termID
+      #browser()
+      ## remove the genes from the term, if there are
+      if(!exists(termID, envir = elimGenes.LookUP, mode = "character"))
+        elim(group.test) <- character(0)
+      else{
+        #browser()
+        elim(group.test) <- get(termID, envir = elimGenes.LookUP, mode = 'character')
+      }
+      #browser()
+      if(group.test@min.size<=length(group.test@members) & length(group.test@members) <= group.test@max.size){
+      ## run the test and store the result (the p-value)
+      termSig <- runTest(group.test)
+      result[[group.test@name]]<-termSig
+      assign(termID, termSig$p, envir = sigList)
+      
+      ## if we have a significant GO term 
+      if(termSig$p < adjs.cutOff) {
+        ## we mark it
+        assign(termID, termSig$p, envir = sigNodes.LookUP)
+        #browser()
+        ## we set the genes that we want to eliminate from the all ancestors
+        if(group.test@elim.gene.type=='core'){
+          ## here we want to only eliminate the 'leading core' gene from gsea
+          hits<-which(termSig$GSEA.results$indicator==1)
+          
+          if(termSig$GSEA.results$ES[1]>=0)
+            core<-hits[hits<=termSig$GSEA.results$arg.ES[1]]
+          else
+            core<-hits[hits>=termSig$GSEA.results$arg.ES[1]]
+          
+          elimGenesID<-names(group.test@testStatPar$geneRanking$s2n.m[,1][group.test@testStatPar$geneRanking$o.m[,1][core]])
+        }else{
+          ##elim all gene 
+          elimGenesID<-group.test@members
+        }
+        
+        #we assign the annotation weight to the elim genes
+        names(elimGenesID)<-group.test@annotation.weight[match(elimGenesID,group.test@members,nomatch = 0)]
+        #browser()
+        
+        ## we look for the ancestors
+        ## because we are aggrating the score, we only look for 
+        ## the direct parent instrad of all the ancestors
+        ancestors <- setdiff(nodesInInducedGraph(goDAG, termID), termID)
+        #ancestors<-adj(goDAG, termID)
+          
+        
+        
+        oldElimGenesID <- mget(ancestors, envir = elimGenes.LookUP,
+                               mode = 'character', ifnotfound = list(c()))
+        
+        ## add the new genesID to the ancestors
+        .aggregateElimScore<-function(oldElim,newElim){
+          for(i in 1:length(newElim)){
+            if(newElim[[i]] %in% oldElim){
+              old.W<-as.numeric(names(oldElim[which(oldElim==newElim[[i]])]))
+              names(oldElim)[which(oldElim==newElim[[i]])]<-sum(old.W,as.numeric(names(newElim[i])))
+            }else{
+              oldElim<-c(oldElim,newElim[i])
+            }
+          }
+          oldElim
+        }   
+        
+        newElimGenesID<-lapply(oldElimGenesID,
+                               function(termGenes) {
+                                 aux<-.aggregateElimScore(termGenes,elimGenesID)
+                                 return(aux[!is.na(aux)])
+                               })
+        
+        # if(group.test@elim.type=='score'){
+        # 
+        # }else{
+        #   newElimGenesID<-lapply(oldElimGenesID,
+        #          function(termGenes) {
+        #            aux<-union(termGenes, elimGenesID)
+        #            return(aux[!is.na(aux)])
+        #          })
+        # }
+        
+        
+        # 
+        # newElimGenesID <- lapply(oldElimGenesID,
+        #                          function(termGenes) {
+        #                            aux <- union(termGenes, elimGenesID)
+        #                            return(aux[!is.na(aux)])
+        #                          })
+        
+        
+        ## update the lookUp table
+        if(length(newElimGenesID) > 0)
+          multiassign(names(newElimGenesID), newElimGenesID, envir = elimGenes.LookUP)
+      }
+      }
+    }
+  }
+  return(result)
+  #return(unlist(as.list(sigList)))
+}
+

@@ -27,6 +27,13 @@ setMethod("initialize", "topONTdata",
                    termName = NULL,
                    ## annotation function
                    annotationFun,
+                   ##when using gsea, the gct file(or dataframe by read.gct)
+                   gct = NULL,
+                   exp = NULL,
+                   ##when using gsea, the cls file(or dataframe by read.cls)
+                   cls = NULL,
+                   pty = NULL,
+                   useScore=FALSE,
                    ## additional parameters for the annotationFun
                    ...) {
             
@@ -35,6 +42,15 @@ setMethod("initialize", "topONTdata",
 
             .Object@expressionMatrix <- expressionMatrix  #!
             .Object@phenotype        <- phenotype         #!
+            
+            if(!is.null(exp)){
+              if(is.null(pty))
+                stop("need phenotype data")
+              .Object@exp <- exp
+              .Object@pty <- pty
+              allGenes<-GSEA.GeneRanking(as.matrix(exp),class.labels = pty$class.v,nperm = 1)$s2n.m[,1]
+              geneSelectionFun <- function(allScore) {return(allScore)}
+            }
             
             ## some checking
             if(is.null(names(allGenes)))
@@ -74,10 +90,11 @@ setMethod("initialize", "topONTdata",
             ##  List of 3313
             ##  $ DOID:0000000: chr [1:117] "10" "19" "150" "155" ...
             ##  $ DOID:0001816: chr [1:77] "284" "285" "302" "309" ...
+            #browser()
             cat("\nBuilding most specific terms .....")
             mostSpecificGOs <- annotationFun(.Object@allGenes, ...)
             cat("\t(", length(mostSpecificGOs), "terms found. )\n")
-            
+            #browser()
             ## the the GO graph is build started from the most specific terms
             cat("\nBuild DAG topology ..........")
             g <- buildGOgraph.topology(names(mostSpecificGOs), ontology)
@@ -85,10 +102,14 @@ setMethod("initialize", "topONTdata",
                 
             ## probably is good to store the leves but for the moment we don't 
             .nodeLevel <- buildLevels(g, leafs2root = TRUE)
+            #browser()
             
             ## annotate the nodes in the GO graph with genes
             cat("\nAnnotating nodes ...............")
-            g <- mapGenes2GOgraph(g, mostSpecificGOs, nodeLevel = .nodeLevel) ## leafs2root
+            if(useScore)
+              g <- mapGenes2GOgraph2(g, mostSpecificGOs, nodeLevel = .nodeLevel) ## leafs2root
+            else
+              g <- mapGenes2GOgraph(g, mostSpecificGOs, nodeLevel = .nodeLevel) ## leafs2root
             
             ## select the feasible genes
             gRoot <- getGraphRoot(g)
@@ -552,6 +573,7 @@ setMethod("show", "topONTdata", function(object) .printtopONTdata(x = object))
 setMethod("initialize", "topONTresult",
           function(.Object, description = character(),
                    score, testName, algorithm, geneData = integer()) {
+            
             .Object@description <- description
             .Object@score <- score
             .Object@testName <- testName
@@ -1618,7 +1640,7 @@ setMethod("initialize", "pC",
                    sigMembers = character(),
                    joinFun = c("union", "intersect"),
                    ...) {
-
+            browser()
             joinFun <- match.arg(joinFun)
             name <- paste(name, paste("joinFun = ", joinFun, sep = ""), sep = " : ")
             
@@ -1784,3 +1806,138 @@ setMethod("depth<-", "leaExpr",
           function(object, value)  {object@depth <- as.integer(value); object})
 
 setMethod("depth", "leaExpr", function(object) object@depth)
+
+
+
+#################### Gsea methods ####################
+setMethod("initialize", "classicGsea",
+          function(.Object,
+                   testStatistic,
+                   name = character(),
+                   allMembers = character(),
+                   groupMembers = character(),
+                   score = numeric(),
+                   scoreOrder = "increasing",  ## this is the case in which p-values are used
+                   annotation.weight = numeric(),
+                   cutOff = 0.01,
+                   min.size=10,
+                   max.size=2000,
+                   ...) {
+            #browser()
+            scoreOrder <- switch(scoreOrder,
+                                 decreasing = TRUE,
+                                 increasing = FALSE,
+                                 stop("scoreOrder should be increasing or decreasing"))
+            
+            ## first we order the members according to the score
+            index <- order(score, decreasing = scoreOrder)
+            if(length(allMembers) != length(score))
+              warning("score length don't match.")
+            
+            .Object <- callNextMethod(.Object, testStatistic, name,
+                                      allMembers[index], groupMembers)
+            #browser()
+            .Object@score <- as.numeric(score)[index]
+            .Object@scoreOrder <- scoreOrder
+            .Object@annotation.weight <- annotation.weight
+            # .Object@annotationScore<-match.arg(annotationScore)
+            # .Object@exp.type<-match.arg(exp.type)
+            # .Object@geneRanking<-match.arg(geneRanking)
+            .Object@testStatPar = list(...)
+            .Object@cutOff = cutOff
+            .Object@min.size<-min.size
+            .Object@max.size<-max.size
+            .Object
+          })
+
+setMethod("initialize", "elimGsea",
+          function(.Object,
+                   testStatistic,
+                   name = character(),
+                   allMembers = character(),
+                   groupMembers = character(),
+                   score = numeric(),
+                   scoreOrder = "increasing",
+                   elim = integer(),
+                   cutOff = 0.01,
+                   annotation.weight = numeric(),
+                   elim.type = c("simple","score")[1],
+                   elim.gene.type = c("core","all")[1],
+                   min.size = 10,
+                   max.size = 2000,
+                   ...) {
+            #browser()
+            .Object <- callNextMethod(.Object, testStatistic, name,
+                                      allMembers, groupMembers, score,
+                                      scoreOrder, elim = elim,min.size=min.size,max.size=max.size)
+            .Object@cutOff <- cutOff
+            .Object@elim.type <- elim.type
+            .Object@elim.gene.type <- elim.gene.type
+            .Object@testStatPar = list(...)
+            
+            
+            .Object
+          })
+
+
+
+setMethod("elim<-", "elimGsea",
+          function(object, value) {
+            #browser()
+              if(length(value>0)){
+              if(object@elim.type=='score'){
+                index<-match(value,object@members)
+                oldS<-object@annotation.weight[index]
+                newS<-as.numeric(oldS) - as.numeric(names(value))
+                object@annotation.weight[index]<-newS
+                ##remove 0
+                if(sum(object@annotation.weight==0)>0){
+                  object@members<-object@members[-which(object@annotation.weight==0)]
+                  object@annotation.weight<-object@annotation.weight[-which(object@annotation.weight==0)]
+                }
+                object@elim <- which(object@members %in% value)
+              }else if(object@elim.type=='simple'){
+                object@elim <- which(object@members %in% value)
+                if(length(object@elim)>0){
+                  object@annotation.weight<-object@annotation.weight[-object@elim]
+                  object@members<-object@members[-object@elim]
+                }
+              }
+            }
+            object
+          })
+
+
+
+######################## topONTresultGSEA methods ########################
+
+setMethod("initialize", "topONTresultGSEA",
+          function(.Object, description = character(),
+                   score, testName, algorithm, geneData = integer(),
+                   global.report,gs.report,plots,cutOff) {
+            #browser()
+            .Object <- callNextMethod(.Object, description, score,
+                                      testName, algorithm,geneData)
+            
+            .Object@global.report = global.report
+            .Object@gs.report = gs.report
+            .Object@plots = plots
+            .Object@cutOff <- cutOff
+            .Object
+          })
+
+setMethod("print", "topONTresultGSEA", function(x, ...) .printtopONTresultGSEAresult(x))
+setMethod("show", "topONTresultGSEA", function(object) .printtopONTresultGSEAresult(x = object))
+
+.printtopONTresultGSEAresult <- function(x) {
+  cat("\nDescription:", description(x), "\n")
+  cat("'", algorithm(x), "' algorithm with the '", testName(x), "' test\n", sep = "")
+  cutOff<-x@cutOff
+  cat(length(score(x))," terms scored:", sum(score(x) <=  cutOff), "terms with p <",cutOff,"\n")
+  
+  sig.gs<-sapply(x@global.report,function(x){sum((as.vector(x$p)<=cutOff))})
+  cat(paste(paste(names(sig.gs),sig.gs,sep = ':'),collapse = '\t'))
+}
+
+
+

@@ -419,10 +419,17 @@ getNoOfLevels <- function(graphLevels) {
 ## it returns the graph for which the attribute of each node contains a mapping
 ## of the genes/probes
 
-mapGenes2GOgraph <- function(dag,
+mapGenes2GOgraph2 <- function(dag,
                              mostSpecificGOs,
                              nodeLevel = buildLevels(dag, leafs2root = TRUE)) {
-
+  #browser()
+  #init gene weight if not given
+  if(names(mostSpecificGOs[[1]][1])=='NA' | is.null(names(mostSpecificGOs[[1]][1]))){
+    mostSpecificGOs<-lapply(mostSpecificGOs,function(x){
+      names(x)=rep(1,length(x))
+      x})
+  }
+  
   allNodes <- nodes(dag)
   ## just in case .....
   if((ln.allNodes <- length(allNodes)) != nodeLevel$noOfNodes)
@@ -435,8 +442,9 @@ mapGenes2GOgraph <- function(dag,
            e <- new.env(hash = TRUE, parent = emptyenv())
 
            if(x %in% nn)
-             multiassign(mostSpecificGOs[[x]], rep(TRUE, length(mostSpecificGOs[[x]])), envir = e)
-           
+             multiassign(mostSpecificGOs[[x]], names(mostSpecificGOs[[x]]), envir = e)
+             #multiassign(mostSpecificGOs[[x]], rep(TRUE, length(mostSpecificGOs[[x]])), envir = e)
+             
            assign(x, e, envir = geneTerms)
          })
   
@@ -444,6 +452,20 @@ mapGenes2GOgraph <- function(dag,
   ## get the levels list
   levelsLookUp <- nodeLevel$level2nodes
   noOfLevels <- nodeLevel$noOfLevels
+  
+  .aggregateScore<-function(currentE,destE){
+    g1<-unlist(as.list.environment(currentE))
+    g2<-unlist(as.list.environment(destE))
+    ##
+    for(i in names(g1)){
+      if(i %in% names(g2)){
+        g2[i]<-sum(as.numeric(g2[i]),as.numeric(g1[i]))
+      }else{
+        g2[i]<-as.numeric(g1[i])
+      }
+    }
+    multiassign(names(g2), unname(g2), envir = destE)
+  }
   
   for(i in noOfLevels:1) {
     currentNodes <- get(as.character(i), envir = levelsLookUp, mode = 'character')
@@ -460,12 +482,11 @@ mapGenes2GOgraph <- function(dag,
              ## debug option, just in case something goes wrong
              if(length(genesID) == 0)
                print(i)
-
+            
              ## for each adiacent node mapp the genesID to them
              lapply(adjList[[node]],
                     function(destNode) {
-                      destEnv <- get(destNode, envir = geneTerms, mode = 'environment')
-                      multiassign(genesID, rep(FALSE, length(genesID)), envir = destEnv)
+                      .aggregateScore(get(node, envir = geneTerms, mode = 'environment'),get(destNode, envir = geneTerms, mode = 'environment'))
                       return(NULL)
                     })
              return(NULL)
@@ -478,6 +499,67 @@ mapGenes2GOgraph <- function(dag,
   
   return(dag)
 }
+
+mapGenes2GOgraph <- function(dag,
+                             mostSpecificGOs,
+                             nodeLevel = buildLevels(dag, leafs2root = TRUE)) {
+  
+  allNodes <- nodes(dag)
+  ## just in case .....
+  if((ln.allNodes <- length(allNodes)) != nodeLevel$noOfNodes)
+    stop('nodeLevel is corrupt')
+  #browser()
+  geneTerms <- new.env(hash = TRUE, parent = emptyenv())
+  nn <- names(mostSpecificGOs)
+  lapply(allNodes,
+         function(x) {
+           e <- new.env(hash = TRUE, parent = emptyenv())
+           
+           if(x %in% nn)
+            multiassign(mostSpecificGOs[[x]], rep(TRUE, length(mostSpecificGOs[[x]])), envir = e)
+           
+           assign(x, e, envir = geneTerms)
+         })
+  
+  
+  ## get the levels list
+  levelsLookUp <- nodeLevel$level2nodes
+  noOfLevels <- nodeLevel$noOfLevels
+  
+  for(i in noOfLevels:1) {
+    currentNodes <- get(as.character(i), envir = levelsLookUp, mode = 'character')
+    
+    ## get all the adjacent nodes (teoreticaly nodes from level i - 1)
+    adjList <- adj(dag, currentNodes)
+    
+    ## push the genes from level i to level i - 1
+    lapply(currentNodes,
+           function(node) {
+             ## get the genes from this node
+             genesID <- ls(get(node, envir = geneTerms, mode = 'environment'))
+             
+             ## debug option, just in case something goes wrong
+             if(length(genesID) == 0)
+               print(i)
+             
+             ## for each adiacent node mapp the genesID to them
+             lapply(adjList[[node]],
+                    function(destNode) {
+                      destEnv <- get(destNode, envir = geneTerms, mode = 'environment')
+                      multiassign(genesID, rep(FALSE, length(genesID)), envir = destEnv)
+                      return(NULL)
+                    })
+             return(NULL)
+           })
+  }
+  
+  ## Assign for each node in the graph the coresponding environment
+  nodeDataDefaults(dag, attr = "genes") <- emptyenv()
+  nodeData(dag, allNodes, attr = "genes") <- as.list(geneTerms)[allNodes]
+  
+  return(dag)
+}
+
 
 
 
@@ -501,7 +583,7 @@ mapGenes2GOgraph <- function(dag,
   return(retValue[nNames])
 }
 
-.genesInNode <- function(g, nNames) {
+.genesInNode <- function(g, nNames,score=F) {
 
   x <- nNames %in% nodes(g)
   if(!all(x)) {
@@ -509,7 +591,15 @@ mapGenes2GOgraph <- function(dag,
     nNames <- nNames[x]
   }
 
-  retValue <- lapply(nodeData(g, nNames, attr = "genes"), ls)
+  if(score)
+    retValue <- lapply(nodeData(g, nNames, attr = "genes"), function(x){
+      tmp<-unlist(as.list.environment(x))
+      genes<-names(tmp)
+      names(genes)<-unname(tmp)
+      genes
+    })
+  else
+    retValue <- lapply(nodeData(g, nNames, attr = "genes"), ls)
 
   ##  if(length(retValue) == 1)
   ##   return(retValue[[1]])
@@ -541,4 +631,6 @@ mapGenes2GOgraph <- function(dag,
 }
 
 
-
+.get.all.node.annotation<-function(ONTdata,score=F){
+  .genesInNode(ONTdata@graph,nodes(ONTdata@graph),score = score)
+}

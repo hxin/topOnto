@@ -198,7 +198,14 @@ setClass("topONTdata",
         ## phenotype information (groups that shall be compared) #!
         phenotype = "ANY",
         ## ontology id2term mapping
-        termName="ANY"
+        termName="ANY",
+        ##when using gsea, the gct file(or dataframe by read.gct)
+        gct ="ANY",
+        exp = "ANY",
+        ##when using gsea, the cls file(or dataframe by read.cls)
+        cls ="ANY",
+        pty ="ANY",
+        useScore = "ANY"
         ))        #!
 
 
@@ -881,3 +888,37 @@ setClass("leaExpr", contains = "weight01Expr",
         representation = representation(
         depth = "integer"))
 
+##################### GSEA classes #########################
+setClass("classicGsea", contains = "elimScore",
+         representation = representation(
+           ## the score for each member, the most important
+           ## member has the highest score
+           score = "numeric",
+           ## scoreOrder = TRUE
+           ##(decreasing) the max(score) is considering the best score
+           ## scoreOrder = FALSE
+           ##(increasing) the min(score) is considre the best score
+           scoreOrder = "logical",
+           annotation.weight ="numeric",
+           min.size ="numeric",
+           max.size ="numeric"))
+
+# setClass("weight01Gsea", contains = "classicGsea",
+#          representation = representation(
+#            ## the score for each member, the most important
+#            ## member has the highest score
+#            elim = "integer"))
+
+setClass("elimGsea", contains = "classicGsea",
+         representation = representation(
+           cutOff = "numeric",
+           annotation.weight ="numeric",
+           elim.type = "character",
+           elim.gene.type = "character"))
+
+setClass("topONTresultGSEA",contains = "topONTresult",
+         representation = representation(
+           global.report = "ANY",
+           gs.report = "ANY",
+           plots = "ANY",
+           cutOff = "numeric"))

@@ -641,12 +641,23 @@ showSigOfNodes.batch <- function(ONTdata, ..., main.index=1,firstSigNodes = 5, r
                                  sigForAll = TRUE, wantedNodes = NULL, putWN = TRUE,
                                  putCL = 0, type = NULL, showEdges = TRUE, swPlot = TRUE,
                                  useFullNames = TRUE, oldSigNodes = NULL,
-                                 useInfo = c('none', 'pval', 'counts', 'def', 'np', 'all')[1],
-                                 plotFunction = GOplot.batch, .NO.CHAR = 20) {
+                                 useInfo = c('none', 'pval', 'counts', 'def', 'np', 'all')[1],only.show.nodes=NULL,
+                                 plotFunction = GOplot.batch, .NO.CHAR = 20,scale=1) {
   
   #require('Rgraphviz') || stop('package Rgraphviz is required')
   resList <- list(...)
+  
+  if(!is.null(only.show.nodes)){
+    only.show.nodes=only.show.nodes[only.show.nodes %in% nodes(graph(ONTdata))]
+    tmp<-inducedGraph(graph(ONTdata), only.show.nodes)
+    resList<- sapply(resList,function(x){
+      score(x)<-score(x)[nodes(tmp)]
+      x
+    })
+  }
+  
   resList<-lapply(resList,score)
+
   #resList=list(classic=score(res$HDO$result$classicfisher),elim=score(res$HDO$result$elimfisher),pc=score(res$HDO$result$parentchildfisher))
   
   ## if no names were provided we name them
@@ -655,6 +666,8 @@ showSigOfNodes.batch <- function(ONTdata, ..., main.index=1,firstSigNodes = 5, r
   
   
   if(!is.null(firstSigNodes)){ 
+    if(firstSigNodes > min(unlist(lapply(resList,length))))
+      firstSigNodes<-min(unlist(lapply(resList,length)))
     sigTerms <- lapply(resList,function(x){sort(x)[1:firstSigNodes]})
   }else{
     sigTerms <- numeric(0)
@@ -745,7 +758,7 @@ showSigOfNodes.batch <- function(ONTdata, ..., main.index=1,firstSigNodes = 5, r
   complete.dag <- plotFunction(dag, sigNodes = sigNodes, genNodes = names(sigTerms[[main.index]]),
                                wantedNodes = wantedNodes, showEdges = showEdges,
                                useFullNames = useFullNames, oldSigNodes = oldSigNodes,
-                               nodeInfo = nodeInfo)
+                               nodeInfo = nodeInfo,scale=scale)
   
   if(swPlot && !is.null(complete.dag)){
     plot(complete.dag)
@@ -763,9 +776,9 @@ showSigOfNodes.batch <- function(ONTdata, ..., main.index=1,firstSigNodes = 5, r
 
 
 GOplot.batch <- function(dag, sigNodes, dag.name = 'ONT terms', edgeTypes = TRUE,
-                         nodeShape.type = c('box', 'circle', 'ellipse', 'plaintext','polygon','triangle','diamond')[3],
+                         nodeShape.type = c('box', 'circle', 'ellipse', 'plaintext')[3],
                          genNodes = NULL, wantedNodes = NULL, showEdges = TRUE, useFullNames = FALSE,
-                         oldSigNodes = NULL, nodeInfo = NULL, node.edge.color = c('blue','green','purple','hotpink')) {
+                         oldSigNodes = NULL, nodeInfo = NULL, node.edge.color = c('blue','green','purple','hotpink'),scale=1) {
   
   if(!missing(sigNodes))
     sigNodeInd = TRUE
@@ -789,9 +802,9 @@ GOplot.batch <- function(dag, sigNodes, dag.name = 'ONT terms', edgeTypes = TRUE
   graphAttrs$node$shape <- nodeShape.type
   
   ## set the fontsize for the nodes labels
-  graphAttrs$node$fontsize <- '20'
-  #graphAttrs$node$height <- '1.0'
-  #graphAttrs$node$width <- '1.5'
+  graphAttrs$node$fontsize <- 20*scale
+  graphAttrs$node$height <- 1.0*scale
+  graphAttrs$node$width <- 1.5*scale
   
   ## set the local attributes lists
   nodeAttrs <- list()
@@ -828,7 +841,7 @@ GOplot.batch <- function(dag, sigNodes, dag.name = 'ONT terms', edgeTypes = TRUE
         nodeAttrs$color[diffNodes[[i]]] <- rep(node.edge.color[i+1], .ln <- length(diffNodes[[i]]))
         nodeAttrs$shape[diffNodes[[i]]] <- rep('circle', .ln)
         #nodeAttrs$shape[diffNodes[[i]]] <- rep(nodeShape.type[i+4], .ln)
-        nodeAttrs$height[diffNodes[[i]]] <- rep('0.45', .ln)
+        #nodeAttrs$height[diffNodes[[i]]] <- rep(0.45*scale, .ln)
         #nodeAttrs$image[diffNodes[[i]]] <- rep('/home/xin/Desktop/e.png', .ln)
         #nodeAttrs$penwidth[diffNodes[[i]]] <- rep(5, .ln)
         ##nodeAttrs$width[diffNodes[[i]]] <- rep('4', .ln)
@@ -843,6 +856,7 @@ GOplot.batch <- function(dag, sigNodes, dag.name = 'ONT terms', edgeTypes = TRUE
   if(!is.null(genNodes)) {
     nodeAttrs$color[genNodes] <- rep(node.edge.color[1], .ln <- length(genNodes))
     nodeAttrs$shape[genNodes] <- rep('box', .ln)
+    #nodeAttrs$height[genNodes] <- rep(0.45*scale, .ln)
     #nodeAttrs$fixedsize[genNodes] <- rep(FALSE, .ln)    
   }
   
@@ -897,7 +911,8 @@ GOplot.batch <- function(dag, sigNodes, dag.name = 'ONT terms', edgeTypes = TRUE
 setMethod("printGraph",
           signature(object = "topONTdata", result = "missing",
                     firstSigNodes = "numeric", refResult = "missing"),
-          function(object,firstSigNodes = 10, ..., main.index=1,fn.prefix = "", useInfo = "def", pdfSW = FALSE) {
+          function(object,firstSigNodes = 10, ..., main.index=1,only.show.nodes=NULL,fn.prefix = "", useInfo = "def", pdfSW = FALSE,png=TRUE,
+                   scale=1,width=240,height=297,units='mm',res=300) {
             resList<- list(...)
             
             out.fileName <- paste(fn.prefix, paste(sapply(resList,function(x){algorithm(x)[1]}),collapse = '_'),
@@ -906,12 +921,14 @@ setMethod("printGraph",
             
             if(pdfSW)
               pdf(file = paste(out.fileName, 'pdf', sep = '.'),paper='a4r') #width = 10, height = 10,)
+            if(png)
+              png(file = paste(out.fileName, 'png', sep = '.'), width = width, height = height,units = units, res = res)
             else
               postscript(file = paste(out.fileName, 'ps', sep = '.'))
             
             ## plot the graph to the specified device
             par(mai = rep(0, 4))
-            gT <- showSigOfNodes.batch(object, ...,main.index=main.index,firstSigNodes = firstSigNodes, swPlot = FALSE, useInfo = useInfo, plotFunction = GOplot.batch)
+            gT <- showSigOfNodes.batch(object, ...,main.index=main.index,firstSigNodes = firstSigNodes, swPlot = FALSE, useInfo = useInfo, plotFunction = GOplot.batch,scale=scale,only.show.nodes=only.show.nodes)
             plot(gT$complete.dag)
             legend("topright",legend = sapply(resList,function(x){algorithm(x)[1]}),
                    lty=rep(1,length(resList)), lwd=rep(2.5,length(resList)),col=c('blue','green','purple','hotpink')[c(1:length(resList))])
