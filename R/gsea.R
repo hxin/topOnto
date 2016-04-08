@@ -707,9 +707,9 @@ plot.result<-function(A=A,O=O,rl=rl,pty=pty,nom.p.val.threshold=0.05,
   
   
   
-  report1 <- data.frame(cbind(names(rl), sapply(rl,function(x){sum(x$GSEA.results$indicator)}),  round(obs.ES,3), 
+  report1 <- data.frame(cbind(names(rl), Term(ONTTERM)[names(rl)],sapply(rl,function(x){sum(x$GSEA.results$indicator)}),  round(obs.ES,3), 
                               round(obs.ES.norm,3), round(p.vals,3), round(tag.frac,3), round(gene.frac,3)),row.names = NULL,stringsAsFactors = F)
-  names(report1) <- c("GS", "SIZE", "ES", "NES", "p",  "Tag %", "Gene %")
+  names(report1) <- c("GS","DEF","SIZE", "ES", "NES", "p",  "Tag %", "Gene %")
   #       print(report)
   report2 <- report1
   report.index2 <- order(obs.ES.norm, decreasing=T)

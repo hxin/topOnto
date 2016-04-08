@@ -310,9 +310,11 @@ setMethod("GOKSCSWTest", "classicGsea",
               p <- signif(sum(neg.ES <= ES.obs)/length(neg.ES), digits=10)
             }
             
-            ##when no premut ES is found on the obs ES side
+            ##when no premut ES is found on the obs ES side, we consider p<1/#premutation
             if(is.nan(p))
-              p=0
+              p=1/length(ES.premut)
+            
+            ###if p=0, 
             
             ###Computing rescaling normalization for each gene set null
             

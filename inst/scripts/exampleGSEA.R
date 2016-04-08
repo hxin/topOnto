@@ -38,7 +38,7 @@ ONTdata <- new("topONTdata",ontology = "HDO", annot = annFUN.gene2GO.Score, gene
 
 
 ##perpare premutation
-O<-GSEA.GeneRanking(A=as.matrix(exp),class.labels = pty$class.v,nperm = 1000,reshuffling.type = 'sample.labels',random.seed= 3338)
+O<-GSEA.GeneRanking(A=as.matrix(exp),class.labels = pty$class.v,nperm = 10,reshuffling.type = 'sample.labels',random.seed= 3338)
 
 ##exp type can be c(0,1,2)
 ##0 equal step
