@@ -1325,13 +1325,16 @@ setMethod("getSigGroups",
             ## STORE THE RESULTS
             .whichAlgorithm <- "classicGsea"
             attr(.whichAlgorithm, "testClass") <- as.character(class(test.stat))
+            l=list()
+            l[[names(report[-1])[1]]]=lapply(report[-1][[1]],function(x){x$report})
+            l[[names(report[-1])[2]]]=lapply(report[-1][[2]],function(x){x$report})
             return(new("topONTresultGSEA",
                        description = paste(description(object), "\nOntology:", ontology(object), sep = " "),
                        score = algoRes, testName = Name(test.stat),
                        algorithm = .whichAlgorithm,
                        geneData = c(.getGeneData(object), SigTerms = length(GOlist)),
                        global.report = report$report,
-                       gs.report = lapply(report$ALL,function(x){x$report}),
+                       gs.report = l,
                        plots = lapply(report$ALL,function(x){x$plot}),
                        cutOff = test.stat@cutOff
                    ))
