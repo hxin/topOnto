@@ -506,7 +506,7 @@ GSEA.EnrichmentScore.weighted.batch <- function(gene.list, gene.set, correl.vect
   gname<-gene.labels[gene.list[,1][hit]]
   position<-which(hit)
   #position in rank list / gene name / correl to class label / comfident score / norm step length(corl^p*norm)
-  dbg<-paste(position,gname,correl.vector[,i][gene.list[,i][hit]],weights[gname],step[,i][position],sep='/')
+  dbg<-paste(position,gname,correl.vector[,1][gene.list[,1][hit]],weights[gname],step[,1][position],sep='/')
 
   return(list(ES = ES, arg.ES = arg.ES, RES = RES[[1]], indicator = tag.indicator[,1],dbg=dbg))    
 }
