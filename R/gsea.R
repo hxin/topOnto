@@ -706,7 +706,7 @@ plot.result<-function(A=A,O=O,rl=rl,pty=pty,nom.p.val.threshold=0.05,
   })
   
   
-  
+  #browser()
   report1 <- data.frame(cbind(names(rl), Term(ONTTERM)[names(rl)],sapply(rl,function(x){sum(x$GSEA.results$indicator)}),  round(obs.ES,3), 
                               round(obs.ES.norm,3), round(p.vals,3), round(tag.frac,3), round(gene.frac,3)),row.names = NULL,stringsAsFactors = F)
   names(report1) <- c("GS","DEF","SIZE", "ES", "NES", "p",  "Tag %", "Gene %")
@@ -726,7 +726,16 @@ plot.result<-function(A=A,O=O,rl=rl,pty=pty,nom.p.val.threshold=0.05,
   report.phen1 <- report2[1:phen1.rows,]
   report.phen2 <- report3[1:phen2.rows,]
   
-  
+  if (output.directory != "")  {
+    if (phen1.rows > 0) {
+      filename <- paste(output.directory, doc.string, ".SUMMARY.RESULTS.REPORT.", pty$phen[1],".txt", sep="", collapse="")
+      write.table(report.phen1, file = filename, quote=F, row.names=F, sep = "\t")
+    }
+    if (phen2.rows > 0) {
+      filename <- paste(output.directory, doc.string, ".SUMMARY.RESULTS.REPORT.", pty$phen[2],".txt", sep="", collapse="")
+      write.table(report.phen2, file = filename, quote=F, row.names=F, sep = "\t")
+    }
+  }
   
   ####plot for each gene set
   if (topgs > floor(Ng/2)) {

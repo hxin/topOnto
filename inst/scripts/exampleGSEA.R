@@ -44,9 +44,8 @@ O<-GSEA.GeneRanking(A=as.matrix(exp),class.labels = pty$class.v,nperm = 10,reshu
 ##0 equal step
 ##1 step base on correl
 ##2 step base on correl and annotation weight
-system.time({resultClassic <- runTest(ONTdata, algorithm = "classicgsea", statistic = "ks.csw",
-                         geneRanking=O,exp.type=1,output.directory='/home/xin/Desktop/tmp/gseaelim/classic/',topgs=10,cutOff=0.05,min.size=15,max.size=500,doc.string='classic')
-})
+resultClassic <- runTest(ONTdata, algorithm = "classicgsea", statistic = "ks.csw",geneRanking=O,exp.type=1,output.directory='/home/xin/Desktop/tmp/gseaelim/classic/',topgs=10,cutOff=0.05,min.size=1,max.size=500,doc.string='classic')
+
 ##elim.type can be c('score','simple')
 ##score means the annotation weight will be remove from parents once found significant 
 ##simple means the gene will be remove from parents once found significant 

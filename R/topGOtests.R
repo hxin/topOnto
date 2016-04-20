@@ -311,7 +311,7 @@ setMethod("GOKSCSWTest", "classicGsea",
             }
             
             ##when no premut ES is found on the obs ES side, we consider p<1/#premutation
-            if(is.nan(p))
+            if(is.nan(p) | p==0)
               p=1/length(ES.premut)
             
             ###if p=0, 
