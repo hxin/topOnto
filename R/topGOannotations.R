@@ -155,48 +155,107 @@ readMappings <- function(file, sep = "\t", IDsep = ",") {
   ## split the IDs
   return(lapply(map, function(x) gsub(" ", "", strsplit(x, split = IDsep)[[1]])))
 }
+# 
+# readMappingswithScore <- function(file){
+#   g2d<-read.table(file,header=T,sep='\t',as.is=F)
+#   ####
+#   #       m n m,n
+#   # o     1 1   2
+#   # g     1 1   2
+#   # v     1 1   2
+#   # o,g   2 2   4
+#   # o,v   2 2   4
+#   # g,v   2 2   4
+#   # o,g,v 3 3   6
+#   ####
+#   weight <- rbind(c(1,1,2),
+#                   c(1,1,2),
+#                   c(1,1,2),
+#                   c(2,2,4),
+#                   c(2,2,4),
+#                   c(2,2,4),
+#                   c(4,4,6)
+#   )
+#   rownames(weight) <- c("o", "g", "v", "o,g", "o,v", "g,v","o,g,v")
+#   colnames(weight) <- c("m", "n", "m,n")
+#   cat('scoring matrix:')
+#   print(weight)
+#   
+#   
+#   
+#   #g2d=g2d[1:100,]
+#   weighted.g2d<-list()
+#   for(entrez in unique(g2d$entrez_id)){
+#     t<-g2d[g2d$entrez_id==entrez,]
+#     for(term in as.vector(unique(t$term_id))){
+#       score<-term
+#       names(score)<-sum(apply(t[t$term_id==term,],1,function(x){
+#         weight[as.vector(x[['source']]),as.vector(x[['mappting_tool']])] * as.numeric(x[['evidence']])
+#       }))
+#       weighted.g2d[[as.character(entrez)]]<-c(weighted.g2d[[as.character(entrez)]],score)
+#     }
+#   }
+#   weighted.g2d
+# }
 
 readMappingswithScore <- function(file){
-  g2d<-read.table(file,header=T,sep='\t',as.is=F)
-  ####
-  #       m n m,n
-  # o     1 1   2
-  # g     1 1   2
-  # v     1 1   2
-  # o,g   2 2   4
-  # o,v   2 2   4
-  # g,v   2 2   4
-  # o,g,v 3 3   6
-  ####
-  weight <- rbind(c(1,1,2),
-                  c(1,1,2),
-                  c(1,1,2),
-                  c(2,2,4),
-                  c(2,2,4),
-                  c(2,2,4),
-                  c(4,4,6)
-  )
-  rownames(weight) <- c("o", "g", "v", "o,g", "o,v", "g,v","o,g,v")
+  # con = dbConnect(drv="SQLite", dbname="~/disent/data/DisEnt20160105.sqlite")
+  # tb<-dbGetQuery( con,"select * from human_gene2HDO")
+  # g2d<-tb[1:50,]
+  g2d<-read.table(file,header=T,sep='\t',stringsAsFactors = F)
+  weight <- rbind(c(0.1,0.1,0.2),
+                  c(0.1,0.1,0.2),
+                  c(0.1,0.1,0.2))
+  rownames(weight) <- c("o", "g", "v")
   colnames(weight) <- c("m", "n", "m,n")
-  cat('scoring matrix:')
+  cat('weight matrix:')
   print(weight)
   
-  
-  
-  #g2d=g2d[1:100,]
-  weighted.g2d<-list()
-  for(entrez in unique(g2d$entrez_id)){
-    t<-g2d[g2d$entrez_id==entrez,]
+  f<-function(n,k=0.2){
+    n<-as.numeric(n)
+    n/(n+k)
+  }
+  weighted.g2d=list()
+  for(gene in unique(g2d$entrez_id)){
+    t<-g2d[g2d$entrez_id==gene,]
     for(term in as.vector(unique(t$term_id))){
-      score<-term
-      names(score)<-sum(apply(t[t$term_id==term,],1,function(x){
-        weight[as.vector(x[['source']]),as.vector(x[['mappting_tool']])] * as.numeric(x[['evidence']])
-      }))
-      weighted.g2d[[as.character(entrez)]]<-c(weighted.g2d[[as.character(entrez)]],score)
+      tmp<-t[t$term_id==term,]
+      
+      index<-grep(',',tmp$source)
+      if(length(index)>0){
+        for(i in index){
+          row<-tmp[i,]
+          new<-data.frame()
+          sources<-strsplit(row$source,',')[[1]]
+          counts<-strsplit(row$evidence_dist,',')[[1]]
+          for(j in sources){
+            new<-rbind(new,row)
+          }
+          new$source<-sources
+          new$evidence<-counts
+          new$evidence_dist<-counts
+          new$source_count<-1
+          tmp<-rbind(tmp,new)
+        }
+        tmp<-tmp[-index,]
+      }
+      
+      ##score
+      s<-c(o=0,g=0,v=0)
+      for(j in 1:nrow(tmp)){
+        x=tmp[j,]
+        score<-weight[x$source,x$mappting_tool]*f(x$evidence)
+        s[x$source]=s[x$source]+score
+      }
+      r<-term
+      names(r)<-round(sum(s),digits = 3)
+      weighted.g2d[[as.character(gene)]]<-c(weighted.g2d[[as.character(gene)]],r)
     }
   }
+  
   weighted.g2d
 }
+
 
 revmapWithScore<-function(a){
   ##init score to 1 if not score is provided
@@ -207,8 +266,10 @@ revmapWithScore<-function(a){
     })
   }
   y<-split(f=unlist(a),x=names(unlist(a)))
+  
   y<-lapply(y,function(x){
-    gene.weight<-strsplit(x,split=c('.'),fixed=T)
+    x=sub('.',replacement = ':',x,fixed = T)
+    gene.weight<-strsplit(x,split=c(':'),fixed=T)
     genes<-sapply(gene.weight,function(x){x[1]})
     weights<-sapply(gene.weight,function(x){x[2]})
     names(genes)<-weights

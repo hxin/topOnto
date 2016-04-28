@@ -429,7 +429,7 @@ setMethod("GenTable",
           function(object, ..., orderBy = 1, ranksOf = 2,
                    topNodes = 10, numChar = 40,
                    format.FUN = format.pval, decreasing = FALSE,
-                   useLevels = FALSE,cutoff=NULL,show.gene=FALSE,use.symbol=FALSE,entrez2symbol=NULL) {
+                   useLevels = FALSE,cutoff=NULL,show.gene.sig=FALSE,show.gene.node=FALSE,use.symbol=FALSE,entrez2symbol=NULL) {
             
             resList <- list(...)
             #browser()
@@ -512,14 +512,14 @@ setMethod("GenTable",
             
             ##rownames(infoMat) <- whichTerms
             rownames(infoMat) <- 1:length(whichTerms)
-            
-            if(show.gene){
-              sig.genes<-.get.sig.gene.in.term(GOdata)
+            #browser()
+            if(show.gene.sig){
+              sig.genes<-.get.sig.gene.in.term(object)
               if(use.symbol){
-                #require('org.Dm.eg.db')
-                #entrez2symbol<-revmap(as.list(org.Dm.egSYMBOL2EG))
                 if(is.null(entrez2symbol)){
                   message("entrez2symbol is missing. Ignore show.symbol!")
+                  # require('org.Hs.eg.db')
+                  # entrez2symbol<-revmap(as.list(org.Hs.egSYMBOL2EG))
                 }else{
                   sig.gene2term<-revmap(sig.genes)
                   symbols<-entrez2symbol[as.character(names(sig.gene2term))]
@@ -528,7 +528,28 @@ setMethod("GenTable",
                 }
               }
               hits<-sapply(sig.genes[infoMat$TERM.ID],paste,collapse=',')
+              
+              
               infoMat<-data.frame(infoMat,sig.genes=hits)
+            }
+            
+            if(show.gene.node){
+              nodes.genes<-.genesInNode(object@graph,nNames =nodes(object@graph),score = F)
+              if(use.symbol){
+                if(is.null(entrez2symbol)){
+                  message("entrez2symbol is missing. Ignore show.symbol!")
+                  # require('org.Hs.eg.db')
+                  # entrez2symbol<-revmap(as.list(org.Hs.egSYMBOL2EG))
+                }else{
+                  nodes.genes2term<-revmap(nodes.genes)
+                  symbols<-entrez2symbol[as.character(names(nodes.genes2term))]
+                  names(nodes.genes2term)<-unname(unlist(symbols))
+                  nodes.genes<-revmap(nodes.genes2term)
+                }
+              }
+              annotation<-sapply(nodes.genes[infoMat$TERM.ID],paste,collapse=',')
+              
+              infoMat<-data.frame(infoMat,annotation=annotation)
             }
             
             
