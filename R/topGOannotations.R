@@ -155,57 +155,16 @@ readMappings <- function(file, sep = "\t", IDsep = ",") {
   ## split the IDs
   return(lapply(map, function(x) gsub(" ", "", strsplit(x, split = IDsep)[[1]])))
 }
-# 
-# readMappingswithScore <- function(file){
-#   g2d<-read.table(file,header=T,sep='\t',as.is=F)
-#   ####
-#   #       m n m,n
-#   # o     1 1   2
-#   # g     1 1   2
-#   # v     1 1   2
-#   # o,g   2 2   4
-#   # o,v   2 2   4
-#   # g,v   2 2   4
-#   # o,g,v 3 3   6
-#   ####
-#   weight <- rbind(c(1,1,2),
-#                   c(1,1,2),
-#                   c(1,1,2),
-#                   c(2,2,4),
-#                   c(2,2,4),
-#                   c(2,2,4),
-#                   c(4,4,6)
-#   )
-#   rownames(weight) <- c("o", "g", "v", "o,g", "o,v", "g,v","o,g,v")
-#   colnames(weight) <- c("m", "n", "m,n")
-#   cat('scoring matrix:')
-#   print(weight)
-#   
-#   
-#   
-#   #g2d=g2d[1:100,]
-#   weighted.g2d<-list()
-#   for(entrez in unique(g2d$entrez_id)){
-#     t<-g2d[g2d$entrez_id==entrez,]
-#     for(term in as.vector(unique(t$term_id))){
-#       score<-term
-#       names(score)<-sum(apply(t[t$term_id==term,],1,function(x){
-#         weight[as.vector(x[['source']]),as.vector(x[['mappting_tool']])] * as.numeric(x[['evidence']])
-#       }))
-#       weighted.g2d[[as.character(entrez)]]<-c(weighted.g2d[[as.character(entrez)]],score)
-#     }
-#   }
-#   weighted.g2d
-# }
 
-readMappingswithScore <- function(file){
+
+readMappingswithScore<-function(file){
   # con = dbConnect(drv="SQLite", dbname="~/disent/data/DisEnt20160105.sqlite")
   # tb<-dbGetQuery( con,"select * from human_gene2HDO")
   # g2d<-tb[1:50,]
   g2d<-read.table(file,header=T,sep='\t',stringsAsFactors = F)
-  weight <- rbind(c(0.1,0.1,0.2),
-                  c(0.1,0.1,0.2),
-                  c(0.1,0.1,0.2))
+  weight <- rbind(c(0.06,0.06,0.2),
+                  c(0.06,0.06,0.2),
+                  c(0.06,0.06,0.2))
   rownames(weight) <- c("o", "g", "v")
   colnames(weight) <- c("m", "n", "m,n")
   cat('weight matrix:')
@@ -216,46 +175,42 @@ readMappingswithScore <- function(file){
     n/(n+k)
   }
   weighted.g2d=list()
-  for(gene in unique(g2d$entrez_id)){
-    t<-g2d[g2d$entrez_id==gene,]
-    for(term in as.vector(unique(t$term_id))){
-      tmp<-t[t$term_id==term,]
-      
-      index<-grep(',',tmp$source)
-      if(length(index)>0){
-        for(i in index){
-          row<-tmp[i,]
-          new<-data.frame()
-          sources<-strsplit(row$source,',')[[1]]
-          counts<-strsplit(row$evidence_dist,',')[[1]]
-          for(j in sources){
-            new<-rbind(new,row)
-          }
-          new$source<-sources
-          new$evidence<-counts
-          new$evidence_dist<-counts
-          new$source_count<-1
-          tmp<-rbind(tmp,new)
-        }
-        tmp<-tmp[-index,]
-      }
-      
-      ##score
-      s<-c(o=0,g=0,v=0)
-      for(j in 1:nrow(tmp)){
-        x=tmp[j,]
-        score<-weight[x$source,x$mappting_tool]*f(x$evidence)
-        s[x$source]=s[x$source]+score
-      }
-      r<-term
-      names(r)<-round(sum(s),digits = 3)
-      weighted.g2d[[as.character(gene)]]<-c(weighted.g2d[[as.character(gene)]],r)
-    }
+  
+  index<-grep(',',g2d$source)
+  new<-data.frame()
+  for(i in index){
+    sources<-strsplit(g2d[i,]$source,',')[[1]]
+    t<-g2d[rep(i,length(sources)),]
+    t$source<-sources
+    t$source_count=1
+    t$evidence_dist<-strsplit(g2d[i,]$evidence_dist,',')[[1]]
+    new<-rbind(new,t)
+  }
+  
+  g2d<-g2d[-index,]
+  g2d<-rbind(g2d[-index,],new)
+  require(plyr)
+  tmp<-ddply(g2d, c( "entrez_id", "term_id","source","source_count","mappting_tool"),  summarise,
+             evidence   = sum(as.numeric(evidence)),
+             evidence_dist = sum(as.numeric(evidence_dist)))
+  
+  tmp$score<-apply(tmp,MARGIN = 1,function(x){
+    weight[x['source'],x['mappting_tool']]*f(x['evidence'])
+  })
+  browser()
+  df.score<-ddply(tmp, c( "entrez_id", "term_id"),  summarise,
+                  score   = sum(as.numeric(score)))
+  gs<-as.character(unique(df.score$entrez_id))
+  
+  for(j in gs){
+    df.tmp<-df.score[df.score$entrez_id==j,]
+    v<-as.character(df.tmp$term_id)
+    names(v)<-round(df.tmp$score,digits = 3)
+    weighted.g2d[[j]]<-v
   }
   
   weighted.g2d
 }
-
 
 revmapWithScore<-function(a){
   ##init score to 1 if not score is provided
@@ -268,8 +223,8 @@ revmapWithScore<-function(a){
   y<-split(f=unlist(a),x=names(unlist(a)))
   
   y<-lapply(y,function(x){
-    x=sub('.',replacement = ':',x,fixed = T)
-    gene.weight<-strsplit(x,split=c(':'),fixed=T)
+    x=sub('.',replacement = '/',x,fixed = T)
+    gene.weight<-strsplit(x,split=c('/'),fixed=T)
     genes<-sapply(gene.weight,function(x){x[1]})
     weights<-sapply(gene.weight,function(x){x[2]})
     names(genes)<-weights
@@ -545,23 +500,36 @@ mapAnnotationToSpecies.score.fly<-function(human_file=system.file("extdata/annot
   h2f.entrez<-h2f$fly_entrez_id
   names(h2f.entrez)<-h2f$human_entrez_id
   human2fly.list<-lapply(split(h2f.entrez,names(h2f.entrez)),unname)
+  require(AnnotationDbi)
+  fly2human.list<-revmap(human2fly.list)
   
-  sink(output)
-  cat(paste(colnames(geneID2TERM),collapse='\t'))
-  for(i in 1:nrow(geneID2TERM)){
-    #print(row$entrez_id)
-    row = geneID2TERM[i, ]
-    flys<-human2fly.list[[row$entrez_id]]
-    rownames(row)=NULL
-    if(length(flys>0)){
-      for(f in flys){
-        row$entrez_id=f
-        cat("\n")
-        cat(paste(row,collapse='\t'))
-      }
+  df<-data.frame()
+  for(i in names(fly2human.list)){
+    h.gene<-fly2human.list[[i]]
+    tmp<-geneID2TERM[geneID2TERM$entrez_id %in% h.gene,]
+    if(nrow(tmp)>0){
+      tmp$entrez_id=c(i)
+      df<-rbind(df,tmp)
     }
   }
-  sink()
+  library(plyr)
+  f<-function(x){
+    if(length(grep(',',x))!=0){
+      y<-strsplit(x,split =',')
+      paste(apply(as.data.frame(y),MARGIN = 1,function(x){sum(as.numeric(x))}),collapse = ',')
+    }else{
+      sum(as.numeric(x))
+    }}
+    
+  df2<-ddply(df, c( "entrez_id", "term_id","source","source_count","mappting_tool"),  summarise,
+        evidence   = sum(as.numeric(evidence)),
+        evidence_dist = f(evidence_dist)
+  )
+  
+  
+  
+  write.table(df2,file = out,quote = FALSE,sep = '\t',row.names = F)
+
 }
 
 
@@ -572,4 +540,40 @@ list.annotation<-function(){
 
 filter.ontology.annotation<-function(terms,term2genes){
   term2genes[which(names(term2genes) %in% terms)]
+}
+
+
+####find annotation reference
+list.reference<-function(gene='5832',term='DOID:0050777',db='/home/xin/Workspace/DisEnt/disent/data/DisEnt20160105.sqlite',ont='HDO'){
+  library("RSQLite")
+  con = dbConnect(drv="SQLite", dbname=db)
+  alltables = dbListTables(con)
+  geneID2TERM <- readRDS(system.file("extdata/annotation","human_gene2HDO_weighted_g2t.Rds", package ="topOnto"))
+  
+  if(grep('[a-zA-Z]','1a',perl = T)>0){
+    require(org.Hs.eg.db)
+    ls("package:org.Hs.eg.db")
+    symbol<-gene
+    gene<-as.list(org.Hs.egSYMBOL2EG)[[gene]]
+  }else{
+    require(org.Hs.eg.db)
+    ls("package:org.Hs.eg.db")
+    symbol<-as.list(org.Hs.egSYMBOL)[[as.character(gene)]]
+  }
+  
+  tb.gene2HDO<-dbGetQuery( con,paste('select * from ',paste('human_gene2',ont,sep = ''),' where entrez_id=\'',gene,'\' and term_id=\'',term,'\'',sep = ''))
+  score<-as.numeric(names(geneID2TERM[[as.character(gene)]][geneID2TERM[[as.character(gene)]]==term]))
+  tb.GENERIF<-dbGetQuery( con,paste('select * from ',paste('gene2',ont,'_GENERIF',sep = ''),' where entrez_id=\'',gene,'\' and term_id=\'',term,'\'',sep = ''))
+  tb.OMIM<-dbGetQuery( con,paste('select * from ',paste('gene2',ont,'_OMIM',sep = ''),' where entrez_id=\'',gene,'\' and term_id=\'',term,'\'',sep = ''))
+  tb.VAR<-dbGetQuery( con,paste('select * from ',paste('gene2',ont,'_VAR',sep = ''),' where entrez_id=\'',gene,'\' and term_id=\'',term,'\'',sep = ''))
+  
+  if(nrow(tb.gene2HDO)>0) tb.gene2HDO else tb.gene2HDO<-NULL
+  if(nrow(tb.GENERIF)>0) tb.GENERIF else tb.GENERIF<-NULL
+  if(nrow(tb.OMIM)>0) tb.OMIM else tb.OMIM<-NULL
+  if(nrow(tb.VAR)>0) tb.VAR else tb.VAR<-NULL
+  
+  library(package=paste('topOnto.',ont,'.db',sep = ''),character.only = T)
+  names(symbol)<-gene
+  c(gene,term,Term(ONTTERM)[term])
+  list(basic=c(symbol,Term(ONTTERM)[term],score=score),hdgdb=tb.gene2HDO,tb.GENERIF=tb.GENERIF,tb.OMIM=tb.OMIM,tb.VAR=tb.VAR)
 }

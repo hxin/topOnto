@@ -1,0 +1,6 @@
+entrez_id	term_id	source	source_count	mappting_tool	evidence	evidence_dist
+44071	DOID:10652	g	1	m	5	5
+44071	DOID:10652	g	1	m,n	2	2
+44071	DOID:10652	g	1	n	2	2
+44071	DOID:10652	g,v	2	m,n	3	1,2
+44071	DOID:10652	o,g,v	3	m,n	10	1,7,2
