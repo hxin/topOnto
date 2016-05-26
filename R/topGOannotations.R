@@ -550,7 +550,7 @@ list.reference<-function(gene='5832',term='DOID:0050777',db='/home/xin/Workspace
   alltables = dbListTables(con)
   geneID2TERM <- readRDS(system.file("extdata/annotation","human_gene2HDO_weighted_g2t.Rds", package ="topOnto"))
   
-  if(grep('[a-zA-Z]','1a',perl = T)>0){
+  if(length(grep('[a-zA-Z]',gene,perl = T))>0){
     require(org.Hs.eg.db)
     ls("package:org.Hs.eg.db")
     symbol<-gene

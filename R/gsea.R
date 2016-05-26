@@ -92,7 +92,7 @@ GSEA.GeneRanking <- function(A, class.labels, nperm=10, reshuffling.type='sample
   # This software is supplied without any warranty or guaranteed support
   # whatsoever. Neither the Broad Institute nor MIT can be responsible for
   # its use, misuse, or functionality.
-  browser()
+  #browser()
   set.seed(seed=random.seed, kind = NULL)
   A <- A + 0.00000001
   
@@ -296,7 +296,7 @@ GSEA.GeneRanking <- function(A, class.labels, nperm=10, reshuffling.type='sample
   for (r in 1:nperm) {
     obs.order.matrix[,r] <- order(obs.s2n.matrix[,r], decreasing=T)            
   }
-  #browser()
+  browser()
   #rescale correl to (-1,1]
   for(k in 1:ncol(s2n.matrix)){
     x<-s2n.matrix[,k]
