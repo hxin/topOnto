@@ -440,7 +440,7 @@ setMethod("GenTable",
             ## if no names were provided we name them
             if(is.null(names(resList)))
               names(resList) <- paste("result", 1:length(resList), sep = "")
-
+            
             ## obtain the score from the objects
             resList <- lapply(resList, score)
             
@@ -453,10 +453,10 @@ setMethod("GenTable",
             } else {
               l <- .sigAllMethods(resList)
             }
-
+            
             index <- order(l[, orderBy], decreasing = decreasing)
             l <- l[index, , drop = FALSE]
-
+            
             if(decreasing)
               rr <- rank(-l[, ranksOf], ties = "first")
             else
@@ -464,9 +464,9 @@ setMethod("GenTable",
             
             if(length(rownames(l)) < topNodes)
               topNodes = length(rownames(l))
-                       
+            
             whichTerms <- rownames(l)[1:topNodes]
-
+            
             l <- l[whichTerms, , drop = FALSE]
             
             ##apply cutoff
@@ -478,10 +478,10 @@ setMethod("GenTable",
               whichTerms <- rownames(l)[1:topNodes]           
               l <- l[whichTerms, , drop = FALSE]
             }
-           
+            
             
             rr <- as.integer(rr[1:topNodes])
-
+           
             shortNames <- .getTermsDefinition(ONTdata=object, whichTerms, numChar = numChar)
             
             infoMat <- data.frame('TERM ID' = whichTerms, 'Term' = shortNames, stringsAsFactors = FALSE)
@@ -494,18 +494,30 @@ setMethod("GenTable",
             }
             
             annoStat <- termStat(object, whichTerms)
-
+            
             ## if orderBy == ranksOf then there is no need to put the ranks
             if(ranksOf != orderBy) {
               dim(rr) <- c(length(rr), 1)
               colnames(rr) <- paste("Rank in ", ifelse(is.character(ranksOf), ranksOf, colnames(l)[ranksOf]), sep = "")
-
-              infoMat <- data.frame(infoMat, annoStat, rr,
+              
+              if(nrow(l)==1)
+                infoMat <- data.frame(infoMat, annoStat, rr,
+                                      matrix(apply(l, 2, format.FUN, dig = 2, eps = 1e-30),ncol = ncol(l),dimnames=list(NULL,colnames(l))),
+                                      check.names = FALSE, stringsAsFactors = FALSE)
+                
+              else
+                infoMat <- data.frame(infoMat, annoStat, rr,
                                     apply(l, 2, format.FUN, dig = 2, eps = 1e-30),
                                     check.names = FALSE, stringsAsFactors = FALSE)
-
+ 
+              
             } else {
-              infoMat <- data.frame(infoMat, annoStat,
+                if(nrow(l)==1)
+                  infoMat <- data.frame(infoMat, annoStat,
+                                        matrix(apply(l, 2, format.FUN, dig = 2, eps = 1e-30),ncol = ncol(l),dimnames=list(NULL,colnames(l))),
+                                        check.names = FALSE, stringsAsFactors = FALSE)
+                else
+                  infoMat <- data.frame(infoMat, annoStat,
                                     apply(l, 2, format.FUN, dig = 2, eps = 1e-30),
                                     check.names = FALSE, stringsAsFactors = FALSE)
             }
@@ -553,7 +565,7 @@ setMethod("GenTable",
             }
             
             
-            return(infoMat)            
+            return(infoMat)           
           })
 
 

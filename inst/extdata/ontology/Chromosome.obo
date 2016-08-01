@@ -1,0 +1,678 @@
+[Term]
+id: chromosome_1
+name: chromosome_1
+def: chromosome_1
+is_a: all ! all
+
+[Term]
+id: chromosome_2
+name: chromosome_2
+def: chromosome_2
+is_a: all ! all
+
+[Term]
+id: chromosome_3
+name: chromosome_3
+def: chromosome_3
+is_a: all ! all
+
+[Term]
+id: chromosome_4
+name: chromosome_4
+def: chromosome_4
+is_a: all ! all
+
+[Term]
+id: chromosome_5
+name: chromosome_5
+def: chromosome_5
+is_a: all ! all
+
+[Term]
+id: chromosome_6
+name: chromosome_6
+def: chromosome_6
+is_a: all ! all
+
+[Term]
+id: chromosome_7
+name: chromosome_7
+def: chromosome_7
+is_a: all ! all
+
+[Term]
+id: chromosome_8
+name: chromosome_8
+def: chromosome_8
+is_a: all ! all
+
+[Term]
+id: chromosome_9
+name: chromosome_9
+def: chromosome_9
+is_a: all ! all
+
+[Term]
+id: chromosome_10
+name: chromosome_10
+def: chromosome_10
+is_a: all ! all
+
+[Term]
+id: chromosome_11
+name: chromosome_11
+def: chromosome_11
+is_a: all ! all
+
+[Term]
+id: chromosome_12
+name: chromosome_12
+def: chromosome_12
+is_a: all ! all
+
+[Term]
+id: chromosome_13
+name: chromosome_13
+def: chromosome_13
+is_a: all ! all
+
+[Term]
+id: chromosome_14
+name: chromosome_14
+def: chromosome_14
+is_a: all ! all
+
+[Term]
+id: chromosome_15
+name: chromosome_15
+def: chromosome_15
+is_a: all ! all
+
+[Term]
+id: chromosome_16
+name: chromosome_16
+def: chromosome_16
+is_a: all ! all
+
+[Term]
+id: chromosome_17
+name: chromosome_17
+def: chromosome_17
+is_a: all ! all
+
+[Term]
+id: chromosome_18
+name: chromosome_18
+def: chromosome_18
+is_a: all ! all
+
+[Term]
+id: chromosome_19
+name: chromosome_19
+def: chromosome_19
+is_a: all ! all
+
+[Term]
+id: chromosome_20
+name: chromosome_20
+def: chromosome_20
+is_a: all ! all
+
+[Term]
+id: chromosome_21
+name: chromosome_21
+def: chromosome_21
+is_a: all ! all
+
+[Term]
+id: chromosome_22
+name: chromosome_22
+def: chromosome_22
+is_a: all ! all
+
+[Term]
+id: chromosome_X
+name: chromosome_X
+def: chromosome_X
+is_a: all ! all
+
+[Term]
+id: chromosome_Y
+name: chromosome_Y
+def: chromosome_Y
+is_a: all ! all
+
+[Term]
+id: 10p1
+name: 10p1
+def: 10p1
+is_a: chromosome_10 ! chromosome_10
+
+[Term]
+id: 10q1
+name: 10q1
+def: 10q1
+is_a: chromosome_10 ! chromosome_10
+
+[Term]
+id: 10q2
+name: 10q2
+def: 10q2
+is_a: chromosome_10 ! chromosome_10
+
+[Term]
+id: 11p1
+name: 11p1
+def: 11p1
+is_a: chromosome_11 ! chromosome_11
+
+[Term]
+id: 11q
+name: 11q
+def: 11q
+is_a: chromosome_11 ! chromosome_11
+
+[Term]
+id: 11q1
+name: 11q1
+def: 11q1
+is_a: chromosome_11 ! chromosome_11
+
+[Term]
+id: 11q2
+name: 11q2
+def: 11q2
+is_a: chromosome_11 ! chromosome_11
+
+[Term]
+id: 12p1
+name: 12p1
+def: 12p1
+is_a: chromosome_12 ! chromosome_12
+
+[Term]
+id: 12q1
+name: 12q1
+def: 12q1
+is_a: chromosome_12 ! chromosome_12
+
+[Term]
+id: 12q2
+name: 12q2
+def: 12q2
+is_a: chromosome_12 ! chromosome_12
+
+[Term]
+id: 13p1
+name: 13p1
+def: 13p1
+is_a: chromosome_13 ! chromosome_13
+
+[Term]
+id: 13q1
+name: 13q1
+def: 13q1
+is_a: chromosome_13 ! chromosome_13
+
+[Term]
+id: 13q2
+name: 13q2
+def: 13q2
+is_a: chromosome_13 ! chromosome_13
+
+[Term]
+id: 13q3
+name: 13q3
+def: 13q3
+is_a: chromosome_13 ! chromosome_13
+
+[Term]
+id: 14p1
+name: 14p1
+def: 14p1
+is_a: chromosome_14 ! chromosome_14
+
+[Term]
+id: 14q1
+name: 14q1
+def: 14q1
+is_a: chromosome_14 ! chromosome_14
+
+[Term]
+id: 14q2
+name: 14q2
+def: 14q2
+is_a: chromosome_14 ! chromosome_14
+
+[Term]
+id: 14q3
+name: 14q3
+def: 14q3
+is_a: chromosome_14 ! chromosome_14
+
+[Term]
+id: 15p1
+name: 15p1
+def: 15p1
+is_a: chromosome_15 ! chromosome_15
+
+[Term]
+id: 15q1
+name: 15q1
+def: 15q1
+is_a: chromosome_15 ! chromosome_15
+
+[Term]
+id: 15q2
+name: 15q2
+def: 15q2
+is_a: chromosome_15 ! chromosome_15
+
+[Term]
+id: 16p1
+name: 16p1
+def: 16p1
+is_a: chromosome_16 ! chromosome_16
+
+[Term]
+id: 16q1
+name: 16q1
+def: 16q1
+is_a: chromosome_16 ! chromosome_16
+
+[Term]
+id: 16q2
+name: 16q2
+def: 16q2
+is_a: chromosome_16 ! chromosome_16
+
+[Term]
+id: 17p1
+name: 17p1
+def: 17p1
+is_a: chromosome_17 ! chromosome_17
+
+[Term]
+id: 17q1
+name: 17q1
+def: 17q1
+is_a: chromosome_17 ! chromosome_17
+
+[Term]
+id: 17q2
+name: 17q2
+def: 17q2
+is_a: chromosome_17 ! chromosome_17
+
+[Term]
+id: 18p1
+name: 18p1
+def: 18p1
+is_a: chromosome_18 ! chromosome_18
+
+[Term]
+id: 18q1
+name: 18q1
+def: 18q1
+is_a: chromosome_18 ! chromosome_18
+
+[Term]
+id: 18q2
+name: 18q2
+def: 18q2
+is_a: chromosome_18 ! chromosome_18
+
+[Term]
+id: 19p1
+name: 19p1
+def: 19p1
+is_a: chromosome_19 ! chromosome_19
+
+[Term]
+id: 19q1
+name: 19q1
+def: 19q1
+is_a: chromosome_19 ! chromosome_19
+
+[Term]
+id: 1p1
+name: 1p1
+def: 1p1
+is_a: chromosome_1 ! chromosome_1
+
+[Term]
+id: 1p2
+name: 1p2
+def: 1p2
+is_a: chromosome_1 ! chromosome_1
+
+[Term]
+id: 1p3
+name: 1p3
+def: 1p3
+is_a: chromosome_1 ! chromosome_1
+
+[Term]
+id: 1p35
+name: 1p35
+def: 1p35
+is_a: chromosome_1 ! chromosome_1
+
+[Term]
+id: 1q1
+name: 1q1
+def: 1q1
+is_a: chromosome_1 ! chromosome_1
+
+[Term]
+id: 1q2
+name: 1q2
+def: 1q2
+is_a: chromosome_1 ! chromosome_1
+
+[Term]
+id: 1q3
+name: 1q3
+def: 1q3
+is_a: chromosome_1 ! chromosome_1
+
+[Term]
+id: 1q4
+name: 1q4
+def: 1q4
+is_a: chromosome_1 ! chromosome_1
+
+[Term]
+id: 20p1
+name: 20p1
+def: 20p1
+is_a: chromosome_20 ! chromosome_20
+
+[Term]
+id: 20q1
+name: 20q1
+def: 20q1
+is_a: chromosome_20 ! chromosome_20
+
+[Term]
+id: 21p1
+name: 21p1
+def: 21p1
+is_a: chromosome_21 ! chromosome_21
+
+[Term]
+id: 21q1
+name: 21q1
+def: 21q1
+is_a: chromosome_21 ! chromosome_21
+
+[Term]
+id: 21q2
+name: 21q2
+def: 21q2
+is_a: chromosome_21 ! chromosome_21
+
+[Term]
+id: 22p1
+name: 22p1
+def: 22p1
+is_a: chromosome_22 ! chromosome_22
+
+[Term]
+id: 22q1
+name: 22q1
+def: 22q1
+is_a: chromosome_22 ! chromosome_22
+
+[Term]
+id: 2p1
+name: 2p1
+def: 2p1
+is_a: chromosome_2 ! chromosome_2
+
+[Term]
+id: 2p2
+name: 2p2
+def: 2p2
+is_a: chromosome_2 ! chromosome_2
+
+[Term]
+id: 2q1
+name: 2q1
+def: 2q1
+is_a: chromosome_2 ! chromosome_2
+
+[Term]
+id: 2q2
+name: 2q2
+def: 2q2
+is_a: chromosome_2 ! chromosome_2
+
+[Term]
+id: 2q3
+name: 2q3
+def: 2q3
+is_a: chromosome_2 ! chromosome_2
+
+[Term]
+id: 3p1
+name: 3p1
+def: 3p1
+is_a: chromosome_3 ! chromosome_3
+
+[Term]
+id: 3p2
+name: 3p2
+def: 3p2
+is_a: chromosome_3 ! chromosome_3
+
+[Term]
+id: 3q1
+name: 3q1
+def: 3q1
+is_a: chromosome_3 ! chromosome_3
+
+[Term]
+id: 3q2
+name: 3q2
+def: 3q2
+is_a: chromosome_3 ! chromosome_3
+
+[Term]
+id: 4p1
+name: 4p1
+def: 4p1
+is_a: chromosome_4 ! chromosome_4
+
+[Term]
+id: 4q1
+name: 4q1
+def: 4q1
+is_a: chromosome_4 ! chromosome_4
+
+[Term]
+id: 4q2
+name: 4q2
+def: 4q2
+is_a: chromosome_4 ! chromosome_4
+
+[Term]
+id: 4q3
+name: 4q3
+def: 4q3
+is_a: chromosome_4 ! chromosome_4
+
+[Term]
+id: 5p1
+name: 5p1
+def: 5p1
+is_a: chromosome_5 ! chromosome_5
+
+[Term]
+id: 5p3
+name: 5p3
+def: 5p3
+is_a: chromosome_5 ! chromosome_5
+
+[Term]
+id: 5q1
+name: 5q1
+def: 5q1
+is_a: chromosome_5 ! chromosome_5
+
+[Term]
+id: 5q2
+name: 5q2
+def: 5q2
+is_a: chromosome_5 ! chromosome_5
+
+[Term]
+id: 5q3
+name: 5q3
+def: 5q3
+is_a: chromosome_5 ! chromosome_5
+
+[Term]
+id: 6p1
+name: 6p1
+def: 6p1
+is_a: chromosome_6 ! chromosome_6
+
+[Term]
+id: 6p2
+name: 6p2
+def: 6p2
+is_a: chromosome_6 ! chromosome_6
+
+[Term]
+id: 6q1
+name: 6q1
+def: 6q1
+is_a: chromosome_6 ! chromosome_6
+
+[Term]
+id: 6q2
+name: 6q2
+def: 6q2
+is_a: chromosome_6 ! chromosome_6
+
+[Term]
+id: 7p1
+name: 7p1
+def: 7p1
+is_a: chromosome_7 ! chromosome_7
+
+[Term]
+id: 7p2
+name: 7p2
+def: 7p2
+is_a: chromosome_7 ! chromosome_7
+
+[Term]
+id: 7q1
+name: 7q1
+def: 7q1
+is_a: chromosome_7 ! chromosome_7
+
+[Term]
+id: 7q2
+name: 7q2
+def: 7q2
+is_a: chromosome_7 ! chromosome_7
+
+[Term]
+id: 7q3
+name: 7q3
+def: 7q3
+is_a: chromosome_7 ! chromosome_7
+
+[Term]
+id: 8p1
+name: 8p1
+def: 8p1
+is_a: chromosome_8 ! chromosome_8
+
+[Term]
+id: 8p2
+name: 8p2
+def: 8p2
+is_a: chromosome_8 ! chromosome_8
+
+[Term]
+id: 8q1
+name: 8q1
+def: 8q1
+is_a: chromosome_8 ! chromosome_8
+
+[Term]
+id: 8q2
+name: 8q2
+def: 8q2
+is_a: chromosome_8 ! chromosome_8
+
+[Term]
+id: 9p1
+name: 9p1
+def: 9p1
+is_a: chromosome_9 ! chromosome_9
+
+[Term]
+id: 9p2
+name: 9p2
+def: 9p2
+is_a: chromosome_9 ! chromosome_9
+
+[Term]
+id: 9q1
+name: 9q1
+def: 9q1
+is_a: chromosome_9 ! chromosome_9
+
+[Term]
+id: 9q2
+name: 9q2
+def: 9q2
+is_a: chromosome_9 ! chromosome_9
+
+[Term]
+id: 9q3
+name: 9q3
+def: 9q3
+is_a: chromosome_9 ! chromosome_9
+
+[Term]
+id: Xp1
+name: Xp1
+def: Xp1
+is_a: chromosome_X ! chromosome_X
+
+[Term]
+id: Xp2
+name: Xp2
+def: Xp2
+is_a: chromosome_X ! chromosome_X
+
+[Term]
+id: Xq1
+name: Xq1
+def: Xq1
+is_a: chromosome_X ! chromosome_X
+
+[Term]
+id: Xq2
+name: Xq2
+def: Xq2
+is_a: chromosome_X ! chromosome_X
+
+[Term]
+id: Yp1
+name: Yp1
+def: Yp1
+is_a: chromosome_Y ! chromosome_Y
+
+[Term]
+id: Yq1
+name: Yq1
+def: Yq1
+is_a: chromosome_Y ! chromosome_Y
+

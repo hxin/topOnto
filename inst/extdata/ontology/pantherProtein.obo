@@ -1,0 +1,1485 @@
+[Term]
+id: PC00000
+name: protein class
+def: 
+
+[Term]
+id: PC00001
+name: AMPA receptor
+def: The alpha-amino-3-hydroxy-5-methyl-4-isoxazolepropionic acid receptor (also known as AMPA receptor, AMPAR, or quisqualate receptor) is a non-NMDA-type ionotropic transmembrane receptor for glutamate that mediates fast synaptic transmission in the central nervous system (CNS).  Its name is derived from its ability to be activated by the artificial glutamate analog, AMPA. AMPARs are found in many parts of the brain and are the most commonly found receptor in the nervous system.
+is_a: PC00134 ! ionotropic glutamate receptor
+
+[Term]
+id: PC00002
+name: ATP synthase
+def: An integral membrane proteins that transport protons across a membrane against a concentration gradient. This transport is driven by hydrolysis of ATP by hydrogen-transporting ATP synthase.
+is_a: PC00068 ! cation transporter
+
+[Term]
+id: PC00003
+name: ATP-binding cassette (ABC) transporter
+def: A superfamily of oligopeptide permease proteins responsible for transporting a wide range of substrates across membranes.
+is_a: PC00227 ! transporter
+
+[Term]
+id: PC00004
+name: C chemokine
+def: Also known as gamma-chemokine that has only two cysteines; one N-terminal cysteine and one cysteine downstream.  Two chemokines have been described for this subgroup and are called XCL1 (lymphotactin-_) and XCL2 (lymphotactin-beta).
+is_a: PC00074 ! chemokine
+
+[Term]
+id: PC00005
+name: CC chemokine
+def: Also called beta-chemokines that have two adjacent cysteines near their amino terminus.  Examples are CCL1-28.
+is_a: PC00074 ! chemokine
+
+[Term]
+id: PC00006
+name: CREB transcription factor
+def: A transcription factor that regulates transcription by binding to the cyclic AMP response element (CRE).
+is_a: PC00056 ! basic leucine zipper transcription factor
+
+[Term]
+id: PC00007
+name: CX3C chemokine
+def: Also known as d-chemokine that have three amino acids between the two cysteines.  The only CX3C chemokine discovered to date is called fractalkine (or CX3CL1).
+is_a: PC00074 ! chemokine
+
+[Term]
+id: PC00008
+name: CXC chemokine
+def: Also called alpha-chemokines that have the two N-terminal cysteines separated by one amino acid, represented in this name with an X.  Examples are CXC1-17.
+is_a: PC00074 ! chemokine
+
+[Term]
+id: PC00009
+name: DNA binding protein
+def: A protein that has DNA binding domains and binds DNA.  Transcription factors are DNA binding proteins, but they are not included in this category.
+is_a: PC00171 ! nucleic acid binding
+
+[Term]
+id: PC00010
+name: DNA glycosylase
+def: An enzyme that recognizes altered bases in DNA and catalyzes their removal by cleaving the glycosidic bond between the base and the deoxyribose sugar.
+is_a: PC00009 ! DNA binding protein
+
+[Term]
+id: PC00011
+name: DNA helicase
+def: An enzyme that promotes the unwinding of duplex DNA.
+is_a: PC00009 ! DNA binding protein
+is_a: PC00115 ! helicase
+
+[Term]
+id: PC00012
+name: DNA ligase
+def: An enzyme that seals nicks in one strand of double stranded DNA, by forming a phosphodiester linkage between a free 3 prime OH and 5 prime phosphate groups of two adjacent nucleotide residues.
+is_a: PC00009 ! DNA binding protein
+is_a: PC00142 ! ligase
+
+[Term]
+id: PC00013
+name: DNA methyltransferase
+def: An enzyme that methylates specific bases in DNA.
+is_a: PC00009 ! DNA binding protein
+is_a: PC00155 ! methyltransferase
+
+[Term]
+id: PC00014
+name: DNA photolyase
+def: A DNA repair enzyme that recognizes and monomerizes pyrimidine dimers using visible light.
+is_a: PC00009 ! DNA binding protein
+
+[Term]
+id: PC00015
+name: DNA polymerase processivity factor
+def: A protein that enhances the processivity of DNA polymerase.
+is_a: PC00009 ! DNA binding protein
+
+[Term]
+id: PC00016
+name: DNA strand-pairing protein
+def: An enzyme that pairs complementary DNA molecules during genetic recombination.
+is_a: PC00009 ! DNA binding protein
+
+[Term]
+id: PC00017
+name: DNA topoisomerase
+def: Enzymes that change the degree of supercoiling in DNA by cutting one or both strands.
+is_a: PC00009 ! DNA binding protein
+
+[Term]
+id: PC00018
+name: DNA-directed DNA polymerase
+def: An enzyme involved in template directed synthesis of DNA from deoxyribonucleotide triphosphates.
+is_a: PC00009 ! DNA binding protein
+
+[Term]
+id: PC00019
+name: DNA-directed RNA polymerase
+def: An enzyme that polymerizes ribonucleotides using a DNA template.  Factors involved in this process are categorized under TRANSCRIPTION FACTOR.
+is_a: PC00031 ! RNA binding protein
+
+[Term]
+id: PC00020
+name: G-protein
+def: A GTP-binding protein that is either part of the heterotrimeric G protein class or of the small GTP-binding class.
+is_a: PC00095 ! enzyme modulator
+
+[Term]
+id: PC00021
+name: G-protein coupled receptor
+def: Cell surface receptors that are coupled to G proteins and have 7 transmembrane spanning domains.
+is_a: PC00197 ! receptor
+
+[Term]
+id: PC00022
+name: G-protein modulator
+def: A protein that directly interacts with a G-protein and affects its activity.
+is_a: PC00095 ! enzyme modulator
+
+[Term]
+id: PC00023
+name: GABA receptor
+def: A transmembrane ion channel whose permeability is increased by the binding of gamma aminobutyric acid.
+is_a: PC00141 ! ligand-gated ion channel
+
+[Term]
+id: PC00024
+name: HMG box transcription factor
+def: A transcription factor containing high mobility group protein (HMG) box.
+is_a: PC00218 ! transcription factor
+
+[Term]
+id: PC00025
+name: Hsp100 family chaperone
+def: Hsp100 (Clp family in E. coli) proteins form large hexameric structures with unfoldase activity in the presence of ATP. These proteins are thought to function as chaperones by processively threading client proteins through a small 2 nm pore, thereby giving each client protein a second chance to fold.
+is_a: PC00072 ! chaperone
+
+[Term]
+id: PC00026
+name: Hsp60 family chaperone
+def: Hsp60 (GroEL/GroES complex in E. coli) is a mitochondrial chaperonin that is typically held responsible for the transportation and refolding of proteins from the cytoplasm into the mitochondrial matrix. In addition to its role as a heat shock protein, HSP60 functions as a chaperonin to assist in folding linear amino acid chains into their respective three-dimensional structure.
+is_a: PC00072 ! chaperone
+
+[Term]
+id: PC00027
+name: Hsp70 family chaperone
+def: Widely distributed group of conserved heat-shock proteins of average weight 70 kD (DnaK in E. coli). Possess ATP binding domains and may be involved in protein folding or export.  
+is_a: PC00072 ! chaperone
+
+[Term]
+id: PC00028
+name: Hsp90 family chaperone
+def: Widely distributed group of conserved heat-shock proteins of average weight 90 kD (HtpG in E. coli). Exact function unknown, but are found associated with steroid hormone receptors and tyrosine kinase oncogene products. May also bind actin and tubulin.
+is_a: PC00072 ! chaperone
+
+[Term]
+id: PC00029
+name: KRAB box transcription factor
+def: A transcription factor containing a C2H2 zinc finger domain and a KRAB (Kruppel-associated box) domain.
+is_a: PC00244 ! zinc finger transcription factor
+
+[Term]
+id: PC00030
+name: NMDA receptor
+def: The NMDA (N-methyl D-aspartate) receptor (NMDAR) is an ionotropic receptor for glutamate (NMDA is a name of its selective specific agonist). Activation of NMDA receptors results in the opening of an ion channel that is nonselective to cations. This allows flow of Na+ and small amounts of Ca2+ ions into the cell and K+ out of the cell.
+is_a: PC00134 ! ionotropic glutamate receptor
+
+[Term]
+id: PC00031
+name: RNA binding protein
+def: A protein that binds RNA and is involved in RNA processing or metabolism.
+is_a: PC00171 ! nucleic acid binding
+
+[Term]
+id: PC00032
+name: RNA helicase
+def: An enzyme that promotes the unwinding of RNA.
+is_a: PC00031 ! RNA binding protein
+is_a: PC00115 ! helicase
+
+[Term]
+id: PC00033
+name: RNA methyltransferase
+def: An enzyme that methylates specific bases in RNA.
+is_a: PC00031 ! RNA binding protein
+is_a: PC00155 ! methyltransferase
+
+[Term]
+id: PC00034
+name: SNARE protein
+def: A protein responsible for fusion of vesicle membrane and the plasma membrane, so as to release the content of the vesicle to the extracellular environment.
+is_a: PC00150 ! membrane traffic protein
+
+[Term]
+id: PC00035
+name: TGF-beta receptor
+def: A transmembrane receptor protein whose ligand is member of TGF-beta family member.
+is_a: PC00084 ! cytokine receptor
+
+[Term]
+id: PC00036
+name: TGF-beta superfamily member
+def: A member that belongs to the superfamily related to transforming growth factor beta (TGF beta), a multifunctional peptide that controls proliferation, differentiation, and other functions in many cell types.  Members in this superfamily, in addition to TGF beta, bone morphogenetic proteins (BMPs), activin/inhibins, mullerian inhibiting substance, and glial cell line-derived neurotrophic factor (GDNF).
+is_a: PC00083 ! cytokine
+
+[Term]
+id: PC00037
+name: acetylcholine receptor
+def: A transmembrane ion channel whose permeability is increased by the binding of acetylcholine.
+is_a: PC00141 ! ligand-gated ion channel
+
+[Term]
+id: PC00038
+name: acetyltransferase
+def: An enzyme that catalyzes the transfer of an acetyl group, usually from acetyl coenzyme A, to another compound.
+is_a: PC00220 ! transferase
+
+[Term]
+id: PC00039
+name: actin and actin related protein
+def: An actin protein or a protein that is related to actin.
+is_a: PC00041 ! actin family cytoskeletal protein
+
+[Term]
+id: PC00040
+name: actin binding motor protein
+def: A family of motor ATPases that interact with F actin filaments.  A typical member in this category is myosin.
+is_a: PC00041 ! actin family cytoskeletal protein
+
+[Term]
+id: PC00041
+name: actin family cytoskeletal protein
+def: A protein that is either actin itself or binds to actin to form the cytoskeleton of the cell.
+is_a: PC00085 ! cytoskeletal protein
+
+[Term]
+id: PC00042
+name: acyltransferase
+def: An enzyme of the transferase class that catalyzes the transfer of an acyl group from a donor (often the corresponding acyl coenzyme A derivative) to an acceptor compound (EC2.3).
+is_a: PC00220 ! transferase
+
+[Term]
+id: PC00043
+name: adenylate cyclase
+def: An enzyme that is responsible for catalyzing the synthesis of adenosine 3, 5 cyclic monophosphate from adenosine 5 triphosphate.
+PC00114	1.22.05.02.00	guanylate cyclase	An enzyme that is responsible for catalyzing the synthesis of guanosine 3, 5 cyclic monophosphate from guanosine 5 triphosphate.
+is_a: PC00079 ! cyclase
+
+[Term]
+id: PC00044
+name: aldolase
+def: An enzyme that catalyses an aldol condensation, i.e. a base-catalyzed addition reaction of two aldehydes or an aldehyde and a ketone to form an aldol (an organic compound that is both an aldehyde and an alcohol) and its reversal.
+is_a: PC00144 ! lyase
+
+[Term]
+id: PC00045
+name: amino acid kinase
+def: An enzyme that catalyzes the phosphorylation of an amino acid.
+is_a: PC00137 ! kinase
+
+[Term]
+id: PC00046
+name: amino acid transporter
+def: A class of transport proteins that transport amino acid across the plasma membrane.
+is_a: PC00227 ! transporter
+
+[Term]
+id: PC00047
+name: aminoacyl-tRNA synthetase
+def: Any of the group of ligases that catalyzes the ATP-driven formation of a bond between an amino acid and a tRNA.   Also called aminoacyl-tRNA ligase.
+is_a: PC00142 ! ligase
+
+[Term]
+id: PC00048
+name: amylase
+def: A group of amylolytic enzymes that cleave starch, glycogen, and related alpha-1,4-glucans.
+is_a: PC00121 ! hydrolase
+
+[Term]
+id: PC00049
+name: anion channel
+def: A transmembrane ion channel that is selectively permeable to anions.
+is_a: PC00133 ! ion channel
+
+[Term]
+id: PC00050
+name: annexin
+def: Group of calcium-binding proteins that interact with acidic membrane phospholipids in membranes. They contain 4 or 8 repeats of a 61 amino acid domain that folds into 5 a helices.
+is_a: PC00060 ! calcium-binding protein
+
+[Term]
+id: PC00051
+name: antibacterial response protein
+def: A peptide, which is usually produced by insects, that has antibacterial function.
+is_a: PC00090 ! defense/immunity protein
+
+[Term]
+id: PC00052
+name: apolipoprotein
+def: The protein component of serum lipoproteins.
+is_a: PC00219 ! transfer/carrier protein
+
+[Term]
+id: PC00053
+name: aspartic protease
+def: Peptide hydrolases that have two aspartyl residues in the catelytic process.
+is_a: PC00190 ! protease
+
+[Term]
+id: PC00054
+name: aspartic protease inhibitor
+def: Compounds that inhibit or antagonize the biosynthesis or actions of aspartic-type proteases.
+is_a: PC00191 ! protease inhibitor
+
+[Term]
+id: PC00055
+name: basic helix-loop-helix transcription factor
+def: A transcription factor containing helix-loop-helix (HLH) DNA binding domain.
+is_a: PC00218 ! transcription factor
+
+[Term]
+id: PC00056
+name: basic leucine zipper transcription factor
+def: A transcription factor that contains the basic leucine zipper (bZIP) domain, where one part of the domain contains a region that mediates sequence specific DNA binding properties and the leucine zipper that is required for the dimerization of two DNA binding regions.
+is_a: PC00218 ! transcription factor
+
+[Term]
+id: PC00057
+name: cadherin
+def: An integral membrane protein involved in calcium dependent cell adhesion.
+is_a: PC00069 ! cell adhesion molecule
+
+[Term]
+id: PC00058
+name: calcium channel
+def: A transmembrane ion channel that displays selective permeability to calcium ions.
+is_a: PC00133 ! ion channel
+
+[Term]
+id: PC00059
+name: calcium-activated potassium channel
+def: A potassium channel whose permeability to potassium is activated by intracellular Ca2+ concentration.
+is_a: PC00188 ! potassium channel
+
+[Term]
+id: PC00060
+name: calcium-binding protein
+def: A protein that participates in calcium cell signalling pathways by binding to Ca2+.
+is_a: PC00000 ! protein class
+
+[Term]
+id: PC00061
+name: calmodulin
+def: A calcium binding protein that are similar to calmodulin and are called EF hand proteins.
+is_a: PC00131 ! intracellular calcium-sensing protein
+
+[Term]
+id: PC00062
+name: calnexin
+def: Calnexin (CNX) is a 90kDa integral protein of the endoplasmic reticulum (ER).  It is involved in protein folding.  ATP and Ca++ are two of the cofactors involved in its binding to the substrate.
+is_a: PC00131 ! intracellular calcium-sensing protein
+
+[Term]
+id: PC00063
+name: calreticulin
+def: Calreticulin is a multifunctional protein that binds Ca2+ ions, rendering it inactive. The Ca2+ is bound with low affinity, but high capacity, and can be released on a signal.  In addition, it is also involved in protein folding of newly synthesized peptide.
+is_a: PC00131 ! intracellular calcium-sensing protein
+
+[Term]
+id: PC00064
+name: calsequestrin
+def: An acidic protein found in sarcoplasmic reticulum that binds calcium. It plays the role of sequestering calcium transported to the interior of the intracellular vesicle.
+is_a: PC00060 ! calcium-binding protein
+
+[Term]
+id: PC00065
+name: carbohydrate kinase
+def: An enzyme that catalyzes the phosphorylation of a sugar or carbohydrate.
+is_a: PC00137 ! kinase
+
+[Term]
+id: PC00066
+name: carbohydrate phosphatase
+def: An enzyme that hydrolyzes phosphomonoesters in carbohydrate.
+is_a: PC00181 ! phosphatase
+
+[Term]
+id: PC00067
+name: carbohydrate transporter
+def: A class of transport proteins that transport carbohydrate across the plasma membrane.
+is_a: PC00227 ! transporter
+
+[Term]
+id: PC00068
+name: cation transporter
+def: A major class of transport proteins that expend energy through ATP hydrolysis to move cation across the plasma membrane.
+is_a: PC00227 ! transporter
+
+[Term]
+id: PC00069
+name: cell adhesion molecule
+def: A protein that mediates cell-to-cell adhesion.
+is_a: PC00000 ! protein class
+
+[Term]
+id: PC00070
+name: cell junction protein
+def: Proteins that form specialized junctions between cells.
+is_a: PC00000 ! protein class
+
+[Term]
+id: PC00071
+name: centromere DNA-binding protein
+def: A protein that binds specifically to centromeric DNA.
+is_a: PC00009 ! DNA binding protein
+
+[Term]
+id: PC00072
+name: chaperone
+def: A cytoplasmic protein that binds to nascent or unfolded polypeptides and ensures correct folding or transport.
+is_a: PC00000 ! protein class
+
+[Term]
+id: PC00073
+name: chaperonin
+def: Subset of chaperone proteins found in prokaryotes, mitochondria and plastids.
+is_a: PC00072 ! chaperone
+
+[Term]
+id: PC00074
+name: chemokine
+def: Proteins that are chemotactic for leucocytes.  They are regarded as cytokines by some people.
+is_a: PC00083 ! cytokine
+
+[Term]
+id: PC00075
+name: chemokine receptor
+def: 
+is_a: PC00084 ! cytokine receptor
+
+[Term]
+id: PC00076
+name: chloride channel
+def: A transmembrane ion channel that conducts Cl- as well as other anions such as HCO3-, I-, SCN-, and NO3-. Chloride channels are important for setting cell resting membrane potential and maintaining proper cell volume. 
+is_a: PC00049 ! anion channel
+
+[Term]
+id: PC00077
+name: chromatin/chromatin-binding protein
+def: A non-histone protein that either binds DNA to comprise chromatin or which binds chromatin.
+is_a: PC00009 ! DNA binding protein
+
+[Term]
+id: PC00078
+name: complement component
+def: One of 20 distinct serum proteins that is the effector of immune cytolysis.
+is_a: PC00090 ! defense/immunity protein
+
+[Term]
+id: PC00079
+name: cyclase
+def: Enzymes responsible for converting a linear molecule into a cyclic molecule, such as a nucleoside triphosphate to cyclic nucleoside monophosphate.
+is_a: PC00144 ! lyase
+
+[Term]
+id: PC00080
+name: cyclic nucleotide-gated ion channel
+def: A transmembrane ion channel whose permeability is increased by the binding of cyclic nucleotide, such as cAMP or cGMP.
+is_a: PC00141 ! ligand-gated ion channel
+
+[Term]
+id: PC00081
+name: cysteine protease
+def: Peptide hydrolases that have a cysteine involved in the catalytic process. This group of enzymes is inactivated by sulfhydryl reagents.
+is_a: PC00190 ! protease
+
+[Term]
+id: PC00082
+name: cysteine protease inhibitor
+def: Compounds that inhibit or antagonize the biosynthesis or actions of cysteine-type proteases, peptide hydrolases that have a cysteine involved in the catalytic process.
+is_a: PC00191 ! protease inhibitor
+
+[Term]
+id: PC00083
+name: cytokine
+def: A small protein or biological factor that is released by cells and have specific effects on cell-cell interaction, communication and behavior of other cells.  It contains interleukins, lymphokines, TNF-alpha and interferons.  Growth factors are generally not included here, although TGF-beta family members, CNTF and LIF are exceptions.
+is_a: PC00207 ! signaling molecule
+
+[Term]
+id: PC00084
+name: cytokine receptor
+def: A receptor that binds to cytokines and signals through particular signaling pathways, such as STAT pathway.  The chemokine GPCRs are excluded from this group, and can be found under G-protein coupled receptor.
+is_a: PC00197 ! receptor
+
+[Term]
+id: PC00085
+name: cytoskeletal protein
+def: Major constituent of the cytoskeleton found in the cytoplasm of eukaryotic cells. They form a flexible framework for the cell, provide attachment points for organelles and formed bodies, and make communication between parts of the cell possible.
+is_a: PC00000 ! protein class
+
+[Term]
+id: PC00086
+name: damaged DNA-binding protein
+def: A protein that binds specifically to damaged DNA.
+is_a: PC00009 ! DNA binding protein
+
+[Term]
+id: PC00087
+name: deacetylase
+def: An enzyme that removes acetate from a molecule.
+is_a: PC00121 ! hydrolase
+
+[Term]
+id: PC00088
+name: deaminase
+def: An enzyme that removes amino groups from compounds, producing ammonia in the process.
+is_a: PC00121 ! hydrolase
+
+[Term]
+id: PC00089
+name: decarboxylase
+def: Enzymes that remove carboxyl groups from compounds, producing carbonate in the process.
+is_a: PC00144 ! lyase
+
+[Term]
+id: PC00090
+name: defense/immunity protein
+def: A specific protein substance that is produced to take part in various defense and immune responses of the body.
+is_a: PC00000 ! protein class
+
+[Term]
+id: PC00091
+name: dehydratase
+def: Enzymes that remove hydroxyl groups from compounds, producing water in the process.
+is_a: PC00144 ! lyase
+
+[Term]
+id: PC00092
+name: dehydrogenase
+def: An enzyme that oxidizes a substrate by transferring hydrogen to an acceptor that is either NAD/NADP or a flavin enzyme.
+is_a: PC00176 ! oxidoreductase
+
+[Term]
+id: PC00093
+name: endodeoxyribonuclease
+def: One of a large group of enzymes that cleaves DNA at an internal position in the chain.
+is_a: PC00009 ! DNA binding protein
+is_a: PC00170 ! nuclease
+
+[Term]
+id: PC00094
+name: endoribonuclease
+def: One of a large group of enzymes that cleaves RNA at an internal position in the chain.
+is_a: PC00031 ! RNA binding protein
+is_a: PC00170 ! nuclease
+
+[Term]
+id: PC00095
+name: enzyme modulator
+def: A protein that modulates the activity of a select group of an enzyme such as kinases, phosphatases, protease, and G-proteins.
+is_a: PC00000 ! protein class
+
+[Term]
+id: PC00096
+name: epimerase/racemase
+def: Enzymes that catalyze inversion of the configuration around an asymmetric carbon in a substrate having one (racemase) or more (epimerase) center(s) of asymmetry (EC5.1).
+is_a: PC00135 ! isomerase
+
+[Term]
+id: PC00097
+name: esterase
+def: Enzymes that catalyze the hydrolysis of organic esters to release an alcohol or thiol and acid.
+is_a: PC00121 ! hydrolase
+
+[Term]
+id: PC00098
+name: exodeoxyribonuclease
+def: An enzyme that cleaves DNA sequentially from the free ends of a linear nucleic acid substrate.
+is_a: PC00009 ! DNA binding protein
+is_a: PC00170 ! nuclease
+
+[Term]
+id: PC00099
+name: exoribonuclease
+def: An enzyme that cleaves RNA sequentially from the free ends of a linear nucleic acid substrate.
+is_a: PC00031 ! RNA binding protein
+is_a: PC00170 ! nuclease
+
+[Term]
+id: PC00100
+name: extracellular matrix glycoprotein
+def: An extracellular matrix protein which is conjugated with one or more covalently linked carbohydrate residues.
+is_a: PC00102 ! extracellular matrix protein
+
+[Term]
+id: PC00101
+name: extracellular matrix linker protein
+def: An extracellular matrix protein which has multiple domains that confer the ability to interact with many extracellular substances.
+is_a: PC00102 ! extracellular matrix protein
+
+[Term]
+id: PC00102
+name: extracellular matrix protein
+def: A protein that is produced and secreted by cells and forms an intricate extracellular meshwork in which cells are embedded to construct tissues.
+is_a: PC00000 ! protein class
+
+[Term]
+id: PC00103
+name: extracellular matrix structural protein
+def: A protein that forms the structural backbone of  extracellular matrix in which cells are embedded to construct tissues.
+is_a: PC00102 ! extracellular matrix protein
+
+[Term]
+id: PC00104
+name: galactosidase
+def: One of a class of enzymes that cuts the glycosidic bond between the sugar galactose and another sugar molecule (of a different type than galactose).
+is_a: PC00121 ! hydrolase
+
+[Term]
+id: PC00105
+name: gap junction
+def: A protein that creates a gap junction.  A gap junction is a junction between two cells consisting of many pores that allow the passage of molecules.
+is_a: PC00070 ! cell junction protein
+
+[Term]
+id: PC00106
+name: gelosin
+def: A protein produced by macrophages that severs actin filaments and forms a cap on the newly exposed filament end. Gelsolin is activated by calcium ions and participates in the assembly and disassembly of actin, thereby increasing the motility of some cells.
+is_a: PC00131 ! intracellular calcium-sensing protein
+
+[Term]
+id: PC00107
+name: globin
+def: The polypeptide moiety of hemaglobin.  Both hemaglobin and myoblogin belong to this category.
+is_a: PC00219 ! transfer/carrier protein
+
+[Term]
+id: PC00108
+name: glucosidase
+def: Enzymes that hydrolyze o-glucosyl-compounds.
+is_a: PC00121 ! hydrolase
+
+[Term]
+id: PC00109
+name: glycine receptor
+def: The glycine receptor, which is the receptor for the amino acid neurotransmitter glycine, is one of the most widely distributed inhibitory receptors in the central nervous system and has important roles in a variety of physiological processes, especially in mediating inhibitory neurotransmission in the spinal cord and brain stem. 
+is_a: PC00141 ! ligand-gated ion channel
+
+[Term]
+id: PC00110
+name: glycosidase
+def: An enzyme that breaks up and degrades complex sugar subunits of a polysaccharide such as starch or sucrose into simple ones, such as glucose or fructose.
+is_a: PC00121 ! hydrolase
+
+[Term]
+id: PC00111
+name: glycosyltransferase
+def: An enzyme that catalyzes the transfer of a sugar (monosaccharide) unit from a sugar nucleotide derivative to a sugar or amino acid acceptor (EC2.4).
+is_a: PC00220 ! transferase
+
+[Term]
+id: PC00112
+name: growth factor
+def: A complex family of biological factors that are produced by the body to control growth, division and maturation of various cell types.
+is_a: PC00207 ! signaling molecule
+
+[Term]
+id: PC00113
+name: guanyl-nucleotide exchange factor
+def: An enzyme that catalyzes the exchange of GDP and GTP in a G-protein.
+is_a: PC00022 ! G-protein modulator
+
+[Term]
+id: PC00114
+name: guanylate cyclase
+def: 
+is_a: PC00079 ! cyclase
+
+[Term]
+id: PC00115
+name: helicase
+def: An enzyme that promotes the unwinding of duplex nucleic acids.
+is_a: PC00171 ! nucleic acid binding
+
+[Term]
+id: PC00116
+name: helix-turn-helix transcription factor
+def: A transcription factor that has the helix-turn-helix (HTH) domain, a major DNA-binding structural motif composed of two _ helices joined by a short strand of amino acids.
+is_a: PC00218 ! transcription factor
+
+[Term]
+id: PC00117
+name: heterotrimeric G-protein
+def: the heterotrimeric G proteins that associate with receptors of the seven transmembrane domain superfamily and are involved in signal transduction.
+is_a: PC00020 ! G-protein
+
+[Term]
+id: PC00118
+name: histone
+def: A protein found in the nuclei of all eukaryotic cells where it is complexed to DNA to form chromatin.
+is_a: PC00009 ! DNA binding protein
+
+[Term]
+id: PC00119
+name: homeobox transcription factor
+def: A transcription factor containing the homeobox domain. It is usually involved in the control of gene expression during morphogenesis and development.
+is_a: PC00116 ! helix-turn-helix transcription factor
+
+[Term]
+id: PC00120
+name: hydratase
+def: Enzymes that add hydroxyl groups to compounds, using water in the process.
+is_a: PC00144 ! lyase
+
+[Term]
+id: PC00121
+name: hydrolase
+def: Enzymes catalyzing hydrolysis of a variety of bonds, such as esters, glycosides, or peptides.  Protease and phosphatases are separate categories, so they are not included here.
+is_a: PC00000 ! protein class
+
+[Term]
+id: PC00122
+name: hydroxylase
+def: A type of enzyme that adds -OH groups to its substrate during hydroxylation by attaching oxygen atoms to it.
+is_a: PC00176 ! oxidoreductase
+
+[Term]
+id: PC00123
+name: immunoglobulin
+def: A specific protein substance that is produced by plasma cells to aid in fighting infection by taking part in various immune responses of the body to bacteria or foreign substances.
+is_a: PC00090 ! defense/immunity protein
+
+[Term]
+id: PC00124
+name: immunoglobulin receptor superfamily
+def: A receptor that contains an immunoglobulin domain.  It is often involved in immune response.  Some of the common members in this category are T cell receptors and IgG receptors.
+is_a: PC00084 ! cytokine receptor
+is_a: PC00090 ! defense/immunity protein
+
+[Term]
+id: PC00125
+name: immunoglobulin superfamily cell adhesion molecule
+def: Immunoglobulin superfamily CAMs (IgSF CAMs) are either homophilic or heterophilic and bind integrins or different IgSF CAMs.  Examples are NCAMs, ICAMs, and PECAM.
+is_a: PC00069 ! cell adhesion molecule
+
+[Term]
+id: PC00126
+name: integrin
+def: The integrins are a family of heterophilic CAMs that bind IgSF CAMs or the extracellular matrix. They are heterodimers, consisting in two noncovalently-linked subunits, called alpha and beta
+is_a: PC00069 ! cell adhesion molecule
+
+[Term]
+id: PC00127
+name: interferon superfamily
+def: A family of glycoproteins that plays an important role in fighting viral infections by preventing viral multiplication in cells.
+is_a: PC00083 ! cytokine
+
+[Term]
+id: PC00128
+name: interleukin superfamily
+def: A cytokine produced by lymphocytes, monocytes and various other cell types and are released by cells in response to antigenic and non-antigenic stimuli. To date, there are 12 interleukins identified.  Their function is to modulate inflammation and immunity by regulating growth, mobility and differentiation of lymphoid and other cells.
+is_a: PC00083 ! cytokine
+
+[Term]
+id: PC00129
+name: intermediate filament
+def: A cytoplasmic filament protein so named originally because their diameter (nominally 10 nm) in muscle cells was intermediate between thick and thin filaments.
+is_a: PC00085 ! cytoskeletal protein
+
+[Term]
+id: PC00130
+name: intermediate filament binding protein
+def: A protein that binds to intermediate filament.
+is_a: PC00129 ! intermediate filament
+
+[Term]
+id: PC00131
+name: intracellular calcium-sensing protein
+def: Intracellular signaling peptides and proteins that bind to Ca2+. They undergo allosteric changes when bound to Ca2+ that affects their interaction with other signal-transducing molecules. They differ from calcium sensing receptors which sense extracellular calcium levels.
+is_a: PC00060 ! calcium-binding protein
+
+[Term]
+id: PC00132
+name: inward rectifier potassium channel
+def: A potassium channel that allows potassium ion flow through the channel more easily in the inward direction.
+is_a: PC00188 ! potassium channel
+
+[Term]
+id: PC00133
+name: ion channel
+def: A protein creating a highly selective transmembrane pore that presents a hydrophilic channel for specific ions to cross a lipid bilayer.
+is_a: PC00227 ! transporter
+
+[Term]
+id: PC00134
+name: ionotropic glutamate receptor
+def: A transmembrane ion channel whose permeability is increased by the binding of glutamate.
+is_a: PC00141 ! ligand-gated ion channel
+
+[Term]
+id: PC00135
+name: isomerase
+def: A class of enzymes that catalyze geometric or structural changes within a molecule to form a single product. The reactions do not involve a net change in the concentrations of compounds other than the substrate and the product.
+is_a: PC00000 ! protein class
+
+[Term]
+id: PC00136
+name: kainate receptor
+def: Kainate receptors, or KARs, are non-NMDA ionotropic receptors which respond to the neurotransmitter glutamate. They were first identified as a distinct receptor type through their selective activation by the agonist kainate, a drug first isolated from red alga Digenea simplex. Kainate receptors are involved in excitatory neurotransmission by activating postsynaptic receptors, and in inhibitory neurotransmission by modulating release of the inhibitory neurotransmitter GABA through a presynaptic mechanism.
+is_a: PC00134 ! ionotropic glutamate receptor
+
+[Term]
+id: PC00137
+name: kinase
+def: An enzyme that catalyzes the transfer of a phosphate from ATP to a second substrate.An enzyme that catalyzes the transfer of a phosphate from ATP to a second substrate (EC2.7).
+is_a: PC00000 ! protein class
+is_a: PC00220 ! transferase
+
+[Term]
+id: PC00138
+name: kinase activator
+def: A protein that directly interacts with a kinase and activates or enhance its activity.
+is_a: PC00140 ! kinase modulator
+
+[Term]
+id: PC00139
+name: kinase inhibitor
+def: A protein that directly interacts with a kinase and inhibits its activity.
+is_a: PC00140 ! kinase modulator
+
+[Term]
+id: PC00140
+name: kinase modulator
+def: A protein that directly interacts with a kinase and affects its activity.
+is_a: PC00095 ! enzyme modulator
+
+[Term]
+id: PC00141
+name: ligand-gated ion channel
+def: A transmembrane ion channel whose permeability is increased by the binding of a specific ligand.
+is_a: PC00133 ! ion channel
+is_a: PC00197 ! receptor
+
+[Term]
+id: PC00142
+name: ligase
+def: A class of enzymes that catalyze the formation of a bond between two substrate molecules, coupled with the hydrolysis of a pyrophosphate bond in ATP or a similar energy donor.
+is_a: PC00000 ! protein class
+
+[Term]
+id: PC00143
+name: lipase
+def: Enzymes that catalyze the hydrolysis of fats (monoglycerides, diglycerides and triglycerides) to glycerol and fatty acids. Calcium ions are usually required.
+is_a: PC00121 ! hydrolase
+
+[Term]
+id: PC00144
+name: lyase
+def: Enzymes that either strip a group from a molecule to form a double bond or add a group to a double bond.
+is_a: PC00000 ! protein class
+
+[Term]
+id: PC00145
+name: mRNA capping factor
+def: A factor involved in mRNA capping.
+is_a: PC00147 ! mRNA processing factor
+
+[Term]
+id: PC00146
+name: mRNA polyadenylation factor
+def: A factor involved in mRNA polyadenylation.
+is_a: PC00147 ! mRNA processing factor
+
+[Term]
+id: PC00147
+name: mRNA processing factor
+def: A factor involved in mRNA processing, including capping, polyadenylation and splicing.
+is_a: PC00031 ! RNA binding protein
+
+[Term]
+id: PC00148
+name: mRNA splicing factor
+def: A factor involved in mRNA splicing.
+is_a: PC00147 ! mRNA processing factor
+
+[Term]
+id: PC00149
+name: major histocompatibility complex antigen
+def: A set of plasmalemmal glycoproteins on the surface of all nucleated cells that are crucial for T-cell recognition of antigens.  They are the major antigens responsible for tissue recognition. There are two classes of histocompatibility antigens: Class I and Class II.
+is_a: PC00090 ! defense/immunity protein
+
+[Term]
+id: PC00150
+name: membrane traffic protein
+def: A protein that is located on an intracellular vesicle membrane, and is responsible for the docking or fusion of the vesicle to the cytoplasma membrane.
+is_a: PC00000 ! protein class
+
+[Term]
+id: PC00151
+name: membrane trafficking regulatory protein
+def: A protein that regulates the release of secretory vesicle.
+is_a: PC00150 ! membrane traffic protein
+
+[Term]
+id: PC00152
+name: membrane-bound signaling molecule
+def: A signaling molecule that is membrane-bound and not secreted.
+is_a: PC00207 ! signaling molecule
+
+[Term]
+id: PC00153
+name: metalloprotease
+def: A protease whose catalytic activity requires a transition metal.
+is_a: PC00190 ! protease
+
+[Term]
+id: PC00154
+name: metalloprotease inhibitor
+def: Compounds that inhibit or antagonize the biosynthesis or actions of metalloproteases, proteases whose catalytic activity requires a transition metal.
+is_a: PC00191 ! protease inhibitor
+
+[Term]
+id: PC00155
+name: methyltransferase
+def: A class of enzymes that transfers methyl groups (EC2.1).
+is_a: PC00220 ! transferase
+
+[Term]
+id: PC00156
+name: microtubule binding motor protein
+def: A family of motor proteins that are responsible for moving vesicles and particles along the microtubule.  Typical examples are dynein and kinesin.
+is_a: PC00157 ! microtubule family cytoskeletal protein
+
+[Term]
+id: PC00157
+name: microtubule family cytoskeletal protein
+def: A protein that is either microtubule itself or binds to microtubule to form the cytoskeleton of the cell.
+is_a: PC00085 ! cytoskeletal protein
+
+[Term]
+id: PC00158
+name: mitochondrial carrier protein
+def: A protein that is located in the inner membrane of mitochondria and transports small molecules or protons within the membrane bilayer.
+is_a: PC00227 ! transporter
+
+[Term]
+id: PC00159
+name: muscarinic acetylcholine receptor
+def: Muscarinic receptors, or mAChRs, are G protein-coupled acetylcholine receptors found in the plasma membranes of certain neurons and other cells. They play several roles, including acting as the main end-receptor stimulated by acetylcholine released from postganglionic fibers in the parasympathetic nervous system.
+is_a: PC00037 ! acetylcholine receptor
+
+[Term]
+id: PC00160
+name: mutase
+def: An enzyme that catalyzes the switching of functional groups on a molecule.
+is_a: PC00135 ! isomerase
+
+[Term]
+id: PC00161
+name: myelin protein
+def: Proteins found in the myelin sheath, which wraps around the nerve fibers serving as an insulator in both central and peripheral nervous system.
+is_a: PC00211 ! structural protein
+
+[Term]
+id: PC00162
+name: neuropeptide
+def: A peptide with direct synaptic effects (peptide neurotransmitters) or indirect modulatory effects on the nervous system (peptide neuromodulators).
+is_a: PC00179 ! peptide hormone
+
+[Term]
+id: PC00163
+name: neurotrophic factor
+def: A signaling molecule involved in the nutrition (or maintenance) of neural tissue.  The classic example is the nerve growth factor.
+is_a: PC00112 ! growth factor
+
+[Term]
+id: PC00164
+name: nicotinic acetylcholine receptor
+def: Nicotinic acetylcholine receptors, or nAChRs, are cholinergic receptors that can be activated by the binding of the neurotransmitter acetylcholine (ACh), and nicotin.  Nicotinic acetylcholine receptors are present in many tissues in the body, and are the best studied of the ionotropic receptors.[1] The neuronal receptors are found in the central nervous system and the peripheral nervous system. The neuromuscular receptors are found in the neuromuscular junctions of somatic muscles; stimulation of these receptors causes muscular contraction
+is_a: PC00037 ! acetylcholine receptor
+
+[Term]
+id: PC00165
+name: non-motor actin binding protein
+def: An actin binding protein that is not involved in motor function.
+is_a: PC00041 ! actin family cytoskeletal protein
+
+[Term]
+id: PC00166
+name: non-motor microtubule binding protein
+def: A nonmotor protein that binds to microtubule cytoskeletal protein.
+is_a: PC00157 ! microtubule family cytoskeletal protein
+
+[Term]
+id: PC00167
+name: non-receptor serine/threonine protein kinase
+def: A soluble protein catalyzing transfer of phosphate from ATP to serine or threonine residue.
+is_a: PC00193 ! protein kinase
+
+[Term]
+id: PC00168
+name: non-receptor tyrosine protein kinase
+def: A soluble protein catalyzing transfer of phosphate from ATP to tyrosine residue.
+is_a: PC00193 ! protein kinase
+
+[Term]
+id: PC00169
+name: nuclear hormone receptor
+def: A receptor of steroid hormones that traverses the nuclear membrane to activate transcription.
+is_a: PC00197 ! receptor
+is_a: PC00218 ! transcription factor
+
+[Term]
+id: PC00170
+name: nuclease
+def: An enzyme that cleaves the phosphodiester bonds of a nucleic acid.
+is_a: PC00171 ! nucleic acid binding
+
+[Term]
+id: PC00171
+name: nucleic acid binding
+def: A molecule that binds a nucleic acid.  It can be an enzyme or a binding protein.
+is_a: PC00000 ! protein class
+
+[Term]
+id: PC00172
+name: nucleotide kinase
+def: An enzyme that catalyzes the phosphorylation of a nucleotide.
+is_a: PC00137 ! kinase
+
+[Term]
+id: PC00173
+name: nucleotide phosphatase
+def: An enzyme that hydrolyzes phosphomonoesters in nucleotides.
+is_a: PC00181 ! phosphatase
+
+[Term]
+id: PC00174
+name: nucleotidyltransferase
+def: A class of enzymes that transfers nucleotidyl residues.
+is_a: PC00220 ! transferase
+
+[Term]
+id: PC00175
+name: oxidase
+def: An enzyme that removes an electron from its substrate to an electron acceptor.  The reaction is usually coupled with a reduction reaction.
+is_a: PC00176 ! oxidoreductase
+
+[Term]
+id: PC00176
+name: oxidoreductase
+def: An enzyme that catalyzes a redox reaction.
+is_a: PC00000 ! protein class
+
+[Term]
+id: PC00177
+name: oxygenase
+def: An enzyme that catalyzes the incorporation of molecular oxygen into organic substrates.
+is_a: PC00176 ! oxidoreductase
+
+[Term]
+id: PC00178
+name: paired box transcription factor
+def: A tissue specific transcription factor that contains a paired domain and usually a partial or complete homeodomain. 
+is_a: PC00116 ! helix-turn-helix transcription factor
+
+[Term]
+id: PC00179
+name: peptide hormone
+def: A protein or peptide that acts as a hormone.
+is_a: PC00207 ! signaling molecule
+
+[Term]
+id: PC00180
+name: peroxidase
+def: A heme enzyme that catalyzes reduction of hydrogen peroxide by a substrate that loses two hydrogen atoms.
+is_a: PC00176 ! oxidoreductase
+
+[Term]
+id: PC00181
+name: phosphatase
+def: An enzyme that hydrolyzes phosphomonoesters.
+is_a: PC00000 ! protein class
+is_a: PC00121 ! hydrolase
+
+[Term]
+id: PC00182
+name: phosphatase activator
+def: A protein that directly interacts with a phosphatase and activates or enhance its activity.
+is_a: PC00184 ! phosphatase modulator
+
+[Term]
+id: PC00183
+name: phosphatase inhibitor
+def: A protein that directly interacts with a phosphatase and inhibits its activity.
+is_a: PC00184 ! phosphatase modulator
+
+[Term]
+id: PC00184
+name: phosphatase modulator
+def: A protein that directly interacts with a phosphatase and affects its activity.
+is_a: PC00095 ! enzyme modulator
+
+[Term]
+id: PC00185
+name: phosphodiesterase
+def: Enzymes that cleave phosphodiesters to give a phosphomonoester and a free hydroxyl group.
+is_a: PC00121 ! hydrolase
+
+[Term]
+id: PC00186
+name: phospholipase
+def: Enzymes that hydrolyze ester bonds in phospholipids. They comprise two types: aliphatic esterases (phospholipase A1, A2 and B) that release fatty acids, and phosphodiesterases (types C and D) that release diacyl glycerol or phosphatidic acid respectively.
+is_a: PC00143 ! lipase
+
+[Term]
+id: PC00187
+name: phosphorylase
+def: An enzyme that hydrolyzes a substrate to yield a monosaccharide-phosphate product.
+is_a: PC00220 ! transferase
+
+[Term]
+id: PC00188
+name: potassium channel
+def: A transmembrane ion channel that displays selective permeability to potassium ions.
+is_a: PC00133 ! ion channel
+
+[Term]
+id: PC00189
+name: primase
+def: The enzyme that polymerizes ribonucleoside triphosphates to form oligoribonucleotides in a 5 prime to 3 prime direction.
+is_a: PC00031 ! RNA binding protein
+
+[Term]
+id: PC00190
+name: protease
+def: Enzymes that hydrolyze peptide bonds.
+is_a: PC00000 ! protein class
+is_a: PC00121 ! hydrolase
+
+[Term]
+id: PC00191
+name: protease inhibitor
+def: Compounds which inhibit or antagonize the biosynthesis or actions of proteases.
+is_a: PC00095 ! enzyme modulator
+
+[Term]
+id: PC00193
+name: protein kinase
+def: An enzyme that catalyzes the transfer of a phosphate from ATP to the hydroxyl side chains on proteins, causing changes in function.
+is_a: PC00137 ! kinase
+
+[Term]
+id: PC00194
+name: protein kinase receptor
+def: A protein that has an extracellular ligand binding domain, a single transmembrane domain and an intracellular kinase domain.
+is_a: PC00197 ! receptor
+
+[Term]
+id: PC00195
+name: protein phosphatase
+def: An enzyme that hydrolyzes phosphomonoesters in proteins.
+is_a: PC00181 ! phosphatase
+
+[Term]
+id: PC00196
+name: pyrophosphatase
+def: Enzymes that catalyze the hydrolysis of diphosphate bonds, chiefly in nucleoside di- and triphosphates. They may liberate either a mono- or diphosphate.
+is_a: PC00121 ! hydrolase
+
+[Term]
+id: PC00197
+name: receptor
+def: A molecular structure within a cell or on the cell surface characterized by selective binding of a specific substance and a specific physiologic effect that accompanies the binding.
+is_a: PC00000 ! protein class
+
+[Term]
+id: PC00198
+name: reductase
+def: An enzyme that introduces an electron into its substrate from an electron donor.  The reaction is usually coupled with an oxidation reaction.
+is_a: PC00176 ! oxidoreductase
+
+[Term]
+id: PC00199
+name: replication origin binding protein
+def: A protein that binds specifically to the origin of replication.
+is_a: PC00009 ! DNA binding protein
+
+[Term]
+id: PC00200
+name: reverse transcriptase
+def: A DNA polymerase that uses RNA as a template.
+is_a: PC00031 ! RNA binding protein
+
+[Term]
+id: PC00201
+name: ribonucleoprotein
+def: Heterogeneous nuclear RNA, small nuclear ribonucleoproteins, and signal recognition particles.
+is_a: PC00031 ! RNA binding protein
+
+[Term]
+id: PC00202
+name: ribosomal protein
+def: A protein that comprises part of the ribosome.
+is_a: PC00031 ! RNA binding protein
+
+[Term]
+id: PC00203
+name: serine protease
+def: One of a group of endoproteases from both animal and bacterial sources that share a common reaction mechanism based on formation of an acyl enzyme intermediate on a specific active serine residue.
+is_a: PC00190 ! protease
+
+[Term]
+id: PC00204
+name: serine protease inhibitor
+def: Compounds that inhibit or antagonize the biosynthesis or actions of serine-type proteases, one of a group of endoproteases from both animal and bacterial sources that share a common reaction mechanism based on formation of an acyl enzyme intermediate on a specific active serine residue.
+is_a: PC00191 ! protease inhibitor
+
+[Term]
+id: PC00205
+name: serine/threonine protein kinase receptor
+def: A protein that has an extracellular ligand binding domain, a single transmembrane domain and an intracellular serine or threonine kinase domain that phosphorylates protein serine or threonine residues.
+is_a: PC00193 ! protein kinase
+is_a: PC00194 ! protein kinase receptor
+
+[Term]
+id: PC00206
+name: serotonin receptor
+def: Serotonin receptors are receptors for the neurotransmitter and peripheral signal mediator serotonin, also known as 5-hydroxytryptamine or 5-HT (therefore, they are also called 5-HT receptors).  They are located on the cell membrane of nerve cells and other cell types including smooth muscle in animals, and mediate the effects of serotonin as the endogenous ligand and of a broad range of pharmaceutical and hallucinogenic drugs.  They affect the release and activity of other neurotransmitters such as glutamate, dopamine and GABA. 
+is_a: PC00141 ! ligand-gated ion channel
+
+[Term]
+id: PC00207
+name: signaling molecule
+def: A molecule that transduces a signal between cells.
+is_a: PC00000 ! protein class
+
+[Term]
+id: PC00208
+name: small GTPase
+def: The small G proteins are a diverse group of monomeric GTPases that include ras, rab, rac and rho and that play an important part in regulating many intracellular processes including cytoskeletal organization and secretion.
+is_a: PC00020 ! G-protein
+
+[Term]
+id: PC00209
+name: sodium channel
+def: A transmembrane ion channel that displays selective permeability to sodium ions.
+is_a: PC00133 ! ion channel
+
+[Term]
+id: PC00210
+name: storage protein
+def: A protein that stores nutrients.  Usually these are serum or milk proteins.
+is_a: PC00000 ! protein class
+
+[Term]
+id: PC00211
+name: structural protein
+def: Extracellular proteins that form a structure for an organ or organism, such as the cuticle.
+is_a: PC00000 ! protein class
+
+[Term]
+id: PC00212
+name: surfactant
+def: A surface active agent, the best known example of which is the lung surfactant that renders the alveolar surfaces hydrophobic and prevents the lung filling with water by capillary action.
+is_a: PC00000 ! protein class
+
+[Term]
+id: PC00213
+name: tandem pore domain potassium channel
+def: The name is derived from the fact that the _ subunits consist of four transmembrane segments, each containing two pore loops. As such, they structurally correspond to two inward-rectifier _ subunits and thus form dimers in the membrane.  Members in this family are also known as leak channels.
+is_a: PC00188 ! potassium channel
+
+[Term]
+id: PC00214
+name: tight junction
+def: A tight junction is a specialized intercellular junction in which the two plasma membranes are separated by only 1-2nm.  It is found near the apical surface of cells in simple epithelia, and forms a sealing gasket around the cell.
+is_a: PC00070 ! cell junction protein
+
+[Term]
+id: PC00215
+name: transaldolase
+def: Together with transketolase, links the pentose phosphate pathway with glycolysis by converting pentoses to hexoses.
+is_a: PC00220 ! transferase
+
+[Term]
+id: PC00216
+name: transaminase
+def: A subclass of enzymes that catalyze the transfer of an amino group from a donor (generally an amino acid) to an acceptor (generally 2 keto acid) in a cyclic process using pyridoxal phosphate as a cofactor (EC2.6).
+is_a: PC00220 ! transferase
+
+[Term]
+id: PC00217
+name: transcription cofactor
+def: A protein that has no DNA binding domains, but regulates transcription by binding to other transcription factors.
+is_a: PC00218 ! transcription factor
+
+[Term]
+id: PC00218
+name: transcription factor
+def: A protein required for the regulation of RNA polymerase by specific regulatory sequences in or near a gene.
+is_a: PC00000 ! protein class
+
+[Term]
+id: PC00219
+name: transfer/carrier protein
+def: Proteins that carry specific substances in the blood or in the cell. They usually are not involved in transmembrane transport.
+is_a: PC00000 ! protein class
+
+[Term]
+id: PC00220
+name: transferase
+def: Enzymes transferring a group from one compound (donor) to another compound (acceptor).  Kinase is a separate category, so it is not included here.
+is_a: PC00000 ! protein class
+
+[Term]
+id: PC00221
+name: transketolase
+def: Together with transaldolase, links the pentose phosphate pathway with glycolysis by converting pentoses to hexoses.
+is_a: PC00220 ! transferase
+
+[Term]
+id: PC00222
+name: translation elongation factor
+def: A non-ribosomal protein involved in translation elongation.
+is_a: PC00223 ! translation factor
+
+[Term]
+id: PC00223
+name: translation factor
+def: A non-ribosomal protein involved in translation initiation, elongation or termination.
+is_a: PC00031 ! RNA binding protein
+
+[Term]
+id: PC00224
+name: translation initiation factor
+def: A non-ribosomal protein involved in translation initiation.
+is_a: PC00223 ! translation factor
+
+[Term]
+id: PC00225
+name: translation release factor
+def: A non-ribosomal protein involved in translation release.
+is_a: PC00223 ! translation factor
+
+[Term]
+id: PC00226
+name: transmembrane receptor regulatory/adaptor protein
+def: An intracellular protein that interacts with a transmembrane receptor, serving as either a regulator or adaptor to the receptor.
+is_a: PC00000 ! protein class
+
+[Term]
+id: PC00227
+name: transporter
+def: A class of transmembrane proteins that allows substances to cross plasma membranes far faster than would be possible by diffusion alone.   Please note that ion channel has its own category and is not included here.
+is_a: PC00000 ! protein class
+
+[Term]
+id: PC00228
+name: tubulin
+def: An abundant cytoplasmic protein in the microtubule family that is involved in nucleation of microtubule assembly during the cell cycle.
+is_a: PC00157 ! microtubule family cytoskeletal protein
+
+[Term]
+id: PC00229
+name: tumor necrosis factor family member
+def: A multifunctional proinflammatory cytokine, with effects on lipid metabolism, coagulation, insulin resistance, and endothelial function.
+is_a: PC00083 ! cytokine
+
+[Term]
+id: PC00230
+name: tumor necrosis factor receptor
+def: A transmembrane receptor protein whose ligand is tumor necrosis factor.
+is_a: PC00084 ! cytokine receptor
+
+[Term]
+id: PC00231
+name: type I cytokine receptor
+def: Type I cytokine receptors are transmembrane receptors expressed on the surface of cells that recognize and respond to cytokines with four _-helical strands. These receptors are also known under the name hemopoietin receptors, and share a common amino acid motif (WSXWS) in the extracellular portion adjacent to the cell membrane. Members of the type I cytokine receptor family includes type I interleukin receptors and colony stimulating receptors
+is_a: PC00084 ! cytokine receptor
+
+[Term]
+id: PC00232
+name: type II cytokine receptor
+def: Type II cytokine receptors are transmembrane proteins that are expressed on the surface of certain cells, which bind and respond to a select group of cytokines. These receptors are similar to type I cytokine receptors except they do not possess the signature sequence WSXWS that is characteristic of type I receptors.  Typical examples are interferon alpha, beta, gamma receptors, and interleukin 10, 20, 22, and 28 receptors
+is_a: PC00084 ! cytokine receptor
+
+[Term]
+id: PC00233
+name: tyrosine protein kinase receptor
+def: A protein that has an extracellular ligand binding domain, a single transmembrane domain and an intracellular tyrosine kinase domain that phosphorylates protein tyrosine residues.
+is_a: PC00193 ! protein kinase
+is_a: PC00194 ! protein kinase receptor
+
+[Term]
+id: PC00234
+name: ubiquitin-protein ligase
+def: An enzyme that couples ubiquitin to protein by a peptide bond between the C-terminal glycine of ubiquitin and a-amino groups of lysine residues in the protein.
+is_a: PC00142 ! ligase
+
+[Term]
+id: PC00235
+name: vesicle coat protein
+def: A protein that is found in the secretory vesicle membrane.
+is_a: PC00150 ! membrane traffic protein
+
+[Term]
+id: PC00236
+name: viral coat protein
+def: A protein that is a component of the outer coat of a virus (called the capsid).
+is_a: PC00237 ! viral protein
+
+[Term]
+id: PC00237
+name: viral protein
+def: A protein specific to a virus.
+is_a: PC00000 ! protein class
+
+[Term]
+id: PC00238
+name: vitamin D-dependent calcium binding protein
+def: A protein that plays a fundamental role in the Vitamin D mediated transport of calcium. It is found in the intestine, kidneys, egg shell gland, brain, and possibly other organs.
+is_a: PC00060 ! calcium-binding protein
+
+[Term]
+id: PC00239
+name: voltage-gated anion channel
+def: Voltage-dependent anion channels are a class of porin ion channel, and are located on the outer mitochondrial membrane.
+is_a: PC00049 ! anion channel
+is_a: PC00241 ! voltage-gated ion channel
+
+[Term]
+id: PC00240
+name: voltage-gated calcium channel
+def: A transmembrane ion channel whose selective permeability to calcium is sensitive to the transmembrane potential difference.
+is_a: PC00058 ! calcium channel
+is_a: PC00241 ! voltage-gated ion channel
+
+[Term]
+id: PC00241
+name: voltage-gated ion channel
+def: A transmembrane ion channel whose permeability to ions is sensitive to the transmembrane potential difference.
+is_a: PC00133 ! ion channel
+
+[Term]
+id: PC00242
+name: voltage-gated potassium channel
+def: A transmembrane ion channel whose selective permeability to potassium is sensitive to the transmembrane potential difference.
+is_a: PC00188 ! potassium channel
+is_a: PC00241 ! voltage-gated ion channel
+
+[Term]
+id: PC00243
+name: voltage-gated sodium channel
+def: A transmembrane ion channel whose selective permeability to sodium is sensitive to the transmembrane potential difference.
+is_a: PC00209 ! sodium channel
+is_a: PC00241 ! voltage-gated ion channel
+
+[Term]
+id: PC00244
+name: zinc finger transcription factor
+def: A transcription factor containing zinc finger domain(s), which is composed of conserved cysteines and histidines co-ordinate with zinc ion(s).  Examples of zinc finger domains are C2H2 zinc finger, C3HC4 zinc finger, CHC2 zinc finger, etc.
+is_a: PC00218 ! transcription factor
+
