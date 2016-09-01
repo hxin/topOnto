@@ -187,7 +187,7 @@ readMappingswithScore<-function(file){
     new<-rbind(new,t)
   }
   
-  g2d<-g2d[-index,]
+  
   g2d<-rbind(g2d[-index,],new)
   require(plyr)
   tmp<-ddply(g2d, c( "entrez_id", "term_id","source","source_count","mappting_tool"),  summarise,
@@ -197,7 +197,7 @@ readMappingswithScore<-function(file){
   tmp$score<-apply(tmp,MARGIN = 1,function(x){
     weight[x['source'],x['mappting_tool']]*f(x['evidence'])
   })
-  browser()
+  
   df.score<-ddply(tmp, c( "entrez_id", "term_id"),  summarise,
                   score   = sum(as.numeric(score)))
   gs<-as.character(unique(df.score$entrez_id))
@@ -574,16 +574,16 @@ list.reference<-function(gene='7157',term='DOID:1612',db='/home/xin/Workspace/Di
   
   library(package=paste('topOnto.',ont,'.db',sep = ''),character.only = T)
   names(symbol)<-gene
-  c(gene,term,Term(ONTTERM)[term])
-  
-  
-  c(symbol,Term(ONTTERM)[term],score=score)
+  # c(gene,term,Term(ONTTERM)[term])
+  # 
+  # 
+  # c(symbol,Term(ONTTERM)[term],score=score)
   # tb.gene2HDO[,c(1,2,3,5,6)]
   
-  
+  if(!is.null(tb.GENERIF)){
   index<-which(nchar(tb.GENERIF$rif)>max.char)
   tb.GENERIF$rif<-substr(tb.GENERIF$rif,1,max.char)
-  tb.GENERIF$rif[index]<-paste(tb.GENERIF$rif[index],'...',sep = '')
+  tb.GENERIF$rif[index]<-paste(tb.GENERIF$rif[index],'...',sep = '')}
   # tb.GENERIF[,c(1,4,5,2,3,6)]
   
   if(print){
