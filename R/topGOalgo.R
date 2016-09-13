@@ -319,7 +319,7 @@ setMethod("getSigGroups",
 setMethod("getSigGroups",
           signature(object = "topONTdata", test.stat = "elimScore"),
           function(object, test.stat, ...) { ## ... parameters for each algorithm
-browser()
+            #browser()
             ## update the test.stat object if there is the case
             if(length(allScore(test.stat)) == 0) {
               allMembers(test.stat) <- genes(object)
