@@ -529,9 +529,10 @@ setMethod("GenTable",
               sig.genes<-.get.sig.gene.in.term(object)
               if(use.symbol){
                 if(is.null(entrez2symbol)){
-                  message("entrez2symbol is missing. Ignore show.symbol!")
-                  # require('org.Hs.eg.db')
-                  # entrez2symbol<-revmap(as.list(org.Hs.egSYMBOL2EG))
+                  #message("entrez2symbol is missing. Ignore show.symbol!")
+                  message("entrez2symbol is not provided by user, using entrez2symbol mapping from org.Hs.eg.db!")
+                  require('org.Hs.eg.db')
+                  entrez2symbol<-revmap(as.list(org.Hs.egSYMBOL2EG))
                 }else{
                   sig.gene2term<-revmap(sig.genes)
                   symbols<-entrez2symbol[as.character(names(sig.gene2term))]
