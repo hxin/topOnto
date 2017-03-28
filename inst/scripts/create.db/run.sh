@@ -65,12 +65,12 @@ sed -i.bak 's/xxx/HDO/g' $BASEDIR/$PACKAGE_NAME/vignettes/my-vignette.Rmd | rm -
 
 cp $OBO $BASEDIR/$PACKAGE_NAME/inst/scripts/ont.obo
 
-echo "TO tun the script to create topOnto.db, you need to install RSQLite. DO you want to install RSQLite now?[y/n]"
-read ans
+#echo "TO tun the script to create topOnto.db, you need to install RSQLite. DO you want to install RSQLite now?[y/n]"
+#read ans
 
-[ -z $ans ] && ans='y'
+#[ -z $ans ] && ans='y'
 
-[ $ans = 'y' ] && (cd $BASEDIR/$PACKAGE_NAME/inst/extdata/ && R CMD INSTALL RSQLite_0.11.4.tar.gz)
+#[ $ans = 'y' ] && (cd $BASEDIR/$PACKAGE_NAME/inst/extdata/ && R CMD INSTALL RSQLite_0.11.4.tar.gz)
 
 (cd $BASEDIR/$PACKAGE_NAME/inst/scripts/ && chmod +x ./batch_run.sh && sh ./batch_run.sh && mv ./DB.sqlite ./../extdata/)
 

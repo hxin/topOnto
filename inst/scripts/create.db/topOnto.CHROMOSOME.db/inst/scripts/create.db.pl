@@ -32,9 +32,14 @@ while(<DATA>){
 	$schema.=$_;
 }
 
+#my $rstr=<<RDOC;
+#library(RSQLite)
+#drv<-dbDriver("SQLite")
 
 my $rstr=<<RDOC;
 library(RSQLite)
+sqliteQuickSQL<-dbGetQuery
+dbBeginTransaction<-dbBegin
 drv<-dbDriver("SQLite")
 dbfile="DB.sqlite"
 db <- dbConnect(drv, dbname=dbfile)

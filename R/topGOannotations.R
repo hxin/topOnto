@@ -544,7 +544,7 @@ filter.ontology.annotation<-function(terms,term2genes){
 
 
 ####find annotation reference
-list.reference<-function(gene='7157',term='DOID:1612',db='/home/xin/Workspace/DisEnt/disent/data/DisEnt20160105.sqlite',ont='HDO',max.char=100,print=T){
+list.reference<-function(gene='7157',term='DOID:1612',db='/home/xin/Workspace/DisEnt/disent/data/DisEnt20160105.sqlite',ont='HDO',max.char=100,print=T,top=10){
   library("RSQLite")
   con = dbConnect(drv="SQLite", dbname=db)
   alltables = dbListTables(con)
@@ -589,14 +589,16 @@ list.reference<-function(gene='7157',term='DOID:1612',db='/home/xin/Workspace/Di
   if(print){
     print(c(symbol,Term(ONTTERM)[term],score=score))
     cat('##############Overview\n')
-    print(tb.gene2HDO[,c(1,2,3,5,6)])
+    
+    print(tb.gene2HDO[c(1:ifelse(nrow(tb.gene2HDO)<top,nrow(tb.gene2HDO),top)),c(1,2,3,5,6)])
     cat('##############OMIM\n')
-    print(tb.OMIM[,c(2,7,8,1,3,4,5,9)])
+    print(tb.OMIM[c(1:ifelse(nrow(tb.OMIM)<top,nrow(tb.OMIM),top)),c(2,7,8,1,3,4,5,9)])
     cat('##############GENERIF\n')
-    print(head(tb.GENERIF[,c(1,4,5,2,3,6)]))
+    print(tb.GENERIF[c(1:ifelse(nrow(tb.GENERIF)<top,nrow(tb.GENERIF),top)),c(1,4,5,2,3,6)])
     cat('...\n')
     cat('##############ENSEMBL VARIATION\n')
-    print(head(tb.VAR[,c('entrez_id','term_id','term_name','variation_id','relative_position','phenotype_description','mapping_tool')]))
+    print(tb.VAR[c(1:ifelse(nrow(tb.VAR)<top,nrow(tb.VAR),top)),c('entrez_id','term_id','term_name','variation_id','relative_position','phenotype_description','mapping_tool')])
+  }else{
+    return(list(basic=c(symbol,Term(ONTTERM)[term],score=score),hdgdb=tb.gene2HDO,tb.GENERIF=tb.GENERIF,tb.OMIM=tb.OMIM,tb.VAR=tb.VAR))
   }
-  return(list(basic=c(symbol,Term(ONTTERM)[term],score=score),hdgdb=tb.gene2HDO,tb.GENERIF=tb.GENERIF,tb.OMIM=tb.OMIM,tb.VAR=tb.VAR))
 }
