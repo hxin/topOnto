@@ -184,3 +184,14 @@ SOURCEDATE=20151204
 VERSION=1.2
 OBO="/home/xin/Workspace/DisEnt/disent/data/Chromosome.obo"
 
+
+
+PACKAGE_NAME=topOnto.HDO.db
+DBSCHEMA="HDO_DB"
+DBSCHEMAVERSION=1.0
+SOURCENAME="HDO"
+SOURCURL="http://www.obofoundry.org/cgi-bin/detail.cgi?id=disease_ontology"
+SOURCEDATE=20150219
+VERSION=1.2
+OBO="/Users/xinhe/Documents/Rworkspace/topOnto/inst/extdata/ontology/hdo20151204.obo"
+

@@ -13,7 +13,7 @@ Description: TopOnto package provides tools for testing ontlogy terms while
         is that topOnto accept customize ontologies while topGO only support 
         Gene Ontology.
 Depends: R (>= 2.10.0),graph (>= 1.14.0), Biobase (>= 2.0.0),
-        AnnotationDbi (>= 1.26.0), SparseM (>= 0.73), methods
+        AnnotationDbi (>= 1.26.0), SparseM (>= 0.73), RSQLite (>= 0.11.4), methods
 Suggests: globaltest, hgu133a.db, ALL, topOnto.HDO.db, knitr, rmarkdown, multtest
 Imports: lattice, Rgraphviz
 biocViews: Microarray, Software, Visualization
