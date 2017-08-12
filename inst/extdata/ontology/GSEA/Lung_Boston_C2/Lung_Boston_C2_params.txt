@@ -1,0 +1,25 @@
+Run of GSEA on  2005-08-20 18:46:55
+input.ds= d:/CGP2005/GSEA/GSEA-P-R/Datasets/Lung_Boston.gct
+input.cls= d:/CGP2005/GSEA/GSEA-P-R/Datasets/Lung_Boston.cls
+gene.ann = 
+gs.db= d:/CGP2005/GSEA/GSEA-P-R/GeneSetDatabases/C2.gmt
+gs.ann = 
+output.directory = d:/CGP2005/GSEA/GSEA-P-R/Lung_Boston_C2/
+doc.string =  Lung_Boston_C2
+non.interactive.run = FALSE
+reshuffling.type = sample.labels
+nperm = 1000
+weighted.score.type = 1
+nom.p.val.threshold = -1
+fwer.p.val.threshold = -1
+fdr.q.val.threshold = 0.25
+topgs = 20
+adjust.FDR.q.val = FALSE
+gs.size.threshold.min = 15
+gs.size.threshold.max = 500
+reverse.sign = FALSE
+preproc.type = 0
+random.seed = 760435
+perm.type = 0
+fraction = 1
+replace = FALSE

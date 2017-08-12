@@ -1,0 +1,144 @@
+GS	SIZE	SOURCE	ES	NES	NOM p-val	FDR q-val	FWER p-val	Tag %	Gene %	Signal	FDR (median)	glob.p.val
+p53hypoxiaPathway	20	BioCarta	-0.67939	-2.2116	0	0	0	0.3	0.0685	0.28	0	0
+hsp27Pathway	15	BioCarta	-0.77829	-2.2021	0	0	0	0.533	0.0856	0.488	0	0
+p53Pathway	16	BioCarta	-0.74594	-2.1831	0	0	0	0.313	0.019	0.307	0	0
+P53_UP	40	Kannan_et_al_2001	-0.59952	-2.022	0	0.013085	0.049	0.225	0.0448	0.216	0	0
+radiation_sensitivity	26	BioCarta	-0.56737	-1.8561	0.002304	0.077826	0.252	0.192	0.00723	0.191	0	0.007
+ck1Pathway	15	Caseine kinase 1 (CK1) and cdk5 phosphorylate DARPP32 in the dopamine signaling pathway.	-0.5394	-1.6353	0.02703	0.49543	0.829	0.467	0.143	0.401	0.36111	0.12
+inflamPathway	28	BioCarta	-0.54343	-1.621	0.02947	0.47693	0.862	0.536	0.277	0.388	0.34921	0.11
+no2il12Pathway	17	BioCarta	-0.62922	-1.6154	0.04057	0.43353	0.874	0.588	0.227	0.455	0.32159	0.085
+GPCRs_Class_A_Rhodopsin-like	111	GO	-0.42652	-1.548	0.04036	0.60841	0.952	0.396	0.249	0.301	0.48148	0.17
+badPathway	21	When phosphorylated, BAD is inhibited by sequestration; when non-phosphorylated, it promotes apoptosis by inactivating pro-survival BCL-XL and BCL-2.	-0.4736	-1.5411	0.04425	0.57498	0.962	0.286	0.084	0.262	0.46129	0.145
+cytokinePathway	21	Intercellular signaling in the immune system occurs via secretion of cytokines, which promote antigen-dependent B and T cell response.	-0.54144	-1.5364	0.05544	0.53855	0.966	0.476	0.211	0.376	0.44143	0.123
+lairPathway	15	BioCarta	-0.57203	-1.5313	0.04843	0.50959	0.968	0.333	0.0988	0.301	0.41813	0.104
+p53_signalling	87	BioCarta	-0.3407	-1.5171	0.01266	0.51319	0.974	0.195	0.123	0.173	0.42541	0.101
+chemicalPathway	21	DNA damage promotes Bid cleavage, which stimulates mitochondrial cytochrome c release and consequent caspase activation, resulting in apoptosis.	-0.45647	-1.4978	0.04368	0.53421	0.978	0.0952	0.00723	0.0947	0.45922	0.109
+MAP00561_Glycerolipid_metabolism	43	GenMAPP	-0.41517	-1.4755	0.04819	0.56737	0.984	0.256	0.136	0.222	0.49801	0.115
+ST_Interleukin_4_Pathway	24	Signalling Transduction KE	-0.40322	-1.3895	0.07642	0.8484	0.997	0.167	0.0414	0.16	0.75954	0.303
+MAP00195_Photosynthesis	16	GenMAPP	-0.56371	-1.386	0.1637	0.81362	0.998	0.625	0.32	0.426	0.72657	0.266
+nktPathway	27	BioCarta	-0.42746	-1.378	0.1236	0.79774	0.999	0.37	0.178	0.305	0.72222	0.256
+cell_adhesion_receptor_activity	29	OBSOLETE. Combining with cell adhesion molecules to initiate a change in cell activity.	-0.39637	-1.3746	0.08094	0.76928	0.999	0.241	0.101	0.218	0.69392	0.227
+HTERT_DOWN	64	Smith_et_al_2003	-0.3428	-1.3461	0.09281	0.84176	0.999	0.422	0.315	0.291	0.7787	0.292
+ST_Wnt_Ca2_cyclic_GMP_Pathway	19	Signalling Transduction KE	-0.45475	-1.3453	0.131	0.8046	0.999	0.263	0.0511	0.25	0.74736	0.261
+ca_nf_at_signalling	95	GEArray	-0.3299	-1.3409	0.08883	0.78415	1	0.305	0.195	0.248	0.73152	0.237
+GPCRs_Class_B_Secretin-like	22	GO	-0.42496	-1.3176	0.1482	0.8338	1	0.273	0.107	0.244	0.77717	0.285
+Inflammatory_Response_Pathway	27	BioCarta	-0.43137	-1.3152	0.1373	0.80749	1	0.333	0.178	0.275	0.75033	0.264
+calcineurinPathway	18	Increased intracellular calcium activates the phosphatase calcineurin in differentiating keratinocytes.	-0.41306	-1.2963	0.1376	0.84236	1	0.111	0.0104	0.11	0.79328	0.296
+dcPathway	19	Dendritic cells internalize and present antigen, after which they migrate to lymphocyte-rich tissues and induce T and B cell differentiation.	-0.4623	-1.2925	0.2	0.8237	1	0.474	0.263	0.35	0.78571	0.27
+no1Pathway	28	BioCarta	-0.36171	-1.286	0.1178	0.81443	1	0.321	0.181	0.264	0.77934	0.261
+drug_resistance_and_metabolism	95	BioCarta	-0.26919	-1.2639	0.08989	0.86431	1	0.211	0.189	0.172	0.8299	0.308
+MAP00193_ATP_synthesis	15	GenMAPP	-0.52688	-1.2583	0.2693	0.82625	1	0.6	0.32	0.409	0.78437	0.268
+MAP03070_Type_III_secretion_system	15	GenMAPP	-0.52688	-1.2583	0.2693	0.82625	1	0.6	0.32	0.409	0.78437	0.268
+MAP00052_Galactose_metabolism	22	GenMAPP	-0.39533	-1.2402	0.2026	0.86111	1	0.318	0.246	0.24	0.81789	0.303
+atmPathway	19	The tumor-suppressing protein kinase ATM responds to radiation-induced DNA damage by blocking cell-cycle progression and activating DNA repair.	-0.43335	-1.2285	0.2149	0.87341	1	0.158	0.0687	0.147	0.82641	0.312
+stemPathway	15	BioCarta	-0.46591	-1.2152	0.2413	0.89371	1	0.467	0.281	0.336	0.85046	0.338
+th1th2Pathway	18	BioCarta	-0.4138	-1.2141	0.2274	0.87168	1	0.444	0.229	0.343	0.83376	0.306
+Eicosanoid_Synthesis	15	BioCarta	-0.40858	-1.212	0.2005	0.85394	1	0.533	0.409	0.316	0.81971	0.29
+DNA_DAMAGE_SIGNALLING	90	GO	-0.31945	-1.2053	0.2369	0.85295	1	0.122	0.0518	0.117	0.8166	0.281
+Il12Pathway	23	BioCarta	-0.41434	-1.2051	0.273	0.83029	1	0.391	0.227	0.303	0.79614	0.259
+ctlPathway	15	Cytotoxic T lymphocytes induce apoptosis in infected cells presenting antigen-MHC-I complexes via the perforin and Fas/Fas ligand pathways.	-0.55277	-1.1691	0.3449	0.93038	1	0.333	0.123	0.293	0.90316	0.374
+CBF_LEUKEMIA_DOWNING_AML	56	Manually Curated	-0.32083	-1.1644	0.2483	0.92285	1	0.321	0.25	0.242	0.89744	0.365
+cell_cycle_regulator	23	OBSOLETE (was not defined before being made obsolete).	-0.39038	-1.1625	0.2929	0.90663	1	0.304	0.162	0.256	0.8866	0.335
+MAP00860_Porphyrin_and_chlorophyll_metabolism	17	GenMAPP	-0.4116	-1.1519	0.2998	0.92168	1	0.412	0.211	0.325	0.90558	0.352
+MAP00230_Purine_metabolism	80	GenMAPP	-0.28737	-1.1416	0.3052	0.9351	1	0.363	0.273	0.266	0.9177	0.369
+SIG_IL4RECEPTOR_IN_B_LYPHOCYTES	26	SignallingAlliance	-0.33539	-1.1363	0.2708	0.93105	1	0.231	0.137	0.2	0.90956	0.371
+PROLIF_GENES	358	Manually Curated	-0.20953	-1.1348	0.149	0.9159	1	0.254	0.236	0.201	0.8944	0.349
+crebPathway	25	CREB is a transcription factor that binds to cAMP-responsive elements (CREs) to activate transcription in response to extracellular signaling.	-0.34054	-1.132	0.2762	0.90476	1	0.2	0.0722	0.186	0.88552	0.338
+MAP00562_Inositol_phosphate_metabolism	18	GenMAPP	-0.37478	-1.1303	0.3052	0.88931	1	0.333	0.134	0.289	0.87261	0.313
+GNF_FEMALE_GENES	77	na	-0.30137	-1.1296	0.2969	0.87258	1	0.377	0.266	0.278	0.85572	0.288
+tidPathway	18	BioCarta	-0.33849	-1.1252	0.2771	0.86924	1	0.389	0.202	0.311	0.84447	0.283
+mitochondriaPathway	19	BioCarta	-0.37408	-1.114	0.3291	0.88603	1	0.105	0.00723	0.105	0.86223	0.315
+MAP00120_Bile_acid_biosynthesis	21	GenMAPP	-0.36765	-1.1092	0.3198	0.88366	1	0.286	0.146	0.245	0.86358	0.308
+ceramidePathway	22	Ceramide is a lipid signaling molecule that can activate proliferative or apoptotic pathways, depending on signaling context, localization, and cell type.	-0.32198	-1.1014	0.3082	0.88935	1	0.0909	0.00723	0.0904	0.8697	0.31
+cell_adhesion_molecule_activity	95	OBSOLETE. Mediates the adhesion of the cell to other cells or to the extracellular matrix.	-0.26277	-1.1001	0.2657	0.87595	1	0.389	0.304	0.273	0.85877	0.288
+CR_DEATH	70	PNAS_2006	-0.26982	-1.0993	0.3144	0.86153	1	0.371	0.341	0.246	0.84466	0.267
+MAP00020_Citrate_cycle_TCA_cycle	18	GenMAPP	-0.41086	-1.0973	0.3695	0.85225	1	0.667	0.394	0.405	0.83509	0.25
+intrinsicPathway	22	BioCarta	-0.39092	-1.096	0.3454	0.84017	1	0.409	0.272	0.299	0.82369	0.228
+il1rPathway	29	BioCarta	-0.32239	-1.085	0.3418	0.8573	1	0.31	0.19	0.252	0.84452	0.259
+MAP00350_Tyrosine_metabolism	28	GenMAPP	-0.33285	-1.0836	0.342	0.84627	1	0.179	0.0573	0.169	0.83626	0.232
+MAP00500_Starch_and_sucrose_metabolism	20	GenMAPP	-0.36762	-1.0829	0.3512	0.83354	1	0.4	0.27	0.293	0.82184	0.211
+il17Pathway	17	BioCarta	-0.42793	-1.0773	0.3929	0.8353	1	0.706	0.365	0.449	0.82529	0.21
+GLYCOL	20	Manually Curated	-0.37406	-1.0728	0.3731	0.83431	1	0.45	0.255	0.336	0.82384	0.21
+MAP00590_Prostaglandin_and_leukotriene_metabolism	17	GenMAPP	-0.35927	-1.0681	0.3494	0.83409	1	0.294	0.252	0.22	0.82694	0.209
+amiPathway	22	Endogenous anti-thrombosis pathways are overwhelmed in plaque-narrowed blood vessels, resulting in potentially lethal myocardial infarction.	-0.39642	-1.0619	0.3995	0.82443	1	0.591	0.33	0.396	0.81538	0.185
+cskPathway	22	Csk inhibits T-cell activation by phosphorylating Lck; Csk is regulated by cAMP-dependent kinases and is opposed by the T-cell activator CD45.	-0.39642	-1.0619	0.3995	0.82443	1	0.591	0.33	0.396	0.81538	0.185
+g1Pathway	26	BioCarta	-0.30959	-1.0601	0.3753	0.81619	1	0.231	0.156	0.195	0.80438	0.174
+cell_adhesion	167	The attachment of a cell, either to another cell or to the extracellular matrix, via cell adhesion molecules.	-0.24554	-1.0584	0.3368	0.80806	1	0.305	0.231	0.239	0.79574	0.157
+mprPathway	22	BioCarta	-0.33511	-1.0577	0.3743	0.79788	1	0.227	0.0722	0.211	0.78503	0.136
+vipPathway	25	BioCarta	-0.31982	-1.0515	0.3817	0.80213	1	0.24	0.135	0.208	0.79589	0.137
+MAP00030_Pentose_phosphate_pathway	15	GenMAPP	-0.37375	-1.0448	0.3771	0.80847	1	0.467	0.255	0.348	0.79912	0.141
+bcl2family_and_reg_network	23	GEArray	-0.29807	-1.0295	0.4259	0.83765	1	0.174	0.109	0.155	0.83183	0.18
+ucalpainPathway	16	BioCarta	-0.39326	-1.0241	0.4183	0.84071	1	0.25	0.0771	0.231	0.83941	0.186
+chrebpPathway	17	Carbohydrate responsive element binding protein (chREBP) is a transcription factor inhibited by cAMP and activated by high carbohydrate levels.	-0.35203	-1.0194	0.4193	0.84114	1	0.235	0.0722	0.219	0.8392	0.191
+Matrix_Metalloproteinases	22	BioCarta	-0.34448	-1.0179	0.432	0.83322	1	0.364	0.198	0.292	0.82937	0.163
+electron_transporter_activity	108	BioCarta	-0.24527	-1.0167	0.399	0.8246	1	0.25	0.227	0.195	0.82226	0.15
+CR_IMMUNE_FUNCTION	50	PNAS_2009	-0.28191	-1.0118	0.4191	0.82677	1	0.34	0.223	0.266	0.82269	0.144
+nos1Pathway	21	BioCarta	-0.29329	-1.0117	0.4225	0.81628	1	0.143	0.0722	0.133	0.8128	0.127
+rarrxrPathway	15	BioCarta	-0.35635	-1.0101	0.4424	0.80911	1	0.6	0.348	0.392	0.80406	0.112
+cell_surface_receptor_linked_signal_transduction	123	Any series of molecular signals initiated by the binding of an extracellular ligand to a receptor on the surface of the target cell.	-0.24005	-1.0098	0.4394	0.79929	1	0.39	0.322	0.268	0.79362	0.093
+etsPathway	16	The Ets transcription factors are activated by Ras and promote macrophage differentiation.	-0.33504	-1.0089	0.4579	0.79144	1	0.25	0.0967	0.226	0.78771	0.079
+tob1Pathway	18	BioCarta	-0.37321	-1.0085	0.46	0.78247	1	0.611	0.365	0.389	0.77945	0.074
+S1P_Signaling	20	BioCarta	-0.3128	-1.001	0.4424	0.79074	1	0.5	0.315	0.343	0.7865	0.077
+nthiPathway	21	BioCarta	-0.33941	-0.98794	0.4701	0.81413	1	0.333	0.188	0.271	0.8138	0.101
+GLUCO	31	Manually Curated	-0.30403	-0.9841	0.4637	0.81349	1	0.355	0.255	0.265	0.81382	0.095
+cell_growth_and_or_maintenance	55	The processes pertinent to the integrated function of a cell.	-0.2541	-0.98301	0.479	0.80613	1	0.309	0.26	0.23	0.80779	0.079
+electron_transport	62	BioCarta	-0.24535	-0.97918	0.4828	0.80611	1	0.194	0.177	0.16	0.80672	0.077
+g2Pathway	23	BioCarta	-0.33774	-0.9702	0.503	0.81859	1	0.087	0.000396	0.0871	0.82161	0.093
+il2rbPathway	36	BioCarta	-0.2907	-0.96913	0.5	0.81176	1	0.167	0.0982	0.151	0.81317	0.08
+ptdinsPathway	20	BioCarta	-0.313	-0.968	0.503	0.80475	1	0.45	0.333	0.301	0.80755	0.07
+ANDROGEN_GENES_FROM_NETAFFX	53	na	-0.24685	-0.9624	0.4954	0.8084	1	0.453	0.403	0.272	0.8125	0.071
+ST_Fas_Signaling_Pathway	56	Signalling Transduction KE	-0.24424	-0.96128	0.5209	0.80186	1	0.179	0.165	0.15	0.80337	0.059
+ctla4Pathway	19	T cell activation requires interaction with an antigen-MHC-I complex on an antigen-presenting cell (APC), as well as CD28 interaction with the APC's CD80 or 86.	-0.37576	-0.94471	0.4515	0.83182	1	0.842	0.447	0.467	0.8353	0.094
+rhoPathway	30	BioCarta	-0.27369	-0.93976	0.5303	0.83423	1	0.167	0.114	0.148	0.83709	0.097
+FA	21	Manually Curated	-0.32553	-0.93315	0.5122	0.84022	1	0.286	0.146	0.245	0.84194	0.095
+ANTI_CD44_UP	23	Hogerkorp_et_al_2003	-0.2872	-0.93281	0.5452	0.83211	1	0.304	0.253	0.228	0.83486	0.083
+ADULT_LIVER_vs_FETAL_LIVER_GNF2	61	Manually Curated	-0.256	-0.92329	0.5718	0.84563	1	0.328	0.249	0.248	0.85	0.105
+GO_0005739	144	GO	-0.24276	-0.91994	0.5272	0.84421	1	0.25	0.193	0.205	0.84752	0.093
+raccycdPathway	22	BioCarta	-0.27766	-0.9191	0.5654	0.83729	1	0.0909	0.019	0.0894	0.84026	0.085
+INSULIN_2F_DOWN	27	Rome_et_al_2003	-0.27167	-0.91257	0.6067	0.84252	1	0.481	0.351	0.313	0.8448	0.085
+INS	24	Manually Curated	-0.27627	-0.91252	0.5711	0.83404	1	0.375	0.352	0.243	0.83648	0.073
+ST_GRANULE_CELL_SURVIVAL_PATHWAY	25	Signalling Transduction KE	-0.26646	-0.90496	0.604	0.84142	1	0.24	0.168	0.2	0.84801	0.076
+MAP00380_Tryptophan_metabolism	42	GenMAPP	-0.248	-0.90314	0.6239	0.83674	1	0.262	0.206	0.209	0.8441	0.071
+MAP00190_Oxidative_phosphorylation	41	GenMAPP	-0.30673	-0.89807	0.574	0.83939	1	0.463	0.32	0.316	0.84276	0.068
+MAP00071_Fatty_acid_metabolism	43	GenMAPP	-0.25311	-0.8952	0.5932	0.83755	1	0.256	0.206	0.204	0.84118	0.062
+AR_MOUSE_PLUS_TESTO_FROM_NETAFFX	50	na	-0.22783	-0.88629	0.6626	0.84819	1	0.28	0.257	0.209	0.85225	0.074
+FRASOR_ER_UP	31	Frasor_et_al_2004	-0.29416	-0.88004	0.5962	0.85317	1	0.452	0.339	0.299	0.85795	0.083
+telPathway	18	BioCarta	-0.2978	-0.87728	0.6097	0.85125	1	0.389	0.315	0.267	0.85482	0.072
+actinYPathway	18	The Arp 2/3 complex localizes to the Y-junction of polymerizing actin fibers that enable lamellipod extension and consequent cell motility.	-0.29241	-0.87707	0.6287	0.84371	1	0.222	0.158	0.187	0.84675	0.06
+cell_proliferation	200	The multiplication or reproduction of cells, resulting in the rapid expansion of a cell population.	-0.17108	-0.86956	0.805	0.85142	1	0.165	0.157	0.142	0.85521	0.063
+MAP00620_Pyruvate_metabolism	30	GenMAPP	-0.26154	-0.8631	0.6228	0.85696	1	0.267	0.206	0.212	0.86506	0.067
+ST_Ga12_Pathway	21	Signalling Transduction KE	-0.26639	-0.86213	0.6607	0.85121	1	0.0952	0.0191	0.0936	0.85872	0.054
+CR_TRANSCRIPTION_FACTORS	67	PNAS_2013	-0.20531	-0.85599	0.7538	0.85622	1	0.134	0.0967	0.122	0.86098	0.063
+mcalpainPathway	23	BioCarta	-0.28541	-0.85434	0.628	0.85151	1	0.174	0.0984	0.157	0.85592	0.056
+MAP00010_Glycolysis_Gluconeogenesis	49	GenMAPP	-0.2236	-0.84008	0.7246	0.87151	1	0.306	0.255	0.229	0.87836	0.076
+SA_CASPASE_CASCADE	17	SigmaAldrich	-0.32023	-0.82933	0.6653	0.88437	1	0.294	0.165	0.246	0.88886	0.095
+GO_ROS	23	FO	-0.24447	-0.81028	0.7231	0.9123	1	0.261	0.174	0.216	0.91667	0.152
+SA_MMP_CYTOKINE_CONNECTION	15	SigmaAldrich	-0.29499	-0.80516	0.7196	0.91337	1	0.267	0.138	0.23	0.91718	0.152
+HOX_LIST_JP	42	Manually Curated	-0.22387	-0.79993	0.7517	0.91464	1	0.119	0.0713	0.111	0.9201	0.15
+pparaPathway	49	BioCarta	-0.19562	-0.79969	0.8244	0.90728	1	0.184	0.159	0.155	0.91279	0.122
+EMT_UP	53	Jechlinger_et_al_2003	-0.25007	-0.79887	0.6749	0.90083	1	0.434	0.347	0.285	0.90642	0.101
+MAP00650_Butanoate_metabolism	19	GenMAPP	-0.26465	-0.7971	0.7335	0.89617	1	0.316	0.257	0.235	0.90126	0.081
+MAP00360_Phenylalanine_metabolism	16	GenMAPP	-0.28585	-0.79486	0.7153	0.89289	1	0.25	0.176	0.206	0.89807	0.066
+MAP00910_Nitrogen_metabolism	19	GenMAPP	-0.2565	-0.78336	0.75	0.90351	1	0.263	0.168	0.219	0.90766	0.091
+CR_CAM	89	PNAS_2002	-0.18685	-0.78075	0.8895	0.90071	1	0.135	0.101	0.122	0.9069	0.068
+cellcyclePathway	23	Cyclins interact with cyclin-dependent kinases to form active kinase complexes that regulate progression through the cell cycle.	-0.27032	-0.78067	0.7297	0.89348	1	0.304	0.216	0.239	0.89968	0.047
+ST_G_alpha_i_Pathway_	34	Signalling Transduction KE	-0.20001	-0.75756	0.8932	0.92267	1	0.147	0.124	0.129	0.92952	0.101
+cardiacegfPathway	16	Cardiac hypertrophy, a response to high blood pressure, is stimulated by GPCR ligands such as angiotensin II that activate the EGF pathway.	-0.23998	-0.75356	0.839	0.921	1	0.125	0.07	0.116	0.92689	0.091
+AR_ORTHOS_MAPPED_TO_U133_VIA_NETAFFX	38	na	-0.20068	-0.723	0.897	0.94948	1	0.316	0.311	0.218	0.95489	0.179
+AR_MOUSE	38	na	-0.20068	-0.723	0.897	0.94948	1	0.316	0.311	0.218	0.95489	0.179
+mitochondr	330	Manually Curated	-0.18157	-0.71543	0.7686	0.95165	1	0.239	0.24	0.188	0.95598	0.177
+LEU_UP	114	Peng_at_al_2002	-0.17014	-0.70792	0.9339	0.95382	1	0.307	0.304	0.216	0.9585	0.184
+TGF_Beta_Signaling_Pathway	34	BioCarta	-0.19553	-0.6869	0.9144	0.9708	1	0.412	0.329	0.277	0.976	0.282
+MAP00640_Propanoate_metabolism	19	GenMAPP	-0.23107	-0.68683	0.8833	0.96346	1	0.368	0.257	0.274	0.96855	0.201
+shh_lisa	17	Manually Curated	-0.22242	-0.68038	0.8924	0.96333	1	0.118	0.0722	0.109	0.96726	0.208
+KRAS_TOP100_CONTROL	56	Cordero_et_al_2005	-0.1719	-0.67044	0.9568	0.96637	1	0.161	0.159	0.136	0.97124	0.204
+human_mitoDB_6_2002	326	Manually Curated	-0.17174	-0.66614	0.8454	0.96355	1	0.23	0.24	0.181	0.96918	0.175
+ST_T_Cell_Signal_Transduction	39	Signalling Transduction KE	-0.19566	-0.65761	0.8678	0.96448	1	0.513	0.406	0.306	0.96954	0.162
+igf1mtorPathway	19	BioCarta	-0.21987	-0.64274	0.9026	0.97025	1	0.474	0.322	0.322	0.97423	0.19
+KRAS_TOP100_KNOCKDOWN	72	Cordero_et_al_2005	-0.19673	-0.62922	0.8503	0.97368	1	0.194	0.197	0.157	0.97785	0.186
+Krebs-TCA_Cycle	25	BioCarta	-0.21504	-0.60781	0.9121	0.98094	1	0.56	0.394	0.34	0.98485	0.241
+MAP00710_Carbon_fixation	16	GenMAPP	-0.20529	-0.60379	0.943	0.97629	1	0.313	0.255	0.233	0.9801	0.177
+SIG_BCR_Signaling_Pathway	44	SignallingAlliance	-0.15144	-0.59383	0.9935	0.97487	1	0.5	0.412	0.295	0.97854	0.137
+CR_REPAIR	39	PNAS_2011	-0.20798	-0.59195	0.8789	0.96903	1	0.0513	0.00317	0.0513	0.97222	0.072
+MAP00330_Arginine_and_proline_metabolism	38	GenMAPP	-0.17278	-0.58032	0.9657	0.96836	1	0.263	0.23	0.203	0.97133	0.031
+VOXPHOS	66	BioCarta	-0.16357	-0.45288	0.945	0.99469	1	0.455	0.43	0.261	1	0.52

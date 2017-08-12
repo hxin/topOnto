@@ -1,0 +1,13 @@
+Package: topOnto.SETSTRUCTURED.db
+Type: Package
+Title: TopOnto ontology db package
+Version: 0.99.0
+Date: 2015-02-05
+Author: Xin He
+Maintainer:Xin He <xin.he@ed.ac.uk>
+Depends: R (>= 2.7.0), methods, AnnotationDbi (>= 1.26.0), graph (>= 1.42.0)
+Suggests: knitr
+Description: TopOnto ontology db package. This package provides objects that represent an ontology.
+biocViews: AnnotationData, FunctionalAnnotation
+License: LGPL
+VignetteBuilder: knitr

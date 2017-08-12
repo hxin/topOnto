@@ -1,0 +1,132 @@
+GS	SIZE	SOURCE	ES	NES	NOM p-val	FDR q-val	FWER p-val	Tag %	Gene %	Signal	FDR (median)	glob.p.val
+parkinPathway	6	BioCarta	-0.81583	-1.7239	0.009671	0.82847	0.542	0.5	0.0693	0.466	0.4374	0.277
+MAP00361_gamma_Hexachlorocyclohexane_degradation	14	GenMAPP	-0.55569	-1.4531	0.07287	1	0.966	0.357	0.124	0.313	1	0.891
+MAP00240_Pyrimidine_metabolism	27	GenMAPP	-0.48743	-1.4516	0.07347	1	0.966	0.407	0.123	0.358	1	0.821
+MAP03020_RNA_polymerase	8	GenMAPP	-0.64016	-1.3864	0.1073	1	0.989	0.5	0.123	0.439	1	0.88
+MAP00230_Purine_metabolism	45	GenMAPP	-0.39769	-1.3842	0.084	1	0.989	0.311	0.142	0.268	1	0.824
+ROS	6	Manually Curated	-0.65076	-1.3775	0.1305	1	0.991	0.5	0.171	0.415	1	0.777
+MAP00790_Folate_biosynthesis	10	GenMAPP	-0.55553	-1.3704	0.1134	1	0.993	0.6	0.358	0.386	1	0.742
+CR_REPAIR	22	PNAS_2011	-0.47115	-1.3328	0.152	1	0.996	0.5	0.295	0.353	1	0.792
+MAP00650_Butanoate_metabolism	14	GenMAPP	-0.51849	-1.3115	0.1852	1	0.997	0.5	0.223	0.389	1	0.801
+freePathway	6	Neutrophils release superoxide to induce lysis in invading bacteria; in neighboring endothelial cells, superoxide dismutase scavenges radicals but produces pro-apoptotic peroxides.	-0.64349	-1.2833	0.1984	1	0.997	0.333	0.0764	0.308	1	0.831
+SA_G2_AND_M_PHASES	8	SigmaAldrich	-0.51388	-1.2738	0.1705	1	0.997	0.875	0.431	0.498	1	0.807
+KRAS_TOP100_CONTROL	34	Cordero_et_al_2005	-0.35232	-1.2629	0.14	1	0.998	0.294	0.139	0.254	1	0.805
+MAP_kinase_kinase_activity	6	GenMAPP	-0.59522	-1.2614	0.2141	1	0.998	0.5	0.231	0.385	1	0.772
+SA_PROGRAMMED_CELL_DEATH	8	SigmaAldrich	-0.47666	-1.2276	0.2134	1	0.998	0.25	0.0467	0.239	1	0.832
+HOX_LIST_JP	24	Manually Curated	-0.38211	-1.2237	0.2075	1	0.998	0.375	0.266	0.276	1	0.812
+FRASOR_ER_UP	22	Frasor_et_al_2004	-0.42398	-1.2204	0.2332	1	0.998	0.409	0.277	0.297	1	0.782
+P53_DOWN	12	Kannan_et_al_2001	-0.45231	-1.2161	0.2544	1	0.998	0.5	0.26	0.371	1	0.762
+MAP00071_Fatty_acid_metabolism	24	GenMAPP	-0.37245	-1.212	0.2028	1	0.999	0.417	0.223	0.325	1	0.726
+betaoxidationPathway	5	BLACK	-0.61416	-1.1842	0.2989	1	1	0.6	0.223	0.466	1	0.783
+shhPathway	10	BioCarta	-0.46401	-1.1809	0.239	1	1	0.4	0.122	0.352	1	0.758
+ANTI_CD44_UP	18	Hogerkorp_et_al_2003	-0.39735	-1.1539	0.2988	1	1	0.167	0.014	0.165	1	0.805
+ANTI_CD44_DOWN	9	Hogerkorp_et_al_2003	-0.4737	-1.1465	0.3191	1	1	0.222	0.0625	0.209	1	0.803
+SA_CASPASE_CASCADE	11	SigmaAldrich	-0.43567	-1.1356	0.3126	1	1	0.0909	3e-04	0.091	1	0.809
+ptc1Pathway	5	BioCarta	-0.57277	-1.1311	0.3768	1	1	1	0.428	0.573	1	0.791
+MAP00100_Sterol_biosynthesis	7	GenMAPP	-0.49866	-1.1243	0.3448	1	1	0.143	0.0017	0.143	1	0.788
+atrbrcaPathway	13	BRCA1 and 2 block cell cycle progression in response to DNA damage and promote double-stranded break repair; mutations induce breast cancer susceptibility.	-0.46277	-1.1138	0.3624	1	1	0.538	0.277	0.39	1	0.788
+salmonellaPathway	8	BioCarta	-0.50507	-1.1113	0.3557	1	1	0.25	0.0291	0.243	1	0.768
+ureacyclePathway	6	BioCarta	-0.49981	-1.1103	0.3592	1	1	0.667	0.184	0.544	1	0.75
+caspasePathway	15	Caspases are cysteine proteases active in apoptosis; caspase-8 and 9 cleave and activate other caspases, while 3, 6, and 7 cleave cellular targets.	-0.3879	-1.1016	0.3333	1	1	0.133	0.0192	0.131	1	0.747
+cell_cycle_checkpointII	6	GO	-0.51465	-1.0999	0.3537	1	1	0.667	0.277	0.482	1	0.725
+Fatty_Acid_Synthesis	10	BioCarta	-0.41748	-1.098	0.3484	1	1	0.5	0.299	0.351	1	0.7
+actinYPathway	13	The Arp 2/3 complex localizes to the Y-junction of polymerizing actin fibers that enable lamellipod extension and consequent cell motility.	-0.41403	-1.0977	0.349	1	1	0.154	0.0291	0.15	1	0.675
+ANDROGEN_GENES_FROM_NETAFFX	30	na	-0.30967	-1.095	0.3113	1	1	0.367	0.207	0.292	1	0.646
+mitochondr	244	Manually Curated	-0.27909	-1.0655	0.4016	1	1	0.32	0.224	0.254	1	0.729
+human_mitoDB_6_2002	234	Manually Curated	-0.29069	-1.0639	0.4254	1	1	0.312	0.224	0.248	1	0.704
+MAP00251_Glutamate_metabolism	13	GenMAPP	-0.41849	-1.0595	0.3908	1	1	0.538	0.184	0.44	1	0.698
+CR_CELL_CYCLE	60	PNAS_2004	-0.33022	-1.0479	0.4213	1	1	0.417	0.297	0.294	1	0.709
+MAP00220_Urea_cycle_and_metabolism_of_amino_groups	13	GenMAPP	-0.40164	-1.047	0.4004	1	1	0.308	0.0581	0.29	1	0.69
+MAP00680_Methane_metabolism	5	GenMAPP	-0.49604	-1.0388	0.4311	1	1	0.2	0.0113	0.198	1	0.699
+longevityPathway	11	BioCarta	-0.38267	-1.0283	0.3941	1	1	0.364	0.262	0.269	1	0.719
+skp2e2fPathway	6	BioCarta	-0.51123	-1.0276	0.4712	1	1	0.333	0.125	0.292	1	0.681
+shh_lisa	11	Manually Curated	-0.40888	-1.0273	0.4447	1	1	0.545	0.268	0.4	1	0.657
+MAP00640_Propanoate_metabolism	16	GenMAPP	-0.36392	-1.0271	0.4318	1	1	0.375	0.218	0.294	1	0.639
+RAP_DOWN	145	Peng_at_al_2002	-0.3033	-1.0217	0.4478	1	1	0.248	0.132	0.219	1	0.638
+Cell_Cycle	56	The progression of biochemical and morphological events that occur during nuclear or cellular replication.	-0.34083	-1.0155	0.4311	1	1	0.375	0.289	0.268	1	0.634
+MAP00280_Valine_leucine_and_isoleucine_degradation	20	GenMAPP	-0.36757	-1.0098	0.4488	1	1	0.35	0.223	0.273	1	0.632
+GO_0005739	102	GO	-0.28324	-1.0071	0.4454	1	1	0.353	0.263	0.263	1	0.618
+fbw7Pathway	5	Cyclin E interacts with cell cycle checkpoint kinase cdk2 to allow transcription of genes required for S phase, including transcription of additional cyclin E.	-0.52861	-1.0037	0.5091	1	1	0.4	0.125	0.35	1	0.587
+p35alzheimersPathway	7	BioCarta	-0.41275	-1.0037	0.4562	1	1	0.286	0.0743	0.265	1	0.607
+mitochondriaPathway	13	BioCarta	-0.38102	-0.98965	0.4693	1	1	0.154	0.0467	0.147	1	0.62
+electron_transport	42	BioCarta	-0.26924	-0.98181	0.4696	1	1	0.143	0.0691	0.134	1	0.618
+Proteasome_Degradation	22	BioCarta	-0.36145	-0.96923	0.4969	1	1	0.5	0.267	0.367	1	0.639
+ndkDynaminPathway	13	BioCarta	-0.36592	-0.96709	0.524	1	1	0.231	0.0548	0.218	1	0.624
+GLUT_DOWN	205	Peng_at_al_2002	-0.27706	-0.96255	0.4908	1	1	0.239	0.155	0.206	1	0.622
+drug_resistance_and_metabolism	69	BioCarta	-0.2572	-0.95576	0.5333	1	1	0.261	0.187	0.213	1	0.599
+tertPathway	6	BioCarta	-0.46218	-0.95576	0.505	1	1	0.5	0.236	0.382	1	0.622
+mta3Pathway	9	BioCarta	-0.41724	-0.95365	0.497	1	1	0.667	0.284	0.477	1	0.585
+TESTIS_GENES_FROM_XHX_AND_NETAFFX	26	na	-0.27672	-0.95304	0.5182	1	1	0.308	0.214	0.242	1	0.562
+FRASOR_ER_DOWN	55	Frasor_et_al_2004	-0.25782	-0.94024	0.5612	1	1	0.273	0.198	0.22	1	0.587
+Il12Pathway	10	BioCarta	-0.37109	-0.93848	0.5371	1	1	0.2	0.0431	0.192	1	0.572
+SA_BONE_MORPHOGENETIC	5	SigmaAldrich	-0.46201	-0.93193	0.5353	1	1	0.2	0.0041	0.199	1	0.578
+MAP00530_Aminosugars_metabolism	7	GenMAPP	-0.42447	-0.9311	0.5502	1	1	0.286	0.115	0.253	1	0.56
+MAP00480_Glutathione_metabolism	17	GenMAPP	-0.37724	-0.92512	0.5434	1	1	0.235	0.0957	0.213	1	0.558
+aktPathway	13	Second messenger PIP3 promotes cell survival by activating the anti-apoptotic kinase AKT.	-0.35375	-0.92298	0.5288	1	1	0.0769	3e-04	0.077	1	0.544
+FA	15	Manually Curated	-0.31509	-0.92219	0.5573	1	1	0.333	0.223	0.259	1	0.515
+cblPathway	9	Activated EGF receptors undergo endocytosis into clathrin-coated vesicles, where they are recycled to the membrane or ubiquitinated by Cbl.	-0.41119	-0.9197	0.5623	1	1	0.222	0.0735	0.206	1	0.501
+CR_TRANSPORT	6	PNAS_2014	-0.38673	-0.91952	0.5596	1	1	0.333	0.181	0.273	0.98579	0.473
+Krebs-TCA_Cycle	16	BioCarta	-0.35111	-0.91401	0.5671	1	1	0.312	0.183	0.256	0.98656	0.473
+soddPathway	5	BioCarta	-0.44471	-0.91195	0.6086	1	1	0.2	0.0484	0.19	0.97536	0.458
+proteasomePathway	15	BioCarta	-0.3791	-0.91193	0.5656	0.99224	1	0.6	0.271	0.438	0.96201	0.439
+Electron_Transport_Chain	53	BioCarta	-0.30976	-0.90775	0.5428	0.98787	1	0.472	0.323	0.321	0.96132	0.437
+eif4Pathway	15	The eIF-4F complex recognizes 5' mRNA caps, recruits RNA helicases, and maintains mRNA-ribosome bridging.	-0.35214	-0.89305	0.6229	1	1	0.533	0.306	0.371	0.98318	0.473
+p53_signalling	62	BioCarta	-0.24472	-0.88199	0.6149	1	1	0.355	0.251	0.268	1	0.501
+p27Pathway	8	BioCarta	-0.40515	-0.86959	0.6204	1	1	0.375	0.222	0.292	1	0.53
+DNA_DAMAGE_SIGNALLING	56	GO	-0.2602	-0.86534	0.6008	1	1	0.339	0.295	0.24	1	0.524
+MAP00410_beta_Alanine_metabolism	13	GenMAPP	-0.32194	-0.86135	0.6646	1	1	0.385	0.218	0.301	1	0.519
+CR_DNA_MET_AND_MOD	18	PNAS_2007	-0.30092	-0.85955	0.644	1	1	0.444	0.37	0.281	1	0.507
+PGC	267	Manually Curated	-0.21086	-0.85943	0.6699	1	1	0.27	0.228	0.214	0.991	0.479
+Inflammatory_Response_Pathway	16	BioCarta	-0.33157	-0.85498	0.6078	1	1	0.25	0.149	0.213	0.99009	0.475
+sarsPathway	6	BioCarta	-0.37359	-0.85328	0.7044	0.9938	1	0.667	0.288	0.475	0.97844	0.458
+hsp27Pathway	7	BioCarta	-0.37434	-0.85058	0.666	0.98708	1	0.143	3e-04	0.143	0.97411	0.449
+MAP00620_Pyruvate_metabolism	21	GenMAPP	-0.2789	-0.84614	0.6875	0.98457	1	0.333	0.215	0.262	0.96809	0.445
+etcPathway	5	Energy is extracted from carbohydrates via oxidation and transferred to the mitochondrial electron transport chain, which couples ATP synthesis to the reduction of oxygen to water.	-0.45097	-0.84276	0.6735	0.98023	1	0.4	0.151	0.34	0.96346	0.431
+MAP00380_Tryptophan_metabolism	25	GenMAPP	-0.24629	-0.83038	0.7391	0.99445	1	0.36	0.218	0.282	0.98194	0.463
+no2il12Pathway	5	BioCarta	-0.43117	-0.81878	0.6616	1	1	0.2	0.0012	0.2	0.9986	0.498
+cell_adhesion_receptor_activity	27	OBSOLETE. Combining with cell adhesion molecules to initiate a change in cell activity.	-0.26551	-0.80716	0.692	1	1	0.111	0.0445	0.106	1	0.534
+CR_CYTOSKELETON	15	PNAS_2005	-0.30297	-0.79976	0.7393	1	1	0.267	0.145	0.228	1	0.547
+VOXPHOS	47	BioCarta	-0.2856	-0.79694	0.6134	1	1	0.468	0.337	0.312	1	0.531
+arfPathway	9	Cyclin-dependent kinase inhibitor 2A is a tumor suppressor that induces G1 arrest and can activate the p53 pathway, leading to G2/M arrest.	-0.31755	-0.79378	0.7516	1	1	0.444	0.236	0.34	1	0.522
+GLUCOSE_DOWN	100	Peng_at_al_2002	-0.21482	-0.79304	0.7363	1	1	0.2	0.141	0.173	0.99718	0.491
+MAP00600_Sphingoglycolipid_metabolism	11	GenMAPP	-0.29799	-0.79196	0.7379	0.9947	1	0.364	0.191	0.294	0.98819	0.47
+SA_REG_CASCADE_OF_CYCLIN_EXPR	8	SigmaAldrich	-0.35193	-0.77558	0.7322	1	1	0.625	0.289	0.445	1	0.544
+LEU_DOWN	123	Peng_at_al_2002	-0.23869	-0.76041	0.718	1	1	0.301	0.224	0.236	1	0.597
+MAP00310_Lysine_degradation	13	GenMAPP	-0.2765	-0.75948	0.7976	1	1	0.385	0.218	0.301	1	0.572
+MAP00910_Nitrogen_metabolism	12	GenMAPP	-0.26432	-0.75909	0.8143	1	1	0.333	0.184	0.272	1	0.539
+cdc25Pathway	7	The protein phosphatase Cdc25 is phosphorylated by Chk1 and activates Cdc2 to stimulate eukaryotic cells into M phase.	-0.35482	-0.75034	0.7433	1	1	0.714	0.428	0.409	1	0.562
+cell_cycle_checkpoint	16	A point in the eukaryotic cell cycle where progress through the cycle can be halted until conditions are suitable for the cell to proceed to the next stage.	-0.2826	-0.73979	0.7677	1	1	0.312	0.253	0.234	1	0.586
+rasPathway	17	BioCarta	-0.27626	-0.73741	0.7628	1	1	0.0588	3e-04	0.0589	1	0.574
+MAP00630_Glyoxylate_and_dicarboxylate_metabolism	7	GenMAPP	-0.34934	-0.73468	0.7776	1	1	0.571	0.368	0.361	1	0.563
+cell_cycle_regulator	22	OBSOLETE (was not defined before being made obsolete).	-0.25974	-0.72338	0.7965	1	1	0.364	0.285	0.26	1	0.589
+NFKB_REDUCED	12	Hinata_et_al_2003	-0.27278	-0.6857	0.8457	1	1	0.583	0.371	0.367	1	0.801
+mprPathway	12	BioCarta	-0.24501	-0.6791	0.8735	1	1	0.583	0.306	0.405	1	0.809
+UPREG_BY_HOXA9	25	Manually Curated	-0.23079	-0.6628	0.8577	1	1	0.48	0.418	0.28	1	0.857
+mtorPathway	14	BioCarta	-0.26725	-0.65426	0.8667	1	1	0.429	0.3	0.301	1	0.878
+CR_SIGNALLING	127	PNAS_2012	-0.17493	-0.64659	0.931	1	1	0.26	0.266	0.193	1	0.886
+tRNA_Synthetases	14	BioCarta	-0.24933	-0.6405	0.8762	1	1	0.0714	0.0191	0.0702	1	0.888
+TCA	9	Manually Curated	-0.28153	-0.63153	0.8657	1	1	0.222	0.151	0.189	1	0.903
+erk5Pathway	11	Signaling between a tissue and its innervating axon stimulates retrograde transport via Trk receptors, which activate Erk5, which induces transcription of anti-apoptotic factors.	-0.27905	-0.62598	0.848	1	1	0.364	0.306	0.253	1	0.903
+ST_p38_MAPK_Pathway	26	Signalling Transduction KE	-0.20678	-0.6181	0.908	1	1	0.0769	0.0431	0.0738	1	0.913
+mRNA_binding_activity	5	BioCarta	-0.29554	-0.61076	0.9281	1	1	0.6	0.374	0.376	1	0.919
+mcalpainPathway	15	BioCarta	-0.23479	-0.60785	0.8962	1	1	0.2	0.122	0.176	1	0.907
+g2Pathway	18	BioCarta	-0.21699	-0.60218	0.928	1	1	0.389	0.277	0.282	1	0.903
+srcRPTPPathway	7	BioCarta	-0.30133	-0.60056	0.8716	1	1	0.429	0.278	0.31	1	0.888
+ranklPathway	6	BioCarta	-0.27445	-0.59891	0.9261	1	1	0.333	0.2	0.267	1	0.867
+rbPathway	9	BioCarta	-0.26324	-0.5934	0.9115	1	1	0.667	0.428	0.382	1	0.865
+leptinPathway	5	BioCarta	-0.28808	-0.59132	0.9242	1	1	0.8	0.448	0.441	1	0.837
+cell_cycle_arrest	27	Any process by which progression through the cell cycle is halted during one of the normal phases (G1, S, G2, M).	-0.20747	-0.58076	0.9287	1	1	0.481	0.377	0.301	1	0.859
+cftrPathway	9	The cAMP-regulated chloride channel CFTR (deficient in cystic fibrosis) is regulated by the surface-localized beta-adrenergic receptor.	-0.2246	-0.57827	0.9552	1	1	0.444	0.273	0.323	1	0.829
+plk3Pathway	5	BioCarta	-0.28652	-0.56474	0.9392	1	1	0.6	0.326	0.405	1	0.864
+MAP00020_Citrate_cycle_TCA_cycle	13	GenMAPP	-0.22915	-0.55663	0.9266	1	1	0.231	0.183	0.189	1	0.872
+MAP00970_Aminoacyl_tRNA_biosynthesis	13	GenMAPP	-0.21403	-0.55424	0.9635	1	1	0.154	0.169	0.128	1	0.833
+GO_ROS	19	FO	-0.20246	-0.54231	0.9663	1	1	0.105	0.0764	0.0974	1	0.841
+ST_Type_I_Interferon_Pathway	5	Signalling Transduction KE	-0.25638	-0.53893	0.9761	1	1	0.4	0.23	0.308	1	0.804
+mRNA_splicing	38	BioCarta	-0.17709	-0.53685	0.9592	1	1	0.289	0.258	0.216	1	0.752
+crebPathway	20	CREB is a transcription factor that binds to cAMP-responsive elements (CREs) to activate transcription in response to extracellular signaling.	-0.1919	-0.53639	0.9807	1	1	0.45	0.306	0.313	1	0.655
+MAP00190_Oxidative_phosphorylation	25	GenMAPP	-0.17626	-0.48764	0.9665	1	1	0.16	0.131	0.139	1	0.901
+SA_DAG1	6	SigmaAldrich	-0.2354	-0.47096	0.994	1	1	0.167	0.0585	0.157	1	0.906
+vitcbPathway	6	BioCarta	-0.22986	-0.43554	0.992	1	1	0.167	0.102	0.15	1	0.97
+ptenPathway	12	BioCarta	-0.19256	-0.43169	0.9877	1	1	1	0.808	0.192	1	0.899
+th1th2Pathway	5	BioCarta	-0.20675	-0.40596	1	1	1	1	0.793	0.207	1	0.864
+malatexPathway	6	BioCarta	-0.20918	-0.40214	0.998	0.99732	1	1	0.791	0.209	1	0.622

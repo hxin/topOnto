@@ -1,0 +1,90 @@
+GS	SIZE	SOURCE	ES	NES	NOM p-val	FDR q-val	FWER p-val	Tag %	Gene %	Signal	FDR (median)	glob.p.val
+amiPathway	22	Endogenous anti-thrombosis pathways are overwhelmed in plaque-narrowed blood vessels, resulting in potentially lethal myocardial infarction.	0.73425	2.0201	0.001898	0.011516	0.033	0.5	0.0985	0.453	0	0.002
+cskPathway	22	Csk inhibits T-cell activation by phosphorylating Lck; Csk is regulated by cAMP-dependent kinases and is opposed by the T-cell activator CD45.	0.73425	2.0201	0.001898	0.011516	0.033	0.5	0.0985	0.453	0	0.002
+badPathway	19	When phosphorylated, BAD is inhibited by sequestration; when non-phosphorylated, it promotes apoptosis by inactivating pro-survival BCL-XL and BCL-2.	0.63675	2.0002	0	0.0097358	0.039	0.421	0.146	0.361	0	0.001
+Il12Pathway	22	BioCarta	0.66632	1.8535	0.008	0.053613	0.238	0.455	0.0876	0.416	0	0.003
+no2il12Pathway	16	BioCarta	0.70376	1.8005	0.01761	0.076469	0.364	0.438	0.0876	0.4	0	0.002
+GO_ROS	18	FO	0.61388	1.7593	0.004016	0.092805	0.454	0.5	0.163	0.42	0	0.003
+tob1Pathway	18	BioCarta	0.61392	1.6527	0.04381	0.21423	0.737	0.389	0.0876	0.356	0.15365	0.017
+HEMO_TF_LIST_JP	66	Manually Curated	0.43659	1.646	0.00947	0.1984	0.757	0.364	0.184	0.3	0.14638	0.008
+ctla4Pathway	16	T cell activation requires interaction with an antigen-MHC-I complex on an antigen-presenting cell (APC), as well as CD28 interaction with the APC's CD80 or 86.	0.67024	1.6111	0.04322	0.23127	0.84	0.75	0.198	0.603	0.1705	0.015
+ST_G_alpha_i_Pathway_	29	Signalling Transduction KE	0.46314	1.6102	0.01134	0.20932	0.84	0.483	0.267	0.356	0.15456	0.008
+il17Pathway	17	BioCarta	0.60307	1.5239	0.08507	0.35214	0.955	0.471	0.0876	0.431	0.29966	0.032
+SIG_BCR_Signaling_Pathway	39	SignallingAlliance	0.44779	1.4955	0.07308	0.38463	0.973	0.41	0.222	0.322	0.33209	0.038
+MAP00590_Prostaglandin_and_leukotriene_metabolism	15	GenMAPP	0.53313	1.4842	0.04283	0.38014	0.978	0.467	0.176	0.386	0.32601	0.035
+FETAL_LIVER_HS_ENRICHED_TF_JP	53	Manually Curated	0.38407	1.4605	0.05714	0.40866	0.986	0.321	0.184	0.264	0.35564	0.04
+ST_GRANULE_CELL_SURVIVAL_PATHWAY	21	Signalling Transduction KE	0.46936	1.4573	0.07813	0.38827	0.988	0.429	0.216	0.337	0.33905	0.029
+HOX_LIST_JP	30	Manually Curated	0.41603	1.4112	0.0641	0.47176	0.997	0.333	0.163	0.281	0.42314	0.059
+ST_ADRENERGIC	32	Signalling Transduction KE	0.39412	1.4074	0.05576	0.45385	0.997	0.5	0.278	0.363	0.40843	0.048
+CR_IMMUNE_FUNCTION	46	PNAS_2009	0.44308	1.3992	0.1429	0.44875	0.997	0.326	0.13	0.286	0.4092	0.042
+GPCRs_Class_B_Secretin-like	18	GO	0.48259	1.3534	0.1207	0.53905	1	0.333	0.15	0.284	0.49091	0.061
+tcrPathway	39	BioCarta	0.38835	1.3499	0.1134	0.52113	1	0.256	0.0876	0.236	0.47404	0.056
+CBF_LEUKEMIA_DOWNING_AML	41	Manually Curated	0.39157	1.343	0.1212	0.51315	1	0.415	0.202	0.333	0.46445	0.05
+SIG_PIP3_signaling_in_B_lymphocytes	28	SignallingAlliance	0.39938	1.3378	0.1248	0.50299	1	0.464	0.267	0.342	0.46089	0.042
+ST_Differentiation_Pathway_in_PC12_Cells	34	Signalling Transduction KE	0.37333	1.3312	0.1046	0.49663	1	0.353	0.222	0.277	0.45685	0.033
+fatty_acid_metabolism	15	BioCarta	0.47317	1.3148	0.1703	0.51379	1	0.667	0.292	0.474	0.47637	0.038
+RAP_UP	116	Peng_at_al_2002	0.29562	1.3023	0.1016	0.52242	1	0.362	0.244	0.28	0.48899	0.036
+Wnt_Signaling	36	BioCarta	0.35272	1.2987	0.1171	0.51122	1	0.389	0.199	0.314	0.48536	0.031
+MAP00561_Glycerolipid_metabolism	37	GenMAPP	0.36361	1.2185	0.1961	0.69338	1	0.459	0.288	0.329	0.67385	0.116
+ST_MONOCYTE_AD_PATHWAY	23	Signalling Transduction KE	0.35906	1.2063	0.2	0.70375	1	0.478	0.275	0.348	0.68763	0.12
+ADULT_LIVER_vs_FETAL_LIVER_GNF2	46	Manually Curated	0.32275	1.1896	0.202	0.72361	1	0.413	0.334	0.278	0.70431	0.134
+ccr5Pathway	15	CCR5 is a G-protein coupled receptor expressed in macrophages that recognizes chemokine ligands and is targeted by the HIV envelope protein GP120.	0.4132	1.1804	0.2465	0.72462	1	0.4	0.17	0.333	0.70913	0.13
+ST_Wnt_beta_catenin_Pathway	16	Signalling Transduction KE	0.39099	1.1776	0.2565	0.70834	1	0.313	0.154	0.265	0.68996	0.11
+crebPathway	19	CREB is a transcription factor that binds to cAMP-responsive elements (CREs) to activate transcription in response to extracellular signaling.	0.38239	1.1706	0.2589	0.70503	1	0.211	0.132	0.183	0.68407	0.106
+ST_Gaq_Pathway	24	Signalling Transduction KE	0.33382	1.1513	0.2523	0.73389	1	0.333	0.205	0.266	0.71733	0.12
+ST_JNK_MAPK_Pathway	29	Signalling Transduction KE	0.34413	1.1274	0.3044	0.77524	1	0.414	0.216	0.326	0.75619	0.158
+ST_T_Cell_Signal_Transduction	29	Signalling Transduction KE	0.36485	1.1228	0.3289	0.76477	1	0.379	0.221	0.297	0.75275	0.143
+ANDROGEN_GENES_FROM_NETAFFX	35	na	0.34761	1.116	0.3026	0.76049	1	0.457	0.291	0.326	0.74992	0.134
+cell_surface_receptor_linked_signal_transduction	100	Any series of molecular signals initiated by the binding of an extracellular ligand to a receptor on the surface of the target cell.	0.27836	1.1044	0.3088	0.77088	1	0.25	0.151	0.216	0.75816	0.136
+nos1Pathway	18	BioCarta	0.38047	1.0995	0.351	0.7643	1	0.444	0.302	0.311	0.75552	0.13
+MAPK_Cascade	19	GO	0.35898	1.0926	0.3281	0.76249	1	0.211	0.0663	0.197	0.75319	0.122
+mprPathway	21	BioCarta	0.35614	1.0886	0.3581	0.7523	1	0.19	0.0985	0.172	0.74632	0.107
+ST_Dictyostelium_discoideum_cAMP_Chemotaxis_Pathway	25	Signalling Transduction KE	0.32208	1.088	0.3505	0.7358	1	0.4	0.267	0.295	0.72848	0.094
+MAP00860_Porphyrin_and_chlorophyll_metabolism	17	GenMAPP	0.36195	1.0635	0.3595	0.78034	1	0.294	0.131	0.256	0.77337	0.124
+SA_B_CELL_RECEPTOR_COMPLEXES	19	SigmaAldrich	0.35455	1.0601	0.3594	0.77062	1	0.316	0.133	0.275	0.76633	0.111
+dcPathway	18	Dendritic cells internalize and present antigen, after which they migrate to lymphocyte-rich tissues and induce T and B cell differentiation.	0.39434	1.0481	0.4135	0.78275	1	0.333	0.225	0.259	0.77706	0.111
+cell_adhesion_molecule_activity	81	OBSOLETE. Mediates the adhesion of the cell to other cells or to the extracellular matrix.	0.26835	1.0465	0.3924	0.76926	1	0.358	0.232	0.279	0.76433	0.099
+ST_Ga12_Pathway	18	Signalling Transduction KE	0.3341	1.0139	0.4362	0.83116	1	0.278	0.126	0.244	0.82741	0.175
+cell_adhesion	132	The attachment of a cell, either to another cell or to the extracellular matrix, via cell adhesion molecules.	0.25321	1.0094	0.4359	0.8255	1	0.25	0.154	0.217	0.82079	0.163
+CR_TRANSCRIPTION_FACTORS	63	PNAS_2013	0.26413	1.0085	0.4393	0.81069	1	0.254	0.159	0.216	0.80697	0.135
+GPCRs_Class_A_Rhodopsin-like	94	GO	0.30819	0.99907	0.4751	0.81712	1	0.298	0.216	0.238	0.81735	0.134
+AR_ORTHOS_MAPPED_TO_U133_VIA_NETAFFX	29	na	0.30424	0.98629	0.4908	0.81509	1	0.345	0.236	0.265	0.81798	0.121
+AR_MOUSE	29	na	0.30424	0.98629	0.4908	0.81509	1	0.345	0.236	0.265	0.81798	0.121
+electron_transporter_activity	79	BioCarta	0.25805	0.97725	0.464	0.82078	1	0.443	0.323	0.305	0.82354	0.116
+GLUCOSE_UP	29	Peng_at_al_2002	0.27451	0.9562	0.4947	0.85379	1	0.241	0.18	0.199	0.85444	0.16
+SIG_IL4RECEPTOR_IN_B_LYPHOCYTES	21	SignallingAlliance	0.30306	0.95252	0.5106	0.84582	1	0.429	0.288	0.306	0.84553	0.145
+MAP00361_gamma_Hexachlorocyclohexane_degradation	23	GenMAPP	0.31091	0.9496	0.5498	0.83719	1	0.478	0.306	0.333	0.83662	0.124
+gpcrPathway	31	BioCarta	0.27791	0.94112	0.5416	0.84137	1	0.226	0.173	0.188	0.84075	0.127
+ST_B_Cell_Antigen_Receptor	32	Signalling Transduction KE	0.26782	0.93953	0.5537	0.82984	1	0.406	0.3	0.286	0.8284	0.099
+AR_MOUSE_PLUS_TESTO_FROM_NETAFFX	39	na	0.27196	0.93503	0.5222	0.82545	1	0.308	0.236	0.237	0.82464	0.091
+nfatPathway	43	BioCarta	0.25231	0.93438	0.5767	0.81283	1	0.302	0.233	0.234	0.81226	0.067
+MAP00120_Bile_acid_biosynthesis	19	GenMAPP	0.31576	0.92434	0.5742	0.82117	1	0.474	0.291	0.337	0.82253	0.075
+nktPathway	27	BioCarta	0.31356	0.91857	0.5407	0.81962	1	0.259	0.188	0.212	0.82264	0.062
+ST_Phosphoinositide_3_Kinase_Pathway	29	Signalling Transduction KE	0.26672	0.90516	0.6073	0.83402	1	0.207	0.132	0.181	0.83737	0.073
+SIG_CD40PATHWAYMAP	25	SignallingAlliance	0.2632	0.9024	0.6066	0.82661	1	0.32	0.222	0.25	0.82794	0.061
+MAP00260_Glycine_serine_and_threonine_metabolism	20	GenMAPP	0.29802	0.88096	0.6374	0.85691	1	0.2	0.106	0.18	0.86428	0.094
+cell_motility	78	Any process involved in the controlled movement of a cell.	0.21989	0.86969	0.6316	0.86668	1	0.205	0.126	0.182	0.87437	0.105
+CR_CYTOSKELETON	21	PNAS_2005	0.29157	0.86942	0.6344	0.85407	1	0.381	0.24	0.291	0.86153	0.075
+TGF_Beta_Signaling_Pathway	33	BioCarta	0.24822	0.86351	0.6827	0.8535	1	0.182	0.101	0.165	0.86013	0.068
+G13_Signaling_Pathway	22	BioCarta	0.27275	0.86288	0.6434	0.84194	1	0.182	0.0703	0.17	0.84938	0.052
+pparaPathway	44	BioCarta	0.22183	0.82274	0.7766	0.9048	1	0.205	0.17	0.171	0.91299	0.143
+intrinsicPathway	22	BioCarta	0.2875	0.81386	0.6998	0.90857	1	0.318	0.171	0.265	0.91543	0.142
+biopeptidesPathway	31	Extracellular signaling peptides exert biological effects via G-protein coupled receptors (GPCRs), which activate intracellular GTPases.	0.2366	0.812	0.753	0.89905	1	0.29	0.216	0.229	0.9068	0.114
+MAP00071_Fatty_acid_metabolism	36	GenMAPP	0.24134	0.80895	0.7388	0.89241	1	0.639	0.401	0.385	0.89899	0.083
+FA	18	Manually Curated	0.2921	0.80837	0.6874	0.88103	1	0.167	0.0613	0.157	0.88747	0.064
+HTERT_DOWN	62	Smith_et_al_2003	0.20617	0.80037	0.7947	0.8827	1	0.323	0.256	0.243	0.88914	0.051
+HUMAN_CD34_ENRICHED_TF_JP	131	Manually Curated	0.1811	0.79096	0.8267	0.88661	1	0.183	0.18	0.154	0.89376	0.057
+mcalpainPathway	20	BioCarta	0.24992	0.78806	0.7827	0.87966	1	0.15	0.0985	0.136	0.88656	0.037
+no1Pathway	26	BioCarta	0.24182	0.77897	0.7852	0.88326	1	0.346	0.256	0.259	0.89062	0.037
+RAR_UP	22	Manually Curated	0.26019	0.75413	0.7674	0.90914	1	0.136	0.0506	0.13	0.91488	0.064
+MAP00380_Tryptophan_metabolism	37	GenMAPP	0.22289	0.74788	0.8316	0.90622	1	0.459	0.306	0.321	0.91253	0.048
+SIG_PIP3SIGINCARDIACMYOCTES	45	SignallingAlliance	0.18869	0.71608	0.8905	0.93809	1	0.244	0.222	0.192	0.94486	0.12
+MAP00150_Androgen_and_estrogen_metabolism	16	GenMAPP	0.28117	0.71129	0.8026	0.93238	1	0.438	0.291	0.311	0.93888	0.083
+ST_Ga13_Pathway	26	Signalling Transduction KE	0.20119	0.66449	0.9343	0.97337	1	0.192	0.132	0.168	0.97938	0.289
+INS	17	Manually Curated	0.21718	0.65741	0.9218	0.96816	1	0.176	0.132	0.154	0.97417	0.227
+S1P_Signaling	15	BioCarta	0.19869	0.60211	0.9594	1	1	0.267	0.205	0.213	1	0.58
+SIG_CHEMOTAXIS	27	SignallingAlliance	0.16645	0.59666	0.9596	0.99314	1	0.296	0.267	0.218	0.99676	0.45
+inflamPathway	27	BioCarta	0.19777	0.58609	0.9512	0.98804	1	0.185	0.171	0.154	0.99224	0.353
+ANTI_CD44_UP	22	Hogerkorp_et_al_2003	0.16859	0.51965	0.9866	1	1	0.409	0.34	0.271	1	0.695
+electron_transport	45	BioCarta	0.1417	0.48993	0.9982	1	1	0.333	0.306	0.233	1	0.622
+SIG_InsulinReceptorPathwayInCardiacMyocytes	38	SignallingAlliance	0.13485	0.47582	0.9964	0.99158	1	0.184	0.222	0.144	0.9931	0.365

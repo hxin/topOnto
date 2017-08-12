@@ -1,0 +1,25 @@
+Run of GSEA on  2015-12-21 15:54:59
+input.ds= /home/xin/Downloads/GSEA-P-R/Datasets/Lung_Stanford.gct
+input.cls= /home/xin/Downloads/GSEA-P-R/Datasets/Lung_Stanford.cls
+gene.ann = 
+gs.db= /home/xin/Downloads/GSEA-P-R/GeneSetDatabases/C2.gmt
+gs.ann = 
+output.directory = /home/xin/Downloads/GSEA-P-R/Lung_Stanford_HDO_test/
+doc.string =  Lung_Stanford_C2
+non.interactive.run = FALSE
+reshuffling.type = sample.labels
+nperm = 1000
+weighted.score.type = 1
+nom.p.val.threshold = -1
+fwer.p.val.threshold = -1
+fdr.q.val.threshold = 0.25
+topgs = 20
+adjust.FDR.q.val = FALSE
+gs.size.threshold.min = 5
+gs.size.threshold.max = 500
+reverse.sign = FALSE
+preproc.type = 0
+random.seed = 760435
+perm.type = 0
+fraction = 1
+replace = FALSE

@@ -1,0 +1,2 @@
+GS	SIZE	SOURCE	ES	NES	NOM p-val	FDR q-val	FWER p-val	Tag %	Gene %	Signal	FDR (median)	glob.p.val
+LUNGB	70	black	0.62289	1.8986	0	0	0	0.529	0.179	0.44	0	0

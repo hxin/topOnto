@@ -1,0 +1,7 @@
+DBSCHEMA=SETFLAT2_DB
+DBSCHEMAVERSION=1.0
+SOURCENAME=SETFLAT2
+SOURCURL=http://www.obofoundry.org/cgi-bin/detail.cgi?id=disease_ontology
+SOURCEDATE=20170805
+ONLY_IS_A=
+VERSION=1.2
