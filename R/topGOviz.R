@@ -34,8 +34,7 @@ showGroupDensity <- function(object, whichGO, ranks = FALSE, rm.one = TRUE) {
 
 
 if(!isGeneric("printGraph"))
-  setGeneric("printGraph",
-             function(object, result, firstSigNodes, refResult, ...) standardGeneric("printGraph"))
+  setGeneric("printGraph",function(object, result, firstSigNodes, refResult, ...) standardGeneric("printGraph"))
 
 
 setMethod("printGraph",

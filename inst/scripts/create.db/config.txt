@@ -185,7 +185,6 @@ VERSION=1.2
 OBO="/home/xin/Workspace/DisEnt/disent/data/Chromosome.obo"
 
 
-
 PACKAGE_NAME=topOnto.HDO.db
 DBSCHEMA="HDO_DB"
 DBSCHEMAVERSION=1.0
@@ -195,3 +194,30 @@ SOURCEDATE=20150219
 VERSION=1.2
 OBO="/Users/xinhe/Documents/Rworkspace/topOnto/inst/extdata/ontology/hdo20151204.obo"
 
+PACKAGE_NAME=topOnto.SETFLAT.db
+DBSCHEMA="SETFLAT_DB"
+DBSCHEMAVERSION=1.0
+SOURCENAME="SETFLAT"
+SOURCURL="http://www.obofoundry.org/cgi-bin/detail.cgi?id=disease_ontology"
+SOURCEDATE=20170805
+VERSION=1.2
+OBO="/Users/xinhe/Documents/Thesis/data/evaluation/gseacsw/topOnto/set_flat.obo"
+
+PACKAGE_NAME=topOnto.SETSTRUCTURED.db
+DBSCHEMA="SETFLAT_DB"
+DBSCHEMAVERSION=1.0
+SOURCENAME="SETSTRUCTURED"
+SOURCURL="http://www.obofoundry.org/cgi-bin/detail.cgi?id=disease_ontology"
+SOURCEDATE=20170805
+VERSION=1.2
+OBO="/Users/xinhe/Documents/Thesis/data/evaluation/gseacsw/topOnto/set_structured.obo"
+
+
+PACKAGE_NAME=topOnto.SETFLAT2.db
+DBSCHEMA="SETFLAT2_DB"
+DBSCHEMAVERSION=1.0
+SOURCENAME="SETFLAT2"
+SOURCURL="http://www.obofoundry.org/cgi-bin/detail.cgi?id=disease_ontology"
+SOURCEDATE=20170805
+VERSION=1.2
+OBO="/Users/xinhe/Documents/Thesis/data/evaluation/gseacsw/topOnto/set_flat2.obo"

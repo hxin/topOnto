@@ -367,7 +367,7 @@ annFUN.gene2GO.Score <- function( feasibleGenes = NULL, gene2GO) {
   }
   
   GO2gene<-revmapWithScore(gene2GO)
-  GO2gene<-GO2gene[-(names(GO2gene) %in% ls(ontoGO))]
+  GO2gene<-GO2gene[(names(GO2gene) %in% ls(ontoGO))]
   return(GO2gene)
 }
 

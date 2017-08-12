@@ -90,7 +90,7 @@ setMethod("initialize", "topONTdata",
             ##  List of 3313
             ##  $ DOID:0000000: chr [1:117] "10" "19" "150" "155" ...
             ##  $ DOID:0001816: chr [1:77] "284" "285" "302" "309" ...
-            #browser()
+            # browser()
             cat("\nBuilding most specific terms .....")
             mostSpecificGOs <- annotationFun(.Object@allGenes, ...)
             cat("\t(", length(mostSpecificGOs), "terms found. )\n")

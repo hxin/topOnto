@@ -296,7 +296,7 @@ GSEA.GeneRanking <- function(A, class.labels, nperm=10, reshuffling.type='sample
   for (r in 1:nperm) {
     obs.order.matrix[,r] <- order(obs.s2n.matrix[,r], decreasing=T)            
   }
-  browser()
+  # browser()
   #rescale correl to (-1,1]
   for(k in 1:ncol(s2n.matrix)){
     x<-s2n.matrix[,k]
@@ -335,7 +335,7 @@ GSEA.GeneRanking <- function(A, class.labels, nperm=10, reshuffling.type='sample
               reshuffled.class.labels1 = reshuffled.class.labels1))
 }
 
-GSEA.EnrichmentScore.weighted <- function(gene.list, gene.set, correl.vector = NULL,gene.labels,exp.type=1,scores=NULL) {  
+GSEA.EnrichmentScore.weighted <- function(gene.list, gene.set, correl.vector = NULL,gene.labels,exp.type=1,scores=NULL,lambda=1) {  
   #
   # Computes the weighted GSEA score of gene.set in gene.list. 
   # The weighted score type is the exponent of the correlation 
@@ -365,7 +365,7 @@ GSEA.EnrichmentScore.weighted <- function(gene.list, gene.set, correl.vector = N
   # its use, misuse, or functionality.
   #type = 0 equ step  1 use s2n 2 use weight
   
-  #browser()
+  browser()
   gene.labels<-correl.vector
   correl.vector<-sort(correl.vector,decreasing = T)
   if(exp.type == 0){
@@ -375,7 +375,7 @@ GSEA.EnrichmentScore.weighted <- function(gene.list, gene.set, correl.vector = N
     weights=1/scores
     t.i=c(1)
   }else if(exp.type == 2){
-    weights<-1/scores
+    weights<-lambda*(1-scores)
     t.i<-match(gene.list, gene.set, nomatch=0)
     t.i[t.i>0]<-weights[t.i[t.i>0]]
   }
@@ -408,7 +408,7 @@ GSEA.EnrichmentScore.weighted <- function(gene.list, gene.set, correl.vector = N
     ES <- signif(min.ES, digits=5)
     arg.ES <- which.min(RES)
   }
-  #browser()
+  browser()
   ##debug  
   ##position_in_rank_list,gene_name,score_norm,corl,corl^score_norm
   a<-names(sort(gene.labels[gene.set],decreasing = T))
@@ -423,8 +423,8 @@ GSEA.EnrichmentScore.weighted <- function(gene.list, gene.set, correl.vector = N
 }
 
 
-GSEA.EnrichmentScore.weighted.batch <- function(gene.list, gene.set, correl.vector = NULL,correl.vector.sorted=NULL,gene.labels,exp.type=1,scores=NULL) {  
-  #browser()
+GSEA.EnrichmentScore.weighted.batch <- function(gene.list, gene.set, correl.vector = NULL,correl.vector.sorted=NULL,gene.labels,exp.type=1,scores=NULL,lambda=1) {  
+   # browser()
 
   correl.vector.sorted<-correl.vector.sorted
   # for(i in 1:ncol(correl.vector)){
@@ -439,7 +439,7 @@ GSEA.EnrichmentScore.weighted.batch <- function(gene.list, gene.set, correl.vect
     weights=1/scores
     t.i=matrix(rep(1,length(gene.list)),ncol = ncol(gene.list))
   }else if(exp.type == 2){
-    weights<-1/scores
+    weights<-lambda*(1-scores)
     t.i<-apply(gene.list,2,match,table=gene.set,nomatch=0)
     t.i<-apply(t.i,2,function(x){x[x>0]<-weights[x[x>0]];x})
   }
@@ -521,7 +521,7 @@ plot.result<-function(A=A,O=O,rl=rl,pty=pty,nom.p.val.threshold=0.05,
     doc.string='gsea'
   }
   
-  #browser()
+  # browser()
   pdf(file=paste(output.directory, doc.string, ".global.plots", sep="", collapse=""), height = 10, width = 10)
   nf <- layout(matrix(c(1,1,2,3), 2, 2, byrow=T), c(1,1), c(1,1), TRUE)
   
@@ -775,7 +775,7 @@ plot.result<-function(A=A,O=O,rl=rl,pty=pty,nom.p.val.threshold=0.05,
         phen.tag <- phen[2]
       }
       
-     #browser()
+     # browser()
       gene.report <- data.frame(cbind(c(1:length(gene.names)), gene.names, obs.index, gene.s2n, 
                                       round(1/as.numeric(sapply(rl[[i]]$GSEA.results$dbg,function(x){strsplit(x,split = '/',fixed = T)[[1]][4]}))),
                                       sapply(rl[[i]]$GSEA.results$dbg,function(x){strsplit(x,split = '/',fixed = T)[[1]][4]}),
@@ -786,6 +786,12 @@ plot.result<-function(A=A,O=O,rl=rl,pty=pty,nom.p.val.threshold=0.05,
       result[[phen.tag]][[names(rl)[i]]][['p']]<-p.vals[[i]]
       result[[phen.tag]][[names(rl)[i]]][['ES']]<-obs.ES[[i]]
       result[[phen.tag]][[names(rl)[i]]][['ES.norm']]<-obs.ES.norm[[i]]
+      result[[phen.tag]][[names(rl)[i]]][['ES.norm']]<-obs.ES.norm[[i]]
+      result[[phen.tag]][[names(rl)[i]]][['rl']]<-rl
+      result[[phen.tag]][[names(rl)[i]]][['obs.s2n']]<- obs.s2n
+      result[[phen.tag]][[names(rl)[i]]][['obs.ES']]<- obs.ES
+      result[[phen.tag]][[names(rl)[i]]][['N']]<- N
+      result[[phen.tag]][[names(rl)[i]]][['obs.index']]<- obs.index
       #       print(gene.report)
       
       if (output.directory != "")  {

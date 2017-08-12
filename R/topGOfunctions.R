@@ -264,9 +264,9 @@ setMethod("printGenes",
 ######################################################################
 if(!isGeneric("GenTable"))
   setGeneric("GenTable", function(object, ...) standardGeneric("GenTable"))
-if(!isGeneric("GenTable2"))
+# if(!isGeneric("GenTable2"))
   setGeneric("GenTable2", function(object, ...) standardGeneric("GenTable2"))
-if(!isGeneric("GenTableGSEA"))
+# if(!isGeneric("GenTableGSEA"))
   setGeneric("GenTableGSEA", function(object, ...) standardGeneric("GenTableGSEA"))
 
 #' @title Diagnostic functions for topONTdata and topONTresult objects.

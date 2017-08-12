@@ -1316,7 +1316,7 @@ setMethod("getSigGroups",
             
             report<-plot.result(A=as.matrix(object@exp),rl=algoRes0,O=test.stat@testStatPar$geneRanking,pty =object@pty,output.directory =test.stat@testStatPar$output.directory,
                                 topgs=test.stat@testStatPar$topgs,nom.p.val.threshold=test.stat@cutOff)
-            #saveRDS(report,'/tmp/1.rds')
+            saveRDS(report,paste(test.stat@testStatPar$output.directory,'report.rds',sep = ''))
             #browser()
             #####use plot here or outside?
             algoRes <- unlist(sapply(algoRes0,function(x){x['p']},simplify = T))
@@ -1326,8 +1326,12 @@ setMethod("getSigGroups",
             .whichAlgorithm <- "classicGsea"
             attr(.whichAlgorithm, "testClass") <- as.character(class(test.stat))
             l=list()
-            l[[names(report[-1])[1]]]=lapply(report[-1][[1]],function(x){x$report})
-            l[[names(report[-1])[2]]]=lapply(report[-1][[2]],function(x){x$report})
+            # browser()
+            for(i in names(report[-1])){
+              l[[i]] = lapply(report[-1][[i]],function(x){x$report})
+            }
+            # l[[names(report[-1])[1]]]=lapply(report[-1][[1]],function(x){x$report})
+            # l[[names(report[-1])[2]]]=lapply(report[-1][[2]],function(x){x$report})
             return(new("topONTresultGSEA",
                        description = paste(description(object), "\nOntology:", ontology(object), sep = " "),
                        score = algoRes, testName = Name(test.stat),
@@ -1335,7 +1339,7 @@ setMethod("getSigGroups",
                        geneData = c(.getGeneData(object), SigTerms = length(GOlist)),
                        global.report = report$report,
                        gs.report = l,
-                       plots = lapply(report$ALL,function(x){x$plot}),
+                       plots = lapply(report[-1][[i]],function(x){x$plot}),
                        cutOff = test.stat@cutOff
                    ))
           })
@@ -1403,7 +1407,7 @@ setMethod("getSigGroups",
                        geneData = c(.getGeneData(object), SigTerms = length(GOlist)),
                        global.report = report$report,
                        gs.report = lapply(report$ALL,function(x){x$report}),
-                       plots = lapply(report$ALL,function(x){x$plot}),
+                       plots = lapply(report[-1][[i]],function(x){x$plot}),
                        cutOff = test.stat@cutOff
             ))
             

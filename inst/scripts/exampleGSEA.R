@@ -13,7 +13,7 @@ topOnto::initONT('HDO')
 geneID2TERM <- readMappings(file = system.file("extdata/annotation","human_gene2HDO_o", package ="topOnto"))
 ##or with score
 geneID2TERM <- readRDS(system.file("extdata/annotation","human_gene2HDO_weighted_g2t.Rds", package ="topOnto"))
-geneID2TERM <- revmap(read.gmt(file = '/home/xin/Downloads/GSEA-P-R/GeneSetDatabases/HDO_o.gmt'))
+geneID2TERM <- revmap(read.gmt(file = '/Users/xinhe/Documents/Rworkspace/topOnto/inst/extdata/ontology/GSEA/GeneSetDatabases/HDO_o.gmt'))
 ##clip?
 terms<-c("DOID:0050686","DOID:0060083","DOID:1036","DOID:1037","DOID:11868","DOID:1240","DOID:12603","DOID:12965","DOID:14566","DOID:162","DOID:2531","DOID:3264","DOID:4","DOID:6004","DOID:7757","DOID:8692","DOID:8761","DOID:9254","all")
 term2geneID<-filter.ontology.annotation(terms,term2genes=revmapWithScore(geneID2TERM))
@@ -22,8 +22,8 @@ geneID2TERM<-revmapWithScore(term2geneID)
 
 
 ##read exp data
-exp<-read.gct('/home/xin/Downloads/GSEA-P-R/Datasets/Leukemia.gct')
-pty<-read.cls('/home/xin/Downloads/GSEA-P-R/Datasets/Leukemia.cls')
+exp<-read.gct('/Users/xinhe/Documents/Rworkspace/topOnto/inst/extdata/ontology/GSEA/Datasets/Leukemia.gct')
+pty<-read.cls('/Users/xinhe/Documents/Rworkspace/topOnto/inst/extdata/ontology/GSEA/Datasets/Leukemia.cls')
 class.labels<-pty$class.v
 
 

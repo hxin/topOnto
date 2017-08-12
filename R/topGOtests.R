@@ -287,11 +287,15 @@ setMethod("GOKSCSWTest", "classicGsea",
             if(length(object@members) == 0)# || na == N)
               return(list(p=1,ES.obs=NA,ES.obs.norm=NA,ES.premut=NA,ES.premut.norm=NA,GSEA.results=NA))
             #browser()
+            if(is.null(object@testStatPar$lambda)){
+              object@testStatPar$lambda = 1
+            }
             GSEA.results<-GSEA.EnrichmentScore.weighted.batch(gene.list=object@testStatPar$geneRanking$o.m,
                                                               gene.set=match(object@members, rownames(object@testStatPar$geneRanking$s2n.m)),
                                                               correl.vector = object@testStatPar$geneRanking$s2n.m,
                                                               correl.vector.sorted = object@testStatPar$geneRanking$s2n.m.sort.abs,
-                                                              exp.type=object@testStatPar$exp.type,score=object@annotation.weight)
+                                                              exp.type=object@testStatPar$exp.type,score=object@annotation.weight,
+                                                              lambda = object@testStatPar$lambda)
             
             ES.obs<-GSEA.results$ES[1]
             ES.premut<-GSEA.results$ES[2:length(GSEA.results$ES)]
